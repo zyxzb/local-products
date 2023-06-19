@@ -7,12 +7,27 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        whiteColor: '#edede9',
+        darkColor: '#503047',
+        lightGreen: '#adc698',
+        darkGreen: '#3a5a40',
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      animation: {
+        move: 'move 3s infinite alternate',
+      },
+      keyframes: {
+        move: {
+          '0%': { transform: 'translateY(-10px)' },
+          '100%': { transform: 'translateY(10px)' },
+        },
+      },
     },
   },
   plugins: [],
-}
+};
