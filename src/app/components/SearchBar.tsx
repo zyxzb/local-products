@@ -1,14 +1,14 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import useDebounce from '../hooks/useDebounce';
 import Link from 'next/link';
+import { useOnClickOutside } from 'usehooks-ts';
 
 import { wojewodztwa } from '../data/wojewodztwa';
 import { miasta } from '../data/miasta';
 import { CiLocationOn, CiSearch } from 'react-icons/ci';
 import { Button } from '@/app/components';
-import { MiastaProps, WojewodztwaProps } from '../types';
 
 const initState = {
   name: '',
@@ -18,24 +18,52 @@ const initState = {
 const SearchBar = () => {
   const [formData, setFormData] = useState(initState);
   const [searchedLocation, setSearchedLocation] = useState<any[]>([]);
+  const [mergedLocation, setMergedLocation] = useState<any[]>([]);
+  const [isListVisible, setIsListVisible] = useState(false);
+  const myRef = useRef(null);
+
+  const handleClickOutside = () => {
+    setIsListVisible(false);
+  };
+
+  useOnClickOutside(myRef, handleClickOutside);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
+    console.log(name);
     setFormData({ ...formData, [name]: value });
   };
 
   // debounce query results
   useDebounce(
     () => {
-      const formLocation = formData.location;
-      const filteredSearch = miasta.filter((location) =>
-        location.name.toLowerCase().includes(formLocation.toLowerCase()),
+      const filteredSearch = miasta.filter((miasto) =>
+        miasto.name.toLowerCase().includes(formData.location.toLowerCase()),
       );
-      console.log(filteredSearch);
+      // searched locations without merged areas
       setSearchedLocation(filteredSearch);
+
+      if (
+        filteredSearch.length !== miasta.length &&
+        formData.location.length > 0
+      ) {
+        const mergedData = filteredSearch.map((miasto) => {
+          const wojewodztwo = wojewodztwa.find(
+            (woj) => woj.id === miasto.voivodeship_id,
+          );
+          return {
+            ...miasto,
+            wojewodztwo: wojewodztwo
+              ? wojewodztwo.name
+              : 'Nieznane wojewodztwo',
+          };
+        });
+        setMergedLocation(mergedData);
+      }
+      // searched locations and merged areas
     },
     [formData.location],
-    500,
+    700,
   );
 
   return (
@@ -62,13 +90,33 @@ const SearchBar = () => {
             placeholder='Lokalizacja...'
             value={formData.location}
             onChange={handleChange}
+            onFocus={() => setIsListVisible(true)}
           />
-          {searchedLocation.length > 0 &&
-            miasta.length !== searchedLocation.length && (
-              <div className='absolute flex flex-col gap-2 p-4 top-full left-0 right-0 z-10  max-h-[200px] overflow-y-auto bg-darkColor text-whiteColor'>
-                {searchedLocation.map((item) => (
-                  <Link href={'/'} key={item.id}>
-                    <div>{item.name}</div>
+          {mergedLocation.length > 0 &&
+            miasta.length !== searchedLocation.length &&
+            searchedLocation.length !== 0 && (
+              <div
+                className={`absolute flex flex-col gap-2 p-4 top-full left-0 right-0 max-h-[200px] overflow-y-auto bg-darkColor text-whiteColor ${
+                  formData.location.length > 0 && isListVisible
+                    ? 'visible'
+                    : 'hidden'
+                }`}
+                ref={myRef}
+              >
+                {mergedLocation.map((item) => (
+                  <Link
+                    href={'/'}
+                    key={item.id}
+                    className='hover:underline'
+                    onClick={() => {
+                      setFormData({ ...formData, ['location']: item.name });
+                      setIsListVisible(false);
+                    }}
+                  >
+                    <div>
+                      <span className='font-bold'>{item.name}</span>,{' '}
+                      {item.wojewodztwo}
+                    </div>
                   </Link>
                 ))}
               </div>
