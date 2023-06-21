@@ -1,43 +1,39 @@
 'use client';
 
 import { useState } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import LogoImg from 'public/landWhite.png';
 import { navLinks } from '../data/nav-links';
 import { CiMenuBurger } from 'react-icons/ci';
 import { TfiClose } from 'react-icons/tfi';
+import { FiMapPin } from 'react-icons/fi';
 
 const Nav = () => {
   const [openNav, setOpenNav] = useState(false);
   const currentRoute = usePathname();
 
   return (
-    <nav className='h-[70px] fixed top-0 left-0 right-0 z-10 flex justify-between items-center bg-darkColor px-[15px] md:px-[30px]'>
-      <div className='flex items-center gap-5 text-whiteColor'>
-        <Link href='/'>WybierzLokalnie.pl</Link>
-        <Image
-          src={LogoImg}
-          alt='logo'
-          width={50}
-          height={50}
-          className='hidden sm:block'
-        />
+    <nav className='nav-links h-[70px] fixed top-0 left-0 right-0 z-10 flex justify-between items-center bg-darkColor px-[15px]'>
+      <div>
+        <Link href='/' className='flex items-center gap-2 text-whiteColor px-2'>
+          <FiMapPin className='text-4xl' />
+          <span>WybierzLokalnie.pl</span>
+        </Link>
       </div>
 
       {/* desktop nav */}
 
-      <div className='hidden lg:flex gap-6'>
+      <div className='hidden lg:flex h-full items-center'>
         {navLinks.map((link) => {
           const { name, url } = link;
           return (
             <Link
               href={url}
               key={name}
-              className={`capitalize hover:underline underline-offset-2 text-whiteColor ${
-                currentRoute === url && 'underline'
+              className={`capitalize hover:underline underline-offset-2 text-whiteColor px-5 h-full flex items-center ${
+                currentRoute === url &&
+                'bg-whiteColor !text-darkColor font-bold'
               }`}
             >
               {name}

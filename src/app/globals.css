@@ -5,32 +5,35 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Khand:wght@700&display=swap');
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Manrope', sans-serif;
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-h1,
-h2 {
-  font-family: 'Khand', sans-serif;
-  font-weight: 700;
-  letter-spacing: 1px;
-}
-
-a {
-  text-decoration: none;
-}
-
 .hero {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
   justify-content: space-between;
   gap: 50px;
+}
+
+@layer base {
+  *,
+  ::before,
+  ::after {
+    @apply m-0 p-0 box-border;
+  }
+
+  body {
+    @apply bg-whiteColor font-manrope;
+  }
+
+  h1,
+  h2 {
+    @apply font-khand font-bold;
+  }
+
+  .nav-links,
+  footer {
+    @apply font-khand font-bold;
+  }
+
+  a {
+    @apply no-underline;
+  }
 }

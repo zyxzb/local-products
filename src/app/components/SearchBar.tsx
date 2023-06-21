@@ -2,13 +2,14 @@
 
 import React, { useState, useRef } from 'react';
 import useDebounce from '../hooks/useDebounce';
-import Link from 'next/link';
 import { useOnClickOutside } from 'usehooks-ts';
+import Link from 'next/link';
+import { Button, SearchInput } from '@/app/components';
 
 import { wojewodztwa } from '../data/wojewodztwa';
 import { miasta } from '../data/miasta';
 import { CiLocationOn, CiSearch } from 'react-icons/ci';
-import { Button } from '@/app/components';
+import { TfiClose } from 'react-icons/tfi';
 
 const initState = {
   name: '',
@@ -21,6 +22,7 @@ const SearchBar = () => {
   const [mergedLocation, setMergedLocation] = useState<any[]>([]);
   const [isListVisible, setIsListVisible] = useState(false);
   const myRef = useRef(null);
+  console.log(formData);
 
   const handleClickOutside = () => {
     setIsListVisible(false);
@@ -67,31 +69,42 @@ const SearchBar = () => {
   );
 
   return (
-    <div className='bg-lightGreen flex items-center justify-center w-full p-[20px]'>
-      <form className='flex flex-col md:flex-row gap-[20px] w-full'>
-        <div className='flex flex-1 relative'>
-          <CiSearch className='absolute left-[10px] top-1/2 -translate-y-1/2 text-2xl' />
-          <input
+    <div className='flex items-center justify-center w-full p-[20px] md:py-[40px]  max-w-[1200px] mx-auto'>
+      <form
+        className='flex flex-col md:flex-row gap-[20px] w-full'
+        autoComplete='off'
+      >
+        <div className='flex flex-1 relative text-darkColor'>
+          <SearchInput
             type='text'
             name='name'
-            className='w-full px-[40px] py-[10px] sm:py-[20px] text-lg'
             placeholder='Produkt lub dostawca...'
             value={formData.name}
             onChange={handleChange}
-            required
+            required={true}
+            icon={
+              <CiSearch className='absolute left-[10px] top-1/2 -translate-y-1/2 text-2xl' />
+            }
           />
         </div>
-        <div className='flex flex-1 relative'>
-          <CiLocationOn className='absolute left-[10px] top-1/2 -translate-y-1/2 text-2xl' />
-          <input
+        <div className='flex flex-1 relative text-darkColor' ref={myRef}>
+          <SearchInput
             type='text'
             name='location'
-            className='w-full flex-1 px-[40px] py-[10px] sm:py-[20px] text-lg'
             placeholder='Lokalizacja...'
             value={formData.location}
             onChange={handleChange}
             onFocus={() => setIsListVisible(true)}
+            icon={
+              <CiLocationOn className='absolute left-[10px] top-1/2 -translate-y-1/2 text-2xl' />
+            }
           />
+          <div
+            className='cursor-pointer'
+            onClick={() => setFormData({ ...formData, ['location']: '' })}
+          >
+            <TfiClose className='absolute right-[10px] top-1/2 -translate-y-1/2 text-2xl text-darkColor' />
+          </div>
           {mergedLocation.length > 0 &&
             miasta.length !== searchedLocation.length &&
             searchedLocation.length !== 0 && (
@@ -101,7 +114,6 @@ const SearchBar = () => {
                     ? 'visible'
                     : 'hidden'
                 }`}
-                ref={myRef}
               >
                 {mergedLocation.map((item) => (
                   <Link
@@ -122,7 +134,11 @@ const SearchBar = () => {
               </div>
             )}
         </div>
-        <Button type='button' text='Szukaj...' textStyles='' />
+        <Button
+          type='submit'
+          text='Szukaj'
+          icon={<CiSearch className='text-2xl' />}
+        />
       </form>
     </div>
   );

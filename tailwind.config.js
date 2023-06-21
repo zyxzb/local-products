@@ -7,6 +7,10 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        manrope: ['Manrope', 'sans-serif'],
+        khand: ['Khand', 'sans-serif'],
+      },
       colors: {
         whiteColor: '#edede9',
         darkColor: '#503047',
