@@ -1,7 +1,6 @@
 import { SearchInputProps } from '../types';
 
 const SearchInput = ({
-  type,
   name,
   placeholder,
   value,
@@ -14,7 +13,7 @@ const SearchInput = ({
     <>
       {icon}
       <input
-        type={type}
+        type='text'
         name={name}
         className='w-full px-[40px] py-[10px] sm:py-[20px] text-lg placeholder-darkColor/60 bg-whiteColor'
         placeholder={placeholder}

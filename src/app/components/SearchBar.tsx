@@ -5,6 +5,7 @@ import useDebounce from '../hooks/useDebounce';
 import { useOnClickOutside } from 'usehooks-ts';
 import Link from 'next/link';
 import { Button, SearchInput } from '@/app/components';
+import { mergeCitiesWithAreas } from '../utils';
 
 import { wojewodztwa } from '../data/wojewodztwa';
 import { miasta } from '../data/miasta';
@@ -22,7 +23,6 @@ const SearchBar = () => {
   const [mergedLocation, setMergedLocation] = useState<any[]>([]);
   const [isListVisible, setIsListVisible] = useState(false);
   const myRef = useRef(null);
-  console.log(formData);
 
   const handleClickOutside = () => {
     setIsListVisible(false);
@@ -42,27 +42,13 @@ const SearchBar = () => {
       const filteredSearch = miasta.filter((miasto) =>
         miasto.name.toLowerCase().includes(formData.location.toLowerCase()),
       );
-      // searched locations without merged areas
+      // set locations without merged areas
       setSearchedLocation(filteredSearch);
 
-      if (
-        filteredSearch.length !== miasta.length &&
-        formData.location.length > 0
-      ) {
-        const mergedData = filteredSearch.map((miasto) => {
-          const wojewodztwo = wojewodztwa.find(
-            (woj) => woj.id === miasto.voivodeship_id,
-          );
-          return {
-            ...miasto,
-            wojewodztwo: wojewodztwo
-              ? wojewodztwo.name
-              : 'Nieznane wojewodztwo',
-          };
-        });
-        setMergedLocation(mergedData);
+      // merge locations with areas
+      if (filteredSearch.length !== miasta.length || 0) {
+        setMergedLocation(mergeCitiesWithAreas(filteredSearch, wojewodztwa));
       }
-      // searched locations and merged areas
     },
     [formData.location],
     700,
@@ -76,7 +62,6 @@ const SearchBar = () => {
       >
         <div className='flex flex-1 relative text-darkColor'>
           <SearchInput
-            type='text'
             name='name'
             placeholder='Produkt lub dostawca...'
             value={formData.name}
@@ -89,7 +74,6 @@ const SearchBar = () => {
         </div>
         <div className='flex flex-1 relative text-darkColor' ref={myRef}>
           <SearchInput
-            type='text'
             name='location'
             placeholder='Lokalizacja...'
             value={formData.location}

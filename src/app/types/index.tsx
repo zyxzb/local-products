@@ -8,7 +8,6 @@ export interface ButtonProps {
 }
 
 export interface SearchInputProps {
-  type: string;
   name: string;
   placeholder: string;
   value: string;
