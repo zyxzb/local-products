@@ -1,5 +1,5 @@
-import { WojewodztwaProps } from '@/app/types';
-import { MiastaProps } from '@/app/types';
+import { WojewodztwaProps } from '@/types';
+import { MiastaProps } from '@/types';
 import * as Yup from 'yup';
 
 export const mergeCitiesWithAreas = (

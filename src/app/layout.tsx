@@ -1,4 +1,4 @@
-import { Footer, Nav, SearchBar } from '@/app/components';
+import { Footer, Nav, SearchBar } from '@/components';
 import './globals.css';
 
 export const metadata = {

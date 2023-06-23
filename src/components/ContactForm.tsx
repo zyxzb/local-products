@@ -1,10 +1,10 @@
 'use client';
 
-import { Button, InputField } from '@/app/components';
+import { Button, InputField } from '@/components';
 import { BiMailSend } from 'react-icons/bi';
 import { Formik, Form, FormikHelpers } from 'formik';
-import { validationSchema } from '../utils';
-import { ContactFormProps } from '../types';
+import { validationSchema } from '@/utils';
+import { ContactFormProps } from '@/types';
 
 const initialValues = {
   name: '',

@@ -1,14 +1,14 @@
 'use client';
 
 import React, { useState, useRef } from 'react';
-import useDebounce from '../hooks/useDebounce';
+import useDebounce from '@/hooks/useDebounce';
 import { useOnClickOutside } from 'usehooks-ts';
 import Link from 'next/link';
-import { Button, SearchInput } from '@/app/components';
-import { mergeCitiesWithAreas } from '../utils';
+import { Button, SearchInput } from '@/components';
+import { mergeCitiesWithAreas } from '@/utils';
 
-import { wojewodztwa } from '../data/wojewodztwa';
-import { miasta } from '../data/miasta';
+import { wojewodztwa } from '@/data/wojewodztwa';
+import { miasta } from '@/data/miasta';
 import { CiLocationOn, CiSearch } from 'react-icons/ci';
 import { TfiClose } from 'react-icons/tfi';
 

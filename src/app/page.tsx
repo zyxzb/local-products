@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import HeroImg from 'public/undraw_food.svg';
-import { homeData } from './data/home-data';
+import { homeData } from '@/data/home-data';
 
 const Home = () => {
   return (

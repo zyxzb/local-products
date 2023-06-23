@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import { navLinks } from '../data/nav-links';
+import { navLinks } from '@/data/nav-links';
 import { CiMenuBurger } from 'react-icons/ci';
 import { TfiClose } from 'react-icons/tfi';
 import { FiMapPin } from 'react-icons/fi';

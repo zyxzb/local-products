@@ -1,4 +1,4 @@
-import { ContactForm, PageTitle } from '@/app/components';
+import { ContactForm, PageTitle } from '@/components';
 import FormImg from 'public/undraw_form.svg';
 import Image from 'next/image';
 

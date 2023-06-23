@@ -1,4 +1,4 @@
-import { SearchInputProps } from '../types';
+import { SearchInputProps } from '@/types';
 
 const SearchInput = ({
   name,
