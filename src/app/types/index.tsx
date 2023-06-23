@@ -3,7 +3,7 @@ import React from 'react';
 export interface ButtonProps {
   type: 'button' | 'submit' | 'reset';
   text: string;
-  textStyles?: string;
+  extraStyles?: string;
   icon?: JSX.Element;
 }
 
@@ -33,4 +33,17 @@ export interface WojewodztwaProps {
   name: string;
   unique_name: string;
   name_locative: string;
+}
+
+export interface ContactFormProps {
+  name: string;
+  email: string;
+  message: string;
+}
+
+export interface InputFieldProps {
+  name: string;
+  placeholder: string;
+  extraStyles?: string;
+  isMessage?: boolean;
 }

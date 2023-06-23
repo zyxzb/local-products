@@ -13,8 +13,8 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
     <html lang='pl'>
       <body>
         <Nav />
-        <div className='w-full min-h-[calc(100vh_-_70px)] mx-auto flex flex-col pt-[70px] pb-[30px]'>
-          <div className='bg-lightGreen'>
+        <div className='w-full min-h-[calc(100vh_-_70px)] mx-auto flex flex-col pt-[70px] pb-[80px]'>
+          <div className='bg-lightGreen mb-20'>
             <SearchBar />
           </div>
           <main className='max-w-[1200px] mx-auto px-[15px] md:px-[30px]'>

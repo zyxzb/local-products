@@ -5,9 +5,9 @@ import { homeData } from './data/home-data';
 const Home = () => {
   return (
     <div>
-      <div className='hero py-10 lg:py-20'>
+      <div className='hero lg:pb-20'>
         <div className='h-full flex items-center '>
-          <h1 className='leading-[50px] lg:leading-[70px] text-4xl lg:text-5xl xl:text-6xl bg-gradient-to-b from-lightGreen to-darkColor bg-clip-text text-transparent'>
+          <h1 className='leading-[50px] lg:leading-[70px] text-4xl lg:text-5xl xl:text-6xl bg-gradient-to-b from-lightGreen to-darkColor bg-clip-text text-transparent pb-2'>
             Odkryj Lokalnych <br /> Producentów Żywnosci <br /> w Twojej
             Okolicy.
             <br />

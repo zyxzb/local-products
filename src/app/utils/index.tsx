@@ -1,5 +1,6 @@
 import { WojewodztwaProps } from '@/app/types';
 import { MiastaProps } from '@/app/types';
+import * as Yup from 'yup';
 
 export const mergeCitiesWithAreas = (
   filteredSearch: MiastaProps[],
@@ -16,3 +17,11 @@ export const mergeCitiesWithAreas = (
   });
   return mergedData;
 };
+
+export const validationSchema = Yup.object().shape({
+  name: Yup.string().required('Pole imię jest wymagane'),
+  email: Yup.string()
+    .required('Pole email jest wymagane')
+    .email('Nieprawidłowy adres email'),
+  message: Yup.string().required('Pole wiadomość jest wymagane'),
+});
