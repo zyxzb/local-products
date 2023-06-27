@@ -5,6 +5,8 @@ import { BiMailSend } from 'react-icons/bi';
 import { Formik, Form, FormikHelpers } from 'formik';
 import { validationSchema } from '@/utils';
 import { ContactFormProps } from '@/types';
+import { useState } from 'react';
+import emailjs from '@emailjs/browser';
 
 const initialValues = {
   name: '',
@@ -13,17 +15,27 @@ const initialValues = {
 };
 
 const ContactForm = () => {
+  const [isSending, setIsSending] = useState(false);
+
   const handleSubmit = async (
     values: ContactFormProps,
     actions: FormikHelpers<ContactFormProps>,
   ) => {
     const { name, email, message } = values;
+    setIsSending(true);
     try {
+      await emailjs.send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        { name, email, message },
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!,
+      );
       alert('Form has been sent successfully sent');
       actions.resetForm();
-      console.log(name, email, message);
     } catch (error) {
-      console.log(error);
+      alert(`Something went wrong :( \n Error: ${error} \n Try again!`);
+    } finally {
+      setIsSending(false);
     }
   };
 
@@ -45,7 +57,7 @@ const ContactForm = () => {
           />
           <Button
             type='submit'
-            text='Wyślij'
+            text={isSending ? 'Wysyłanie...' : 'Wyślij'}
             extraStyles='hover:border-darkColor'
             icon={<BiMailSend className='text-xl' />}
           />
