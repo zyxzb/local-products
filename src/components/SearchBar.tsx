@@ -53,11 +53,14 @@ const SearchBar = () => {
 
       // Add the found districts to the search results
       const mergedSearch = [...convertedDzielnice, ...filteredSearch];
+      console.log(mergedSearch);
 
       // merge locations with areas
-      if (mergedSearch.length !== miasta.length + dzielnice.length || 0) {
+      if (
+        mergedSearch.length !== miasta.length + dzielnice.length &&
+        mergedSearch.length !== 0
+      ) {
         setMergedLocation(mergeCitiesWithAreas(mergedSearch, wojewodztwa));
-        console.log('hello world');
       } else {
         setMergedLocation([]);
       }

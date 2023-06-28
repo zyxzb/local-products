@@ -6,8 +6,8 @@ const Contact = () => {
   return (
     <div>
       <PageTitle title='Skontaktuj się z nami' />
-      <div className='flex justify-center items-center flex-col md:flex-row gap-20'>
-        <div className='animate-move -z-10 w-full'>
+      <div className='grid md:grid-cols-2 gap-20'>
+        <div className='animate-move'>
           <Image src={FormImg} alt='form' className='w-full h-full' />
         </div>
         <ContactForm />

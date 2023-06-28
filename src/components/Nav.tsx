@@ -31,7 +31,7 @@ const Nav = () => {
             <Link
               href={url}
               key={name}
-              className={`capitalize hover:underline underline-offset-2 text-whiteColor px-5 h-full flex items-center gap-2 ${
+              className={`capitalize hover:underline underline-offset-2 text-whiteColor px-4 h-full flex items-center gap-2 ${
                 currentRoute === url &&
                 'bg-whiteColor !text-darkColor font-bold'
               }`}
