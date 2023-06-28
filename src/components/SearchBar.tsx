@@ -5,10 +5,11 @@ import useDebounce from '@/hooks/useDebounce';
 import { useOnClickOutside } from 'usehooks-ts';
 import Link from 'next/link';
 import { Button, SearchInput } from '@/components';
-import { mergeCitiesWithAreas } from '@/utils';
+import { mergeCitiesWithAreas, convertDzielniceFormat } from '@/utils';
 
 import { wojewodztwa } from '@/data/wojewodztwa';
 import { miasta } from '@/data/miasta';
+import { dzielnice } from '@/data/dzielnice';
 import { CiLocationOn, CiSearch } from 'react-icons/ci';
 import { TfiClose } from 'react-icons/tfi';
 
@@ -19,7 +20,6 @@ const initState = {
 
 const SearchBar = () => {
   const [formData, setFormData] = useState(initState);
-  const [searchedLocation, setSearchedLocation] = useState<any[]>([]);
   const [mergedLocation, setMergedLocation] = useState<any[]>([]);
   const [isListVisible, setIsListVisible] = useState(false);
   const myRef = useRef(null);
@@ -32,22 +32,34 @@ const SearchBar = () => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    console.log(name);
     setFormData({ ...formData, [name]: value });
   };
 
   // debounce query results
   useDebounce(
     () => {
+      // Filter Cities
       const filteredSearch = miasta.filter((miasto) =>
         miasto.name.toLowerCase().includes(formData.location.toLowerCase()),
       );
-      // set locations without merged areas
-      setSearchedLocation(filteredSearch);
+
+      // Filter districts of Warsaw
+      const filteredDzielnice = dzielnice.filter((dzielnica) =>
+        dzielnica.text.toLowerCase().includes(formData.location.toLowerCase()),
+      );
+
+      // Convert object format
+      const convertedDzielnice = convertDzielniceFormat(filteredDzielnice);
+
+      // Add the found districts to the search results
+      const mergedSearch = [...convertedDzielnice, ...filteredSearch];
 
       // merge locations with areas
-      if (filteredSearch.length !== miasta.length || 0) {
-        setMergedLocation(mergeCitiesWithAreas(filteredSearch, wojewodztwa));
+      if (mergedSearch.length !== miasta.length + dzielnice.length || 0) {
+        setMergedLocation(mergeCitiesWithAreas(mergedSearch, wojewodztwa));
+        console.log('hello world');
+      } else {
+        setMergedLocation([]);
       }
     },
     [formData.location],
@@ -89,34 +101,32 @@ const SearchBar = () => {
           >
             <TfiClose className='absolute right-[10px] top-1/2 -translate-y-1/2 text-2xl text-darkColor' />
           </div>
-          {mergedLocation.length > 0 &&
-            miasta.length !== searchedLocation.length &&
-            searchedLocation.length !== 0 && (
-              <div
-                className={`absolute flex flex-col gap-2 p-4 top-full left-0 right-0 max-h-[200px] overflow-y-auto bg-darkColor text-whiteColor ${
-                  formData.location.length > 0 && isListVisible
-                    ? 'visible'
-                    : 'hidden'
-                }`}
-              >
-                {mergedLocation.map((item) => (
-                  <Link
-                    href={'/'}
-                    key={item.id}
-                    className='hover:underline'
-                    onClick={() => {
-                      setFormData({ ...formData, ['location']: item.name });
-                      setIsListVisible(false);
-                    }}
-                  >
-                    <div>
-                      <span className='font-bold'>{item.name}</span>,{' '}
-                      {item.wojewodztwo}
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            )}
+          {mergedLocation.length > 0 && (
+            <div
+              className={`absolute flex flex-col gap-2 p-4 top-full left-0 right-0 max-h-[200px] overflow-y-auto bg-darkColor text-whiteColor ${
+                formData.location.length > 0 && isListVisible
+                  ? 'visible'
+                  : 'hidden'
+              }`}
+            >
+              {mergedLocation.map((item) => (
+                <Link
+                  href={'/'}
+                  key={item.id}
+                  className='hover:underline'
+                  onClick={() => {
+                    setFormData({ ...formData, ['location']: item.name });
+                    setIsListVisible(false);
+                  }}
+                >
+                  <div>
+                    <span className='font-bold'>{item.name}</span>,{' '}
+                    {item.wojewodztwo}
+                  </div>
+                </Link>
+              ))}
+            </div>
+          )}
         </div>
         <Button
           type='submit'

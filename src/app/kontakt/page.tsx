@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 const Contact = () => {
   return (
-    <div className='text-center'>
+    <div>
       <PageTitle title='Skontaktuj się z nami' />
       <div className='flex justify-center items-center flex-col md:flex-row gap-20'>
         <div className='animate-move -z-10 w-full'>

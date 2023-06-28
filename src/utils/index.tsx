@@ -1,6 +1,20 @@
-import { WojewodztwaProps } from '@/types';
-import { MiastaProps } from '@/types';
+import { WojewodztwaProps, MiastaProps, DzielniceProps } from '@/types';
 import * as Yup from 'yup';
+
+export const convertDzielniceFormat = (filteredDzielnice: DzielniceProps[]) => {
+  return filteredDzielnice.map((dzielnica) => {
+    return {
+      id: parseInt(dzielnica.id + 0),
+      name: dzielnica.text,
+      unique_name: dzielnica.unique_name,
+      county_id: parseInt(dzielnica.city_id),
+      voivodeship_id: 7,
+      latitude: dzielnica.lat,
+      longitude: dzielnica.lon,
+      name_locative: dzielnica.unique_name,
+    };
+  });
+};
 
 export const mergeCitiesWithAreas = (
   filteredSearch: MiastaProps[],

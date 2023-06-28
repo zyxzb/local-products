@@ -4,7 +4,7 @@ interface PageTitleProps {
 
 const PageTitle = ({ title }: PageTitleProps) => {
   return (
-    <h1 className='mb-20 bg-gradient-to-b from-lightGreen to-darkColor bg-clip-text text-transparent text-5xl md:text-6xl pb-2'>
+    <h1 className='mb-20 bg-gradient-to-b from-lightGreen to-darkColor bg-clip-text text-transparent text-5xl md:text-6xl pb-2 text-center'>
       {title}
     </h1>
   );

@@ -26,16 +26,17 @@ const Nav = () => {
 
       <div className='hidden lg:flex h-full items-center'>
         {navLinks.map((link) => {
-          const { name, url } = link;
+          const { name, url, icon } = link;
           return (
             <Link
               href={url}
               key={name}
-              className={`capitalize hover:underline underline-offset-2 text-whiteColor px-5 h-full flex items-center ${
+              className={`capitalize hover:underline underline-offset-2 text-whiteColor px-5 h-full flex items-center gap-2 ${
                 currentRoute === url &&
                 'bg-whiteColor !text-darkColor font-bold'
               }`}
             >
+              {icon}
               {name}
             </Link>
           );
@@ -59,9 +60,9 @@ const Nav = () => {
           )}
         </button>
         {openNav && (
-          <aside className='absolute top-0 left-0 h-[100dvh] w-2/3 sm:w-[300px] bg-darkGreen z-10 p-4 text-whiteColor'>
+          <aside className='absolute top-0 left-0 h-[100dvh] w-2/3 sm:w-[300px] bg-darkGreen z-10 p-4 text-whiteColor text-sm sm:text-lg'>
             {navLinks.map((link) => {
-              const { name, url } = link;
+              const { name, url, icon } = link;
               return (
                 <div key={name} className='my-6 relative'>
                   <span
@@ -69,8 +70,12 @@ const Nav = () => {
                       currentRoute === url ? 'block' : 'hidden'
                     }`}
                   />
-                  <Link href={url} className='uppercase text-whiteColor ml-4'>
+                  <Link
+                    href={url}
+                    className='uppercase text-whiteColor ml-4 flex gap-2 items-center'
+                  >
                     {name}
+                    {icon}
                   </Link>
                 </div>
               );

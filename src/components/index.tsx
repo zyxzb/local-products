@@ -6,6 +6,7 @@ import SearchInput from './SearchInput';
 import ContactForm from './ContactForm';
 import InputField from './InputField';
 import PageTitle from './PageTitle';
+import Card from './Card';
 
 export {
   Nav,
@@ -16,4 +17,5 @@ export {
   ContactForm,
   InputField,
   PageTitle,
+  Card,
 };

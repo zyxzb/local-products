@@ -47,3 +47,13 @@ export interface InputFieldProps {
   extraStyles?: string;
   isMessage?: boolean;
 }
+
+export interface DzielniceProps {
+  id: string;
+  city_id: string;
+  text: string;
+  text_district: string;
+  unique_name: string;
+  lon: string;
+  lat: string;
+}
