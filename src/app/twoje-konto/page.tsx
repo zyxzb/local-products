@@ -1,5 +1,29 @@
+'use client';
+
+import { Button, PageTitle } from '@/components';
+import { signOut, useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
+import React from 'react';
+
 const Account = () => {
-  return <div>Twoje konto</div>;
+  const session = useSession();
+  const router = useRouter();
+
+  if (session?.status === 'loading') {
+    return <p>Loading...</p>;
+  }
+
+  if (session?.status === 'unauthenticated') {
+    return router.push('/twoje-konto/login');
+  }
+
+  return (
+    <div>
+      <PageTitle title='Twoje konto' />
+      <h2>Witaj, {session.data?.user?.name}</h2>
+      <Button text='Wyloguj' type='button' onClick={() => signOut()} />
+    </div>
+  );
 };
 
 export default Account;

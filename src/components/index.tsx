@@ -7,6 +7,7 @@ import ContactForm from './ContactForm';
 import InputField from './InputField';
 import PageTitle from './PageTitle';
 import Card from './Card';
+import AuthProvider from './AuthProvider';
 
 export {
   Nav,
@@ -18,4 +19,5 @@ export {
   InputField,
   PageTitle,
   Card,
+  AuthProvider,
 };

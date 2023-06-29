@@ -5,6 +5,7 @@ export interface ButtonProps {
   text: string;
   extraStyles?: string;
   icon?: JSX.Element;
+  onClick?: () => void;
 }
 
 export interface SearchInputProps {
