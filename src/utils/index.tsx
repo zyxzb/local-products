@@ -38,4 +38,8 @@ export const validationSchema = Yup.object().shape({
     .required('Pole email jest wymagane')
     .email('Nieprawidłowy adres email'),
   message: Yup.string().required('Pole wiadomość jest wymagane'),
+  password: Yup.string()
+    .required('Pole hasło jest wymagane')
+    .min(8, 'Password must be 8 characters long')
+    .matches(/[0-9]/, 'Password requires a number'),
 });

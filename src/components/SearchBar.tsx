@@ -4,7 +4,7 @@ import React, { useState, useRef } from 'react';
 import useDebounce from '@/hooks/useDebounce';
 import { useOnClickOutside } from 'usehooks-ts';
 import Link from 'next/link';
-import { Button, SearchInput } from '@/components';
+import { CustomButton, SearchInput } from '@/components';
 import { mergeCitiesWithAreas, convertDzielniceFormat } from '@/utils';
 
 import { wojewodztwa } from '@/data/wojewodztwa';
@@ -131,7 +131,7 @@ const SearchBar = () => {
             </div>
           )}
         </div>
-        <Button
+        <CustomButton
           type='submit'
           text='Szukaj'
           icon={<CiSearch className='text-2xl' />}

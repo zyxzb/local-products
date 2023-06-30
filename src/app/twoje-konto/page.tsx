@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, PageTitle } from '@/components';
+import { CustomButton, Loader, PageTitle } from '@/components';
 import { signOut, useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import React from 'react';
@@ -10,7 +10,7 @@ const Account = () => {
   const router = useRouter();
 
   if (session?.status === 'loading') {
-    return <p>Loading...</p>;
+    return <Loader />;
   }
 
   if (session?.status === 'unauthenticated') {
@@ -21,7 +21,7 @@ const Account = () => {
     <div>
       <PageTitle title='Twoje konto' />
       <h2>Witaj, {session.data?.user?.name}</h2>
-      <Button text='Wyloguj' type='button' onClick={() => signOut()} />
+      <CustomButton text='Wyloguj' type='button' onClick={() => signOut()} />
     </div>
   );
 };

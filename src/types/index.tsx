@@ -1,6 +1,6 @@
 import React from 'react';
 
-export interface ButtonProps {
+export interface CustomButtonProps {
   type: 'button' | 'submit' | 'reset';
   text: string;
   extraStyles?: string;
@@ -47,6 +47,7 @@ export interface InputFieldProps {
   placeholder: string;
   extraStyles?: string;
   isMessage?: boolean;
+  type?: string;
 }
 
 export interface DzielniceProps {
@@ -57,4 +58,11 @@ export interface DzielniceProps {
   unique_name: string;
   lon: string;
   lat: string;
+}
+
+export interface CustomLinkprops {
+  link: string;
+  text: string;
+  extraStyles?: string;
+  icon?: JSX.Element;
 }

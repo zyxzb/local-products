@@ -1,7 +1,7 @@
 'use client';
 
-import { Button } from '@/components';
-import { signIn, useSession } from 'next-auth/react';
+import { Loader, LoginForm, PageTitle, RegisterForm } from '@/components';
+import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 
 const Login = () => {
@@ -9,7 +9,7 @@ const Login = () => {
   const router = useRouter();
 
   if (session?.status === 'loading') {
-    return <p>Loading...</p>;
+    return <Loader />;
   }
 
   if (session?.status === 'authenticated') {
@@ -18,11 +18,11 @@ const Login = () => {
 
   return (
     <div>
-      <Button
-        text='Login (Google)'
-        type='button'
-        onClick={() => signIn('google')}
-      />
+      <PageTitle title='Logowanie / Rejestracja' />
+      <div className='grid sm:grid-cols-2 gap-20 w-full'>
+        <LoginForm />
+        <RegisterForm />
+      </div>
     </div>
   );
 };

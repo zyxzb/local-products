@@ -18,7 +18,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
             <div className='bg-lightGreen mb-20'>
               <SearchBar />
             </div>
-            <main className='max-w-[1200px] mx-auto px-[15px] md:px-[30px]'>
+            <main className='w-full max-w-[1200px] mx-auto px-[15px] md:px-[30px]'>
               {children}
             </main>
           </div>

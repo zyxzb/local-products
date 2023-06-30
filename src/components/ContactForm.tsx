@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, InputField } from '@/components';
+import { CustomButton, InputField } from '@/components';
 import { BiMailSend } from 'react-icons/bi';
 import { Formik, Form, FormikHelpers } from 'formik';
 import { validationSchema } from '@/utils';
@@ -55,10 +55,9 @@ const ContactForm = () => {
             extraStyles='h-[200px]'
             isMessage
           />
-          <Button
+          <CustomButton
             type='submit'
             text={isSending ? 'Wysyłanie...' : 'Wyślij'}
-            extraStyles='hover:border-lightGreen'
             icon={<BiMailSend className='text-xl' />}
           />
         </Form>
