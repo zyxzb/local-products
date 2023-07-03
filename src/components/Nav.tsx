@@ -14,7 +14,7 @@ const Nav = () => {
   const currentRoute = usePathname();
 
   return (
-    <nav className='nav-links h-[70px] fixed top-0 left-0 right-0 z-20 flex justify-between items-center bg-darkColor px-[15px]'>
+    <nav className='nav-links h-[70px] fixed top-0 left-0 right-0 z-30 flex justify-between items-center bg-darkColor px-[15px]'>
       <div>
         <Link href='/' className='flex items-center gap-2 text-whiteColor px-2'>
           <FiMapPin className='text-4xl' />

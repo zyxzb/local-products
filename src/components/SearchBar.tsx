@@ -1,17 +1,12 @@
 'use client';
 
 import React, { useState, useRef } from 'react';
-import useDebounce from '@/hooks/useDebounce';
 import { useOnClickOutside } from 'usehooks-ts';
 import Link from 'next/link';
 import { CustomButton, SearchInput } from '@/components';
-import { mergeCitiesWithAreas, convertDzielniceFormat } from '@/utils';
-
-import { wojewodztwa } from '@/data/wojewodztwa';
-import { miasta } from '@/data/miasta';
-import { dzielnice } from '@/data/dzielnice';
 import { CiLocationOn, CiSearch } from 'react-icons/ci';
 import { TfiClose } from 'react-icons/tfi';
+import useSearchBar from '@/hooks/useSearchBar';
 
 const initState = {
   name: '',
@@ -20,7 +15,7 @@ const initState = {
 
 const SearchBar = () => {
   const [formData, setFormData] = useState(initState);
-  const [mergedLocation, setMergedLocation] = useState<any[]>([]);
+  const { mergedLocation } = useSearchBar(formData);
   const [isListVisible, setIsListVisible] = useState(false);
   const myRef = useRef(null);
 
@@ -34,40 +29,6 @@ const SearchBar = () => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
-
-  // debounce query results
-  useDebounce(
-    () => {
-      // Filter Cities
-      const filteredSearch = miasta.filter((miasto) =>
-        miasto.name.toLowerCase().includes(formData.location.toLowerCase()),
-      );
-
-      // Filter districts of Warsaw
-      const filteredDzielnice = dzielnice.filter((dzielnica) =>
-        dzielnica.text.toLowerCase().includes(formData.location.toLowerCase()),
-      );
-
-      // Convert object format
-      const convertedDzielnice = convertDzielniceFormat(filteredDzielnice);
-
-      // Add the found districts to the search results
-      const mergedSearch = [...convertedDzielnice, ...filteredSearch];
-      console.log(mergedSearch);
-
-      // merge locations with areas
-      if (
-        mergedSearch.length !== miasta.length + dzielnice.length &&
-        mergedSearch.length !== 0
-      ) {
-        setMergedLocation(mergeCitiesWithAreas(mergedSearch, wojewodztwa));
-      } else {
-        setMergedLocation([]);
-      }
-    },
-    [formData.location],
-    700,
-  );
 
   return (
     <div className='flex items-center justify-center w-full p-[20px] md:py-[40px]  max-w-[1200px] mx-auto'>
@@ -106,7 +67,7 @@ const SearchBar = () => {
           </div>
           {mergedLocation.length > 0 && (
             <div
-              className={`absolute flex flex-col gap-2 p-4 top-full left-0 right-0 max-h-[200px] overflow-y-auto bg-darkColor text-whiteColor ${
+              className={`absolute flex flex-col gap-2 p-4 top-full left-0 right-0 max-h-[200px] overflow-y-auto bg-darkColor text-whiteColor z-20 ${
                 formData.location.length > 0 && isListVisible
                   ? 'visible'
                   : 'hidden'
