@@ -1,6 +1,6 @@
 'use client';
 
-import { CustomButton, Loader, PageTitle } from '@/components';
+import { CustomButton, Loader, PageTitle, PageWrapper } from '@/components';
 import { signOut, useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import React from 'react';
@@ -18,11 +18,13 @@ const Account = () => {
   }
 
   return (
-    <div>
-      <PageTitle title='Twoje konto' />
-      <h2>Witaj, {session.data?.user?.name}</h2>
-      <CustomButton text='Wyloguj' type='button' onClick={() => signOut()} />
-    </div>
+    <PageWrapper>
+      <div>
+        <PageTitle title='Twoje konto' />
+        <h2>Witaj, {session.data?.user?.name}</h2>
+        <CustomButton text='Wyloguj' type='button' onClick={() => signOut()} />
+      </div>
+    </PageWrapper>
   );
 };
 

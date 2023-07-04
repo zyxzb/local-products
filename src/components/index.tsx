@@ -12,6 +12,9 @@ import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
 import Loader from './Loader';
 import CustomLink from './CustomLink';
+import HomeBannerSection from './HomeBannerSection';
+import HomeTextSection from './HomeTextSection';
+import PageWrapper from './PageWrapper';
 
 export {
   Nav,
@@ -28,4 +31,7 @@ export {
   RegisterForm,
   Loader,
   CustomLink,
+  HomeBannerSection,
+  HomeTextSection,
+  PageWrapper,
 };

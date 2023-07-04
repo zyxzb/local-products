@@ -66,3 +66,8 @@ export interface CustomLinkprops {
   extraStyles?: string;
   icon?: JSX.Element;
 }
+
+export interface HomeDataProps {
+  header: string;
+  content: string;
+}
