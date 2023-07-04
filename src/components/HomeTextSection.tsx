@@ -13,8 +13,8 @@ const HomeTextSection = () => {
         Zapraszamy do odkrycia kilku powodów, dla których warto rozpocząć
         korzystanie z naszej strony:
       </h3>
-      {Array.from(homeData).map((homeData, index) => (
-        <HomePargaraph key={index + 1} data={homeData} />
+      {homeData.map((data, idx) => (
+        <HomePargaraph key={idx} data={data} />
       ))}
     </section>
   );

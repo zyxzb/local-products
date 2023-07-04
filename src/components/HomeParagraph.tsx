@@ -5,6 +5,8 @@ import { useEffect, useRef, useState } from 'react';
 import { HomeDataProps } from '@/types';
 
 const HomePargaraph = ({ data }: { data: HomeDataProps }) => {
+  const { header, content } = data;
+
   const ref = useRef<HTMLParagraphElement | null>(null);
   const entry = useIntersectionObserver(ref, {});
   const [isVisible, setIsVisible] = useState(false);
@@ -16,7 +18,6 @@ const HomePargaraph = ({ data }: { data: HomeDataProps }) => {
     }
   }, [entry]);
 
-  const { header, content } = data;
   return (
     <p
       className={`mb-10 transition-all duration-[2500ms] ${

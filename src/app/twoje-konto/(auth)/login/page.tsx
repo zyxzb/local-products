@@ -1,7 +1,12 @@
 'use client';
 
-import { Loader, LoginForm, PageTitle, RegisterForm } from '@/components';
-import PageWrapper from '@/components/PageWrapper';
+import {
+  Loader,
+  LoginForm,
+  PageTitle,
+  RegisterForm,
+  PageWrapper,
+} from '@/components';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 
