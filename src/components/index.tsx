@@ -15,6 +15,7 @@ import CustomLink from './CustomLink';
 import HomeBannerSection from './HomeBannerSection';
 import HomeTextSection from './HomeTextSection';
 import PageWrapper from './PageWrapper';
+import Popup from './Popup';
 
 export {
   Nav,
@@ -34,4 +35,5 @@ export {
   HomeBannerSection,
   HomeTextSection,
   PageWrapper,
+  Popup,
 };

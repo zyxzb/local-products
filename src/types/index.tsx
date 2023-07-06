@@ -39,7 +39,8 @@ export interface WojewodztwaProps {
 export interface ContactFormProps {
   name: string;
   email: string;
-  message: string;
+  message?: string;
+  password?: string;
 }
 
 export interface InputFieldProps {
@@ -60,7 +61,7 @@ export interface DzielniceProps {
   lat: string;
 }
 
-export interface CustomLinkprops {
+export interface CustomLinkProps {
   link: string;
   text: string;
   extraStyles?: string;
@@ -70,4 +71,15 @@ export interface CustomLinkprops {
 export interface HomeDataProps {
   header: string;
   content: string;
+}
+
+export interface Credentials {
+  clientId: string;
+  clientSecret: string;
+}
+
+export interface PopupProps {
+  text1: string;
+  text2?: string;
+  onClick: () => void;
 }

@@ -26,7 +26,6 @@ const useSearchBar = (formData: { name: string; location: string }) => {
 
       // Add the found districts to the search results
       const mergedSearch = [...convertedDzielnice, ...filteredSearch];
-      console.log(mergedSearch);
 
       // merge locations with areas
       if (

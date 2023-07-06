@@ -1,7 +1,7 @@
 import Link from 'next/link';
-import { CustomLinkprops } from '@/types';
+import { CustomLinkProps } from '@/types';
 
-const CustomLink = ({ link, text, extraStyles, icon }: CustomLinkprops) => {
+const CustomLink = ({ link, text, extraStyles, icon }: CustomLinkProps) => {
   return (
     <Link href={link} className={`link-btn ${extraStyles}`}>
       <span className='flex z-10 gap-2'>

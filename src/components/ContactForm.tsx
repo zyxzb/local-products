@@ -3,10 +3,10 @@
 import { CustomButton, InputField } from '@/components';
 import { BiMailSend } from 'react-icons/bi';
 import { Formik, Form, FormikHelpers } from 'formik';
-import { validationSchema } from '@/utils';
 import { ContactFormProps } from '@/types';
 import { useState } from 'react';
 import emailjs from '@emailjs/browser';
+import { contactFormSchema } from '@/utils/validationSchemas';
 
 const initialValues = {
   name: '',
@@ -43,7 +43,7 @@ const ContactForm = () => {
     <Formik
       initialValues={initialValues}
       onSubmit={handleSubmit}
-      validationSchema={validationSchema}
+      validationSchema={contactFormSchema}
     >
       {() => (
         <Form className='flex flex-col w-full gap-4 text-darkColor'>

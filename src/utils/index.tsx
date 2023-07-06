@@ -1,5 +1,4 @@
 import { WojewodztwaProps, MiastaProps, DzielniceProps } from '@/types';
-import * as Yup from 'yup';
 
 export const convertDzielniceFormat = (filteredDzielnice: DzielniceProps[]) => {
   return filteredDzielnice.map((dzielnica) => {
@@ -31,15 +30,3 @@ export const mergeCitiesWithAreas = (
   });
   return mergedData;
 };
-
-export const validationSchema = Yup.object().shape({
-  name: Yup.string().required('Pole imię jest wymagane'),
-  email: Yup.string()
-    .required('Pole email jest wymagane')
-    .email('Nieprawidłowy adres email'),
-  message: Yup.string().required('Pole wiadomość jest wymagane'),
-  password: Yup.string()
-    .required('Pole hasło jest wymagane')
-    .min(8, 'Password must be 8 characters long')
-    .matches(/[0-9]/, 'Password requires a number'),
-});
