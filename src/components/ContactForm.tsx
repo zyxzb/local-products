@@ -1,6 +1,6 @@
 'use client';
 
-import { CustomButton, InputField } from '@/components';
+import { CustomButton, InputField, Popup } from '@/components';
 import { BiMailSend } from 'react-icons/bi';
 import { Formik, Form, FormikHelpers } from 'formik';
 import { ContactFormProps } from '@/types';
@@ -16,6 +16,7 @@ const initialValues = {
 
 const ContactForm = () => {
   const [isSending, setIsSending] = useState(false);
+  const [isPopupActive, setIsPopupActive] = useState(false);
 
   const handleSubmit = async (
     values: ContactFormProps,
@@ -30,7 +31,7 @@ const ContactForm = () => {
         { name, email, message },
         process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!,
       );
-      alert('Form has been sent successfully sent');
+      setIsPopupActive(true);
       actions.resetForm();
     } catch (error) {
       alert(`Something went wrong :( \n Error: ${error} \n Try again!`);
@@ -40,29 +41,38 @@ const ContactForm = () => {
   };
 
   return (
-    <Formik
-      initialValues={initialValues}
-      onSubmit={handleSubmit}
-      validationSchema={contactFormSchema}
-    >
-      {() => (
-        <Form className='flex flex-col w-full gap-4 text-darkColor'>
-          <InputField name='name' placeholder='Imię...' />
-          <InputField name='email' placeholder='Email...' />
-          <InputField
-            name='message'
-            placeholder='Twoja wiadomość'
-            extraStyles='h-[200px]'
-            isMessage
-          />
-          <CustomButton
-            type='submit'
-            text={isSending ? 'Wysyłanie...' : 'Wyślij'}
-            icon={<BiMailSend className='text-xl' />}
-          />
-        </Form>
+    <>
+      <Formik
+        initialValues={initialValues}
+        onSubmit={handleSubmit}
+        validationSchema={contactFormSchema}
+      >
+        {() => (
+          <Form className='flex flex-col w-full gap-4 text-darkColor'>
+            <InputField name='name' placeholder='Imię...' />
+            <InputField name='email' placeholder='Email...' />
+            <InputField
+              name='message'
+              placeholder='Twoja wiadomość'
+              extraStyles='h-[200px]'
+              isMessage
+            />
+            <CustomButton
+              type='submit'
+              text={isSending ? 'Wysyłanie...' : 'Wyślij'}
+              icon={<BiMailSend className='text-xl' />}
+            />
+          </Form>
+        )}
+      </Formik>
+      {isPopupActive && (
+        <Popup
+          text1='Gratulacje! - Twoja wiadomość została wysłana.'
+          text2='Skontaktujemy się z Tobą tak szybko jak to możliwe.'
+          onClick={() => setIsPopupActive(false)}
+        />
       )}
-    </Formik>
+    </>
   );
 };
 

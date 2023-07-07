@@ -3,7 +3,7 @@ import { PopupProps } from '@/types';
 
 const Popup = ({ text1, text2, onClick }: PopupProps) => {
   return (
-    <div className='absolute inset-0 bg-darkColor/30 backdrop-blur-sm z-50'>
+    <div className='fixed inset-0 bg-darkColor/30 backdrop-blur-sm z-50'>
       <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 md:w-[600px] h-[300px] bg-whiteColor text-center grid place-items-center p-10'>
         <button
           type='button'
