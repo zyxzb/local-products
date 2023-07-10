@@ -2,13 +2,10 @@ import { NextResponse, NextRequest } from 'next/server';
 import connect from '@/utils/db';
 import Ad from '@/models/Ad';
 
-export const GET = async (request: NextRequest) => {
-  const url = new URL(request.url);
-  const email = url.searchParams.get('email');
-
+export const GET = async () => {
   try {
     await connect();
-    const ads = await Ad.find(email && { email });
+    const ads = await Ad.find();
     return new NextResponse(JSON.stringify(ads), { status: 200 });
   } catch (err) {
     return new NextResponse('Database Error', { status: 500 });
