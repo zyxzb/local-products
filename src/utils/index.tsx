@@ -30,3 +30,11 @@ export const mergeCitiesWithAreas = (
   });
   return mergedData;
 };
+
+export const trimText = (text: string, numOfChar: number) => {
+  if (text.length > numOfChar) {
+    let newText = text.slice(0, numOfChar).replace(/\s?$/, '') + '...';
+    return newText;
+  }
+  return text;
+};

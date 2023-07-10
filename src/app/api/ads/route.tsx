@@ -1,0 +1,33 @@
+import { NextResponse, NextRequest } from 'next/server';
+import connect from '@/utils/db';
+import Ad from '@/models/Ad';
+
+export const GET = async (request: NextRequest) => {
+  const url = new URL(request.url);
+  const email = url.searchParams.get('email');
+
+  try {
+    await connect();
+    const ads = await Ad.find(email && { email });
+    return new NextResponse(JSON.stringify(ads), { status: 200 });
+  } catch (err) {
+    return new NextResponse('Database Error', { status: 500 });
+  }
+};
+
+export const POST = async (request: NextRequest) => {
+  const body = await request.json();
+  console.log(body);
+  const newAd = new Ad(body);
+
+  try {
+    await connect();
+    await newAd.save();
+
+    return new NextResponse('Ad has been successfully created', {
+      status: 201,
+    });
+  } catch (err) {
+    return new NextResponse('Database Error', { status: 500 });
+  }
+};

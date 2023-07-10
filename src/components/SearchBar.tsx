@@ -7,6 +7,7 @@ import { CustomButton, SearchInput } from '@/components';
 import { CiLocationOn, CiSearch } from 'react-icons/ci';
 import { TfiClose } from 'react-icons/tfi';
 import useSearchBar from '@/hooks/useSearchBar';
+import { useRouter } from 'next/navigation';
 
 const initState = {
   name: '',
@@ -18,6 +19,7 @@ const SearchBar = () => {
   const { mergedLocation } = useSearchBar(formData);
   const [isListVisible, setIsListVisible] = useState(false);
   const myRef = useRef(null);
+  const router = useRouter();
 
   const handleClickOutside = () => {
     setIsListVisible(false);
@@ -30,11 +32,28 @@ const SearchBar = () => {
     setFormData({ ...formData, [name]: value });
   };
 
+  const handleSubmit = (e: React.FormEvent) => {
+    const { name, location } = formData;
+    e.preventDefault();
+    let path = '/ogloszenia/';
+
+    if (name && location) {
+      path = `/ogloszenia?name=${name}&location=${location}`;
+    } else if (name) {
+      path = `/ogloszenia?name=${name}`;
+    } else if (location) {
+      path = `/ogloszenia?location=${location}`;
+    }
+
+    router.push(path);
+  };
+
   return (
     <div className='flex items-center justify-center w-full p-[20px] md:py-[40px]  max-w-[1200px] mx-auto'>
       <form
         className='flex flex-col md:flex-row gap-[20px] w-full'
         autoComplete='off'
+        onSubmit={handleSubmit}
       >
         <div className='flex flex-1 relative text-darkColor'>
           <SearchInput
@@ -42,7 +61,6 @@ const SearchBar = () => {
             placeholder='Produkt lub dostawca...'
             value={formData.name}
             onChange={handleChange}
-            required={true}
             icon={
               <CiSearch className='absolute left-[10px] top-1/2 -translate-y-1/2 text-2xl' />
             }
@@ -75,7 +93,7 @@ const SearchBar = () => {
             >
               {mergedLocation.map((item) => (
                 <Link
-                  href={'/'}
+                  href='#'
                   key={item.id}
                   className='hover:underline'
                   onClick={() => {

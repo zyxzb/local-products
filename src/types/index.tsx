@@ -88,3 +88,23 @@ export interface PopupProps {
   text2?: string;
   onClick: () => void;
 }
+
+export interface CreateAdProps {
+  title: string;
+  desc: string;
+  location: string;
+  content: string;
+}
+
+export interface CardProps {
+  _id: string;
+  title: string;
+  desc: string;
+  location: string;
+  content: string;
+  username: string;
+  email: string;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+}
