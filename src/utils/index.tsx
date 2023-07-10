@@ -38,3 +38,12 @@ export const trimText = (text: string, numOfChar: number) => {
   }
   return text;
 };
+
+export const formatFullDate = (mongoDate: string) => {
+  const createdAtDate = new Date(mongoDate);
+  const formattedDateTime = `${createdAtDate.toLocaleDateString()}, godz. ${createdAtDate.getHours()}:${createdAtDate
+    .getMinutes()
+    .toString()
+    .padStart(2, '0')}`;
+  return formattedDateTime;
+};
