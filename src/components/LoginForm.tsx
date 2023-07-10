@@ -6,6 +6,7 @@ import { AiOutlineLogin } from 'react-icons/ai';
 import { FcGoogle } from 'react-icons/fc';
 import { signIn } from 'next-auth/react';
 import { loginSchema } from '@/utils/validationSchemas';
+import { LoginFormProps } from '@/types';
 
 const initialValues = {
   email: '',
@@ -13,7 +14,13 @@ const initialValues = {
 };
 
 const LoginForm = () => {
-  const handleLogin = () => {};
+  const handleLogin = async (values: LoginFormProps) => {
+    const { email, password } = values;
+    signIn('credentials', {
+      email,
+      password,
+    });
+  };
 
   return (
     <div className='flex flex-col'>

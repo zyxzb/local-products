@@ -43,6 +43,11 @@ export interface ContactFormProps {
   password?: string;
 }
 
+export interface LoginFormProps {
+  email: string;
+  password: string;
+}
+
 export interface InputFieldProps {
   name: string;
   placeholder: string;
@@ -73,7 +78,7 @@ export interface HomeDataProps {
   content: string;
 }
 
-export interface Credentials {
+export interface GoogleCredentials {
   clientId: string;
   clientSecret: string;
 }
