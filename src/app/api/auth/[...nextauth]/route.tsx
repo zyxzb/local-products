@@ -1,4 +1,4 @@
-import NextAuth from 'next-auth';
+import NextAuth, { RequestInternal } from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { GoogleCredentials } from '@/types';
@@ -18,13 +18,21 @@ const handler = NextAuth({
       clientSecret: googleCredentials.clientSecret,
     }),
     CredentialsProvider({
-      id: 'credentials',
-      name: 'Credentials',
-      async authorize(credentials: { email: string; password: string }) {
+      credentials: {
+        email: { label: 'Email', type: 'text' },
+        password: { label: 'Password', type: 'password' },
+      },
+      async authorize(
+        credentials: Record<string, string> | undefined,
+        req: Pick<RequestInternal, 'body' | 'method' | 'headers' | 'query'>,
+      ) {
         //Check if the user exists.
         await connect();
 
         try {
+          if (!credentials) {
+            throw new Error('Missing credentials');
+          }
           const user = await User.findOne({
             email: credentials.email,
           });
