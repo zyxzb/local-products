@@ -24,7 +24,7 @@ const Ads = async () => {
 
   return (
     <PageWrapper>
-      <PageTitle title='Ogłoszenia' />
+      <PageTitle title='Lokalne ogłoszenia' />
       {data.length > 4 && (
         <div className='mb-4'>
           <p>Znaleziono {data.length} ogłoszeń</p>

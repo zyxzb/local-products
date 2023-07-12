@@ -26,9 +26,11 @@ export const loginSchema = Yup.object().shape({
 export const adSchema = Yup.object().shape({
   title: Yup.string()
     .required('Tytuł jest wymagany')
-    .min(5, 'min. 5 znaków')
-    .max(65, 'max. 65 znaków'),
-  desc: Yup.string().required('Krótki opis jest wymagany'),
+    .min(10, 'min. 10 znaków')
+    .max(55, 'max. 55 znaków'),
+  desc: Yup.string()
+    .required('Krótki opis jest wymagany')
+    .max(160, 'max. 160 znaków'),
   location: Yup.string().required('Lokalizacja jest wymagana'),
   content: Yup.string().required('Treść jest wymagana'),
 });

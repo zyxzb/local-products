@@ -14,8 +14,10 @@ import { useSession } from 'next-auth/react';
 import { AiOutlineLogin } from 'react-icons/ai';
 import { useState } from 'react';
 import { BiMailSend } from 'react-icons/bi';
-import { CreateAdProps } from '@/types';
+import { CreateAdProps, Images } from '@/types';
 import { adSchema } from '@/utils/validationSchemas';
+import ImageUploader from '@/components/ImageUploader';
+import Image from 'next/image';
 
 const initialValues = {
   title: '',
@@ -27,33 +29,53 @@ const initialValues = {
 const AddProducer = () => {
   const [isSending, setIsSending] = useState(false);
   const [isPopupActive, setIsPopupActive] = useState(false);
+  const [images, setImages] = useState<Images[]>([]);
   const session = useSession();
+
+  const handleImageUpload = (
+    res: Images[] | ((prevState: Images[]) => Images[]),
+  ) => {
+    if (images.length + res.length > 4) {
+      alert('Możesz dodać łacznie tylko 4 zdjęcia!');
+    } else {
+      setImages((prevState) =>
+        typeof res === 'function' ? res(prevState) : [...prevState, ...res],
+      );
+    }
+  };
 
   const handleCreateAd = async (
     values: CreateAdProps,
     actions: FormikHelpers<CreateAdProps>,
   ) => {
     const { title, desc, location, content } = values;
-    setIsSending(true);
-    try {
-      await fetch('/api/ads', {
-        method: 'POST',
-        body: JSON.stringify({
-          title,
-          desc,
-          location,
-          content,
-          username: session?.data?.user?.name,
-          email: session?.data?.user?.email,
-          // add images later
-        }),
-      });
-      actions.resetForm();
-      setIsPopupActive(true);
-    } catch (error) {
-      alert(`Something went wrong :( \n Error: ${error} \n Try again!`);
-    } finally {
-      setIsSending(false);
+    // additional protector
+    if (images.length > 4) {
+      return alert('Możesz dodać łacznie tylko 4 zdjęcia!');
+    } else {
+      const fileUrls = images.map((image) => image.fileUrl);
+      setIsSending(true);
+      try {
+        await fetch('/api/ads', {
+          method: 'POST',
+          body: JSON.stringify({
+            title,
+            desc,
+            location,
+            content,
+            username: session?.data?.user?.name,
+            email: session?.data?.user?.email,
+            imagesUrl: fileUrls,
+          }),
+        });
+        actions.resetForm();
+        setImages([]);
+        setIsPopupActive(true);
+      } catch (error) {
+        alert(`Something went wrong :( \n Error: ${error} \n Try again!`);
+      } finally {
+        setIsSending(false);
+      }
     }
   };
 
@@ -80,6 +102,19 @@ const AddProducer = () => {
   return (
     <PageWrapper>
       <PageTitle title='Dodaj Producenta' />
+      <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6'>
+        {images?.map((img) => (
+          <div key={img.fileKey} className='relative h-[200px]'>
+            <Image
+              src={img.fileUrl}
+              fill={true}
+              className='object-cover'
+              alt={img.fileKey}
+            />
+          </div>
+        ))}
+      </div>
+      <ImageUploader handleImageUpload={handleImageUpload} images={images} />
       <Formik
         initialValues={initialValues}
         onSubmit={handleCreateAd}

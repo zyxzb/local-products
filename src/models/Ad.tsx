@@ -28,6 +28,10 @@ const adSchema = new Schema(
       type: String,
       required: true,
     },
+    imagesUrl: {
+      type: [String],
+      required: false,
+    },
   },
   { timestamps: true },
 );

@@ -25,6 +25,7 @@ export const POST = async (request: NextRequest) => {
       status: 201,
     });
   } catch (err) {
+    console.log('ERROR Z CATCH', err);
     return new NextResponse('Database Error', { status: 500 });
   }
 };

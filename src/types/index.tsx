@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { SetStateAction } from 'react';
 
 export interface CustomButtonProps {
   type: 'button' | 'submit' | 'reset';
@@ -107,4 +107,14 @@ export interface CardProps {
   createdAt: string;
   updatedAt: string;
   __v: number;
+}
+
+export interface Images {
+  fileUrl: string;
+  fileKey: string;
+}
+
+export interface ImageUploaderProps {
+  handleImageUpload: (value: SetStateAction<Images[]>) => void;
+  images: Images[];
 }
