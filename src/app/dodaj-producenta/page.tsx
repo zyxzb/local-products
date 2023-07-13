@@ -9,6 +9,8 @@ import {
   CustomButton,
   Popup,
   AddProducerGallery,
+  AddProducerLabelWrapper,
+  ImageUploader,
 } from '@/components';
 import { Form, Formik, FormikHelpers } from 'formik';
 import { useSession } from 'next-auth/react';
@@ -17,7 +19,6 @@ import { useState } from 'react';
 import { BiMailSend } from 'react-icons/bi';
 import { CreateAdProps, Images } from '@/types';
 import { adSchema } from '@/utils/validationSchemas';
-import ImageUploader from '@/components/ImageUploader';
 
 const initialValues = {
   title: '',
@@ -110,16 +111,27 @@ const AddProducer = () => {
         validationSchema={adSchema}
       >
         {() => (
-          <Form className='flex flex-col w-full gap-4 text-darkColor'>
-            <InputField name='title' placeholder='Tytuł...' />
-            <InputField name='desc' placeholder='Krótki opis...' />
-            <InputField name='location' placeholder='Miejscowość...' />
-            <InputField
-              name='content'
-              placeholder='Treść ogłoszenia...'
-              extraStyles='h-[200px]'
-              isMessage
-            />
+          <Form className='flex flex-col w-full gap-10 text-darkColor'>
+            <AddProducerLabelWrapper text='Podaj tytuł - im więcej szczegółów, tym lepiej.'>
+              <InputField name='title' placeholder='Tytuł...' />
+            </AddProducerLabelWrapper>
+            <AddProducerLabelWrapper text='Podaj krótki opis - będzie on widoczny na karcie ogłoszenia.'>
+              <InputField name='desc' placeholder='Krótki opis...' />
+            </AddProducerLabelWrapper>
+            <AddProducerLabelWrapper text='Wybierz dostępną lokalizacje.'>
+              <InputField name='location' placeholder='Miejscowość...' />
+            </AddProducerLabelWrapper>
+            <AddProducerLabelWrapper
+              text='Wpisz ważne informację - takie które sam chciałbyś zobaczyć w
+                ogłoszniu.'
+            >
+              <InputField
+                name='content'
+                placeholder='Treść ogłoszenia...'
+                extraStyles='h-[200px]'
+                isMessage
+              />
+            </AddProducerLabelWrapper>
             <CustomButton
               type='submit'
               text={isSending ? 'Dodawanie...' : 'Dodaj'}

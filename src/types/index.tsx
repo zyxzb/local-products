@@ -118,3 +118,8 @@ export interface ImageUploaderProps {
   handleImageUpload: (value: SetStateAction<Images[]>) => void;
   images: Images[];
 }
+
+export interface AddProducerLabelWrapperProps {
+  children: React.ReactNode;
+  text: string;
+}

@@ -17,6 +17,8 @@ import HomeTextSection from './HomeTextSection';
 import PageWrapper from './PageWrapper';
 import Popup from './Popup';
 import AddProducerGallery from './AddProducerGallery';
+import AddProducerLabelWrapper from './AddProducerLabelWrapper';
+import ImageUploader from './ImageUploader';
 
 export {
   Nav,
@@ -38,4 +40,6 @@ export {
   PageWrapper,
   Popup,
   AddProducerGallery,
+  AddProducerLabelWrapper,
+  ImageUploader,
 };

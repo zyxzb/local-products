@@ -8,7 +8,9 @@ const ImageUploader = ({ handleImageUpload, images }: ImageUploaderProps) => {
   return (
     <div className='flex flex-col items-center justify-start p-12'>
       {images.length >= 4 ? (
-        <p className='mt-2 text-xl'>Limit zdjęć został wykorzystany</p>
+        <p className='ut-m-0 ut-text-xs ut-leading-5 ut-text-gray-600 text-darkColor'>
+          Limit zdjęć został wykorzystany
+        </p>
       ) : (
         <UploadButton
           endpoint='imageUploader'
@@ -27,18 +29,20 @@ const ImageUploader = ({ handleImageUpload, images }: ImageUploaderProps) => {
           }}
         />
       )}
-      {images.length >= 4 ? (
-        <p className='mt-2 text-xl'>Dodawanie zakończone</p>
-      ) : (
-        <p className='mt-2 text-xl'>
-          Dodano {images.length}{' '}
-          {images.length === 0
-            ? 'zdjęć'
-            : images.length === 1
-            ? 'zdjęcie'
-            : 'zdjęcia'}
-        </p>
-      )}
+      <div className='text-darkColor ut-m-0 ut-text-xs ut-leading-5 ut-text-gray-600'>
+        {images.length >= 4 ? (
+          <p>Dodawanie zakończone</p>
+        ) : (
+          <p>
+            Dodano {images.length}{' '}
+            {images.length === 0
+              ? 'zdjęć'
+              : images.length === 1
+              ? 'zdjęcie'
+              : 'zdjęcia'}
+          </p>
+        )}
+      </div>
     </div>
   );
 };
