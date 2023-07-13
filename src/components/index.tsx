@@ -16,6 +16,7 @@ import HomeBannerSection from './HomeBannerSection';
 import HomeTextSection from './HomeTextSection';
 import PageWrapper from './PageWrapper';
 import Popup from './Popup';
+import AddProducerGallery from './AddProducerGallery';
 
 export {
   Nav,
@@ -36,4 +37,5 @@ export {
   HomeTextSection,
   PageWrapper,
   Popup,
+  AddProducerGallery,
 };

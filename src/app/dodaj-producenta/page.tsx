@@ -8,6 +8,7 @@ import {
   InputField,
   CustomButton,
   Popup,
+  AddProducerGallery,
 } from '@/components';
 import { Form, Formik, FormikHelpers } from 'formik';
 import { useSession } from 'next-auth/react';
@@ -17,7 +18,6 @@ import { BiMailSend } from 'react-icons/bi';
 import { CreateAdProps, Images } from '@/types';
 import { adSchema } from '@/utils/validationSchemas';
 import ImageUploader from '@/components/ImageUploader';
-import Image from 'next/image';
 
 const initialValues = {
   title: '',
@@ -102,18 +102,7 @@ const AddProducer = () => {
   return (
     <PageWrapper>
       <PageTitle title='Dodaj Producenta' />
-      <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6'>
-        {images?.map((img) => (
-          <div key={img.fileKey} className='relative h-[200px]'>
-            <Image
-              src={img.fileUrl}
-              fill={true}
-              className='object-cover'
-              alt={img.fileKey}
-            />
-          </div>
-        ))}
-      </div>
+      <AddProducerGallery images={images} />
       <ImageUploader handleImageUpload={handleImageUpload} images={images} />
       <Formik
         initialValues={initialValues}
