@@ -9,15 +9,17 @@ import { CardProps } from '@/types';
 import { trimText } from '@/utils';
 
 const Card = (item: CardProps) => {
-  const { title, desc, location, _id } = item;
+  const { title, desc, location, _id, imagesUrl } = item;
+  const cardImage = imagesUrl.length && imagesUrl[1];
+
   return (
     <div className='bg-white border border-gray-200 rounded-sm shadow hover:shadow-2xl transition cursor-pointer h-[440px] flex flex-col'>
       <div className='relative w-full h-[200px] flex'>
         <Image
-          src='/landWhite.png'
+          src={cardImage || '/landWhite.png'}
           alt={`${title} - ${location}`}
           fill={true}
-          className='rounded-t-lg object-cover'
+          className='ro object-cover'
         />
       </div>
       <div className='p-5 flex flex-col justify-between flex-1'>

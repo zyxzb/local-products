@@ -16,7 +16,7 @@ import HomeBannerSection from './HomeBannerSection';
 import HomeTextSection from './HomeTextSection';
 import PageWrapper from './PageWrapper';
 import Popup from './Popup';
-import AddProducerGallery from './AddProducerGallery';
+import Gallery from './Gallery';
 import AddProducerLabelWrapper from './AddProducerLabelWrapper';
 import ImageUploader from './ImageUploader';
 
@@ -39,7 +39,7 @@ export {
   HomeTextSection,
   PageWrapper,
   Popup,
-  AddProducerGallery,
+  Gallery,
   AddProducerLabelWrapper,
   ImageUploader,
 };

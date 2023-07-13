@@ -1,4 +1,4 @@
-import { PageTitle } from '@/components';
+import { PageTitle, Gallery } from '@/components';
 import { notFound } from 'next/navigation';
 import { formatFullDate } from '@/utils';
 
@@ -41,18 +41,26 @@ const SingleAd = async ({ params: { id } }: { params: { id: string } }) => {
     username,
     createdAt,
     updatedAt,
+    imagesUrl,
   } = data;
 
   return (
     <div>
       <PageTitle title={title} />
-      <h2>{desc}</h2>
-      <p>{content}</p>
-      <span>Lokalizacja: {location}</span>
-      <br />
-      <span>dodane przez: {username}</span>
-      <br />
-      <hr className='my-4' />
+      <Gallery images={imagesUrl} />
+      <div className='mt-8 flex flex-col gap-4'>
+        <h2 className='text-2xl lg:text-3xl'>{desc}</h2>
+        <p>
+          <span className='font-bold'>Opis:</span> {content}
+        </p>
+        <p>
+          <span>Lokalizacja:</span> {location}
+        </p>
+        <p>
+          <span>Dodane przez:</span> {username}
+        </p>
+      </div>
+      <hr className='mt-8 mb-4' />
       <div className='opacity-50 flex justify-between flex-wrap gap-4 '>
         <span>Utworzono: {formatFullDate(createdAt)}</span>
         {updatedAt !== createdAt && (

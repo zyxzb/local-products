@@ -106,6 +106,7 @@ export interface CardProps {
   email: string;
   createdAt: string;
   updatedAt: string;
+  imagesUrl: [string | null, string | null];
   __v: number;
 }
 

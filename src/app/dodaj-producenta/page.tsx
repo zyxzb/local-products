@@ -8,14 +8,14 @@ import {
   InputField,
   CustomButton,
   Popup,
-  AddProducerGallery,
+  Gallery,
   AddProducerLabelWrapper,
   ImageUploader,
 } from '@/components';
 import { Form, Formik, FormikHelpers } from 'formik';
 import { useSession } from 'next-auth/react';
 import { AiOutlineLogin } from 'react-icons/ai';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { BiMailSend } from 'react-icons/bi';
 import { CreateAdProps, Images } from '@/types';
 import { adSchema } from '@/utils/validationSchemas';
@@ -31,6 +31,7 @@ const AddProducer = () => {
   const [isSending, setIsSending] = useState(false);
   const [isPopupActive, setIsPopupActive] = useState(false);
   const [images, setImages] = useState<Images[]>([]);
+  const [imgUrls, setImgUrls] = useState<string[]>([]);
   const session = useSession();
 
   const handleImageUpload = (
@@ -45,6 +46,11 @@ const AddProducer = () => {
     }
   };
 
+  useEffect(() => {
+    const urls = images.map((image) => image.fileUrl);
+    setImgUrls(urls);
+  }, [images]);
+
   const handleCreateAd = async (
     values: CreateAdProps,
     actions: FormikHelpers<CreateAdProps>,
@@ -54,7 +60,6 @@ const AddProducer = () => {
     if (images.length > 4) {
       return alert('Możesz dodać łacznie tylko 4 zdjęcia!');
     } else {
-      const fileUrls = images.map((image) => image.fileUrl);
       setIsSending(true);
       try {
         await fetch('/api/ads', {
@@ -66,7 +71,7 @@ const AddProducer = () => {
             content,
             username: session?.data?.user?.name,
             email: session?.data?.user?.email,
-            imagesUrl: fileUrls,
+            imagesUrl: imgUrls,
           }),
         });
         actions.resetForm();
@@ -103,7 +108,9 @@ const AddProducer = () => {
   return (
     <PageWrapper>
       <PageTitle title='Dodaj Producenta' />
-      <AddProducerGallery images={images} />
+      <AddProducerLabelWrapper text='Załaduj zdjecia - pierwsze zostanie zdjęciem głównym. Po załadowaniu zdjęcia zostaną wyświetlone 📸'>
+        <Gallery images={imgUrls} />
+      </AddProducerLabelWrapper>
       <ImageUploader handleImageUpload={handleImageUpload} images={images} />
       <Formik
         initialValues={initialValues}
