@@ -15,7 +15,7 @@ import {
 import { Form, Formik, FormikHelpers } from 'formik';
 import { useSession } from 'next-auth/react';
 import { AiOutlineLogin } from 'react-icons/ai';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { BiMailSend } from 'react-icons/bi';
 import { CreateAdProps, Images } from '@/types';
 import { adSchema } from '@/utils/validationSchemas';
@@ -31,7 +31,6 @@ const AddProducer = () => {
   const [isSending, setIsSending] = useState(false);
   const [isPopupActive, setIsPopupActive] = useState(false);
   const [images, setImages] = useState<Images[]>([]);
-  const [imgUrls, setImgUrls] = useState<string[]>([]);
   const session = useSession();
 
   const handleImageUpload = (
@@ -45,11 +44,6 @@ const AddProducer = () => {
       );
     }
   };
-
-  useEffect(() => {
-    const urls = images.map((image) => image.fileUrl);
-    setImgUrls(urls);
-  }, [images]);
 
   const handleCreateAd = async (
     values: CreateAdProps,
@@ -71,7 +65,7 @@ const AddProducer = () => {
             content,
             username: session?.data?.user?.name,
             email: session?.data?.user?.email,
-            imagesUrl: imgUrls,
+            images,
           }),
         });
         actions.resetForm();
@@ -109,7 +103,7 @@ const AddProducer = () => {
     <PageWrapper>
       <PageTitle title='Dodaj Producenta' />
       <AddProducerLabelWrapper text='Załaduj zdjecia - pierwsze zostanie zdjęciem głównym. Po załadowaniu zdjęcia zostaną wyświetlone 📸'>
-        <Gallery images={imgUrls} />
+        <Gallery images={images} />
       </AddProducerLabelWrapper>
       <ImageUploader handleImageUpload={handleImageUpload} images={images} />
       <Formik

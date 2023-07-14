@@ -1,11 +1,12 @@
 'use client';
 
+import { Images } from '@/types';
 import Carousel from 'react-gallery-carousel';
 import 'react-gallery-carousel/dist/index.css';
 
-const Gallery = ({ images }: { images: Array<string> }) => {
+const Gallery = ({ images }: { images: Images[] }) => {
   const newImagesArray = images.map((img) => ({
-    src: img,
+    src: img.fileUrl,
   }));
 
   return (

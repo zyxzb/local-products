@@ -41,13 +41,13 @@ const SingleAd = async ({ params: { id } }: { params: { id: string } }) => {
     username,
     createdAt,
     updatedAt,
-    imagesUrl,
+    images,
   } = data;
 
   return (
     <div>
       <PageTitle title={title} />
-      <Gallery images={imagesUrl} />
+      <Gallery images={images} />
       <div className='mt-8 flex flex-col gap-4'>
         <h2 className='text-2xl lg:text-3xl'>{desc}</h2>
         <p>
