@@ -27,7 +27,7 @@ const initialValues = {
   content: '',
 };
 
-const AddProducer = () => {
+const AddProducer = async () => {
   const [isSending, setIsSending] = useState(false);
   const [isPopupActive, setIsPopupActive] = useState(false);
   const [images, setImages] = useState<Images[]>([]);
@@ -112,7 +112,7 @@ const AddProducer = () => {
         validationSchema={adSchema}
       >
         {() => (
-          <Form className='flex flex-col w-full gap-10 text-darkColor'>
+          <Form className='flex flex-col w-full gap-10'>
             <AddProducerLabelWrapper text='Podaj tytuł - im więcej szczegółów, tym lepiej.'>
               <InputField name='title' placeholder='Tytuł...' />
             </AddProducerLabelWrapper>

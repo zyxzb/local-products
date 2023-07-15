@@ -8,7 +8,7 @@ const ImageUploader = ({ handleImageUpload, images }: ImageUploaderProps) => {
   return (
     <div className='flex flex-col items-center justify-start p-12'>
       {images.length >= 4 ? (
-        <p className='ut-m-0 ut-text-xs ut-leading-5 ut-text-gray-600 text-darkColor'>
+        <p className='ut-m-0 ut-text-xs ut-leading-5 ut-text-gray-600'>
           Limit zdjęć został wykorzystany
         </p>
       ) : (
@@ -29,7 +29,7 @@ const ImageUploader = ({ handleImageUpload, images }: ImageUploaderProps) => {
           }}
         />
       )}
-      <div className='text-darkColor ut-m-0 ut-text-xs ut-leading-5 ut-text-gray-600'>
+      <div className='ut-m-0 ut-text-xs ut-leading-5 ut-text-gray-600'>
         {images.length >= 4 ? (
           <p>Dodawanie zakończone</p>
         ) : (

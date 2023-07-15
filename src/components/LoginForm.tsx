@@ -30,7 +30,7 @@ const LoginForm = () => {
         validationSchema={loginSchema}
       >
         {() => (
-          <Form className='flex flex-col w-full gap-4 mb-4 text-darkColor'>
+          <Form className='flex flex-col w-full gap-4 mb-4'>
             <InputField name='email' placeholder='Email...' />
             <InputField
               name='password'

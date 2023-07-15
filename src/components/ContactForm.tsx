@@ -48,7 +48,7 @@ const ContactForm = () => {
         validationSchema={contactFormSchema}
       >
         {() => (
-          <Form className='flex flex-col w-full gap-4 text-darkColor'>
+          <Form className='flex flex-col w-full gap-4'>
             <InputField name='name' placeholder='Imię...' />
             <InputField name='email' placeholder='Email...' />
             <InputField

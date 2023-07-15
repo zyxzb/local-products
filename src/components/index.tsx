@@ -19,6 +19,7 @@ import Popup from './Popup';
 import Gallery from './Gallery';
 import AddProducerLabelWrapper from './AddProducerLabelWrapper';
 import ImageUploader from './ImageUploader';
+import NewAds from './NewAds';
 
 export {
   Nav,
@@ -42,4 +43,5 @@ export {
   Gallery,
   AddProducerLabelWrapper,
   ImageUploader,
+  NewAds,
 };

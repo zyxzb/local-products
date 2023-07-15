@@ -32,7 +32,7 @@ const Ads = async () => {
       )}
       <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6'>
         {data.map((item: CardProps) => {
-          return <Card key={item._id} {...item} />;
+          return <Card key={item._id} item={item} />;
         })}
       </div>
     </PageWrapper>
