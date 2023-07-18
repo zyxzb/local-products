@@ -9,13 +9,7 @@ import { CardProps } from '@/types';
 // import { trimText } from '@/utils';
 import { formatFullDate } from '@/utils';
 
-const Card = async ({
-  item,
-  extraStyles,
-}: {
-  item: CardProps;
-  extraStyles?: string;
-}) => {
+const Card = async ({ item }: { item: CardProps }) => {
   const { title, location, _id, images, createdAt } = item;
 
   const cardImage = images.length
@@ -24,9 +18,7 @@ const Card = async ({
 
   return (
     <Link href={`/ogloszenia/${_id}`}>
-      <div
-        className={`bg-white rounded-md transition cursor-pointer h-[440px] flex flex-col gap-4 p-4 group ${extraStyles}`}
-      >
+      <div className='bg-white rounded-md transition cursor-pointer h-[440px] flex flex-col gap-4 p-4 group shadow hover:shadow-label'>
         <div className='relative w-full h-[200px] flex'>
           <Image
             src={cardImage}
