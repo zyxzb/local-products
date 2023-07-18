@@ -6,7 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { CardProps } from '@/types';
-import { trimText } from '@/utils';
+// import { trimText } from '@/utils';
 import { formatFullDate } from '@/utils';
 
 const Card = async ({
@@ -16,7 +16,7 @@ const Card = async ({
   item: CardProps;
   extraStyles?: string;
 }) => {
-  const { title, desc, location, _id, images, createdAt } = item;
+  const { title, location, _id, images, createdAt } = item;
 
   const cardImage = images.length
     ? String(images[0].fileUrl)
@@ -37,8 +37,8 @@ const Card = async ({
         </div>
         <div className='flex flex-col justify-between flex-1'>
           <div>
-            <h2 className='mb-2 text-2xl font-bold'>{title}</h2>
-            <p className='mb-3'>{trimText(desc, 150)}</p>
+            <h2 className='mb-2 text-xl font-bold'>{title}</h2>
+            {/* <p className='mb-3'>{trimText(desc, 150)}</p> */}
           </div>
           <div className='flex justify-between items-center mt-auto'>
             <div className='text-sm flex flex-col opacity-50'>

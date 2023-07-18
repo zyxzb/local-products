@@ -50,32 +50,27 @@ const AddProducer = async () => {
     actions: FormikHelpers<CreateAdProps>,
   ) => {
     const { title, desc, location, content } = values;
-    // additional protector
-    if (images.length > 4) {
-      return alert('Możesz dodać łacznie tylko 4 zdjęcia!');
-    } else {
-      setIsSending(true);
-      try {
-        await fetch('/api/ads', {
-          method: 'POST',
-          body: JSON.stringify({
-            title,
-            desc,
-            location,
-            content,
-            username: session?.data?.user?.name,
-            email: session?.data?.user?.email,
-            images,
-          }),
-        });
-        actions.resetForm();
-        setImages([]);
-        setIsPopupActive(true);
-      } catch (error) {
-        alert(`Something went wrong :( \n Error: ${error} \n Try again!`);
-      } finally {
-        setIsSending(false);
-      }
+    setIsSending(true);
+    try {
+      await fetch('/api/ads', {
+        method: 'POST',
+        body: JSON.stringify({
+          title,
+          desc,
+          location,
+          content,
+          username: session?.data?.user?.name,
+          email: session?.data?.user?.email,
+          images,
+        }),
+      });
+      setIsPopupActive(true);
+      actions.resetForm();
+      setImages([]);
+    } catch (error) {
+      alert(`Something went wrong :( \n Error: ${error} \n Try again!`);
+    } finally {
+      setIsSending(false);
     }
   };
 

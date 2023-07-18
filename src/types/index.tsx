@@ -124,3 +124,15 @@ export interface AddProducerLabelWrapperProps {
   children: React.ReactNode;
   text: string;
 }
+
+export interface AccountProps {
+  params: {
+    email: string;
+  };
+}
+
+export interface SingleAdProps {
+  params: {
+    id: string;
+  };
+}

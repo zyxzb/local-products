@@ -20,6 +20,7 @@ import Gallery from './Gallery';
 import AddProducerLabelWrapper from './AddProducerLabelWrapper';
 import ImageUploader from './ImageUploader';
 import NewAds from './NewAds';
+import UserInfo from './UserInfo';
 
 export {
   Nav,
@@ -44,4 +45,5 @@ export {
   AddProducerLabelWrapper,
   ImageUploader,
   NewAds,
+  UserInfo,
 };

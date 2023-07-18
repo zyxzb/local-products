@@ -42,7 +42,7 @@ export const adSchema = Yup.object().shape({
   title: Yup.string()
     .required('Tytuł jest wymagany')
     .min(10, 'min. 10 znaków')
-    .max(55, 'max. 55 znaków')
+    .max(60, 'max. 60 znaków')
     .matches(/^(?=.*\S).+$/, 'Pole nie może zawiarać tylko pustych znaków'),
   desc: Yup.string()
     .required('Krótki opis jest wymagany')
@@ -51,5 +51,10 @@ export const adSchema = Yup.object().shape({
   location: Yup.string().required('Lokalizacja jest wymagana'),
   content: Yup.string()
     .required('Treść jest wymagana')
-    .matches(/^(?=.*\S).+$/, 'Pole nie może zawiarać tylko pustych znaków'),
+    .min(40, 'min. 40 znaków')
+    .max(8000, 'max. 8000 znaków')
+    .matches(
+      /^(\s*\S){39,}\s*$/,
+      'Pole textarea musi zawierać co najmniej 40 znaków (spacje nie są liczone)',
+    ),
 });

@@ -1,6 +1,7 @@
 import { PageTitle, Gallery } from '@/components';
 import { notFound } from 'next/navigation';
 import { formatFullDate } from '@/utils';
+import { SingleAdProps } from '@/types';
 
 export const generateMetadata = async ({
   params: { id },
@@ -30,7 +31,7 @@ const getData = async (id: string) => {
   return data;
 };
 
-const SingleAd = async ({ params: { id } }: { params: { id: string } }) => {
+const SingleAd = async ({ params: { id } }: SingleAdProps) => {
   const data = await getData(id);
   const {
     _id,

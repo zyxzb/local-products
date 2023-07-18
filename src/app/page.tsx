@@ -6,12 +6,6 @@ import {
 } from '@/components';
 import { notFound } from 'next/navigation';
 
-// const wait = async (delay: number) => {
-//   return new Promise((resolve) => {
-//     setTimeout(resolve, delay);
-//   });
-// };
-
 const getData = async () => {
   const res = await fetch(
     `${
