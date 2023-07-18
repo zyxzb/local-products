@@ -44,13 +44,7 @@ const Account = async ({ params: { email } }: AccountProps) => {
           <h2>Ogłoszenia dodane przez Ciebie: </h2>
           <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4'>
             {data.map((item: CardProps) => {
-              return (
-                <Card
-                  key={item._id}
-                  item={item}
-                  extraStyles='shadow hover:shadow-label'
-                />
-              );
+              return <Card key={item._id} item={item} />;
             })}
           </div>
         </div>
