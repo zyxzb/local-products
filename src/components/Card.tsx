@@ -41,13 +41,18 @@ const Card = async ({
             {/* <p className='mb-3'>{trimText(desc, 150)}</p> */}
           </div>
           <div className='flex justify-between items-center mt-auto'>
-            <div className='text-sm flex flex-col opacity-50'>
+            <div className='text-sm flex flex-col opacity-70'>
               <span>Lokalizacja: {location}</span>
               <span>Dodano: {formatFullDate(createdAt)}</span>
             </div>
             <Tippy content='Usuń z polubionych'>
               <button
                 type='button'
+                aria-label='add to favorites'
+                onClick={(e) => {
+                  e.preventDefault();
+                  // add to favorites list later
+                }}
                 className='text-4xl text-darkColor hover:text-lightGreen self-end transition'
               >
                 <AiFillHeart />
