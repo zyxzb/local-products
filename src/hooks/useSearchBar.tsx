@@ -5,7 +5,9 @@ import { dzielnice } from '@/data/dzielnice';
 import { wojewodztwa } from '@/data/wojewodztwa';
 import { convertDzielniceFormat, mergeCitiesWithAreas } from '@/utils/helpers';
 
-const useSearchBar = (formData: { name: string; location: string }) => {
+const useSearchBar = (
+  formData: { name: string; location: string } | { location: string },
+) => {
   const [mergedLocation, setMergedLocation] = useState<any[]>([]);
 
   // debounce query results

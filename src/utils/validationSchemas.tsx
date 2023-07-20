@@ -48,7 +48,7 @@ export const adSchema = Yup.object().shape({
     .required('Krótki opis jest wymagany')
     .max(160, 'max. 160 znaków')
     .matches(/^(?=.*\S).+$/, 'Pole nie może zawiarać tylko pustych znaków'),
-  location: Yup.string().required('Lokalizacja jest wymagana'),
+  // location: Yup.string().required('Lokalizacja jest wymagana'),
   content: Yup.string()
     .required('Treść jest wymagana')
     .min(40, 'min. 40 znaków')

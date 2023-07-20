@@ -92,7 +92,7 @@ export interface PopupProps {
 export interface CreateAdProps {
   title: string;
   desc: string;
-  location: string;
+  // location: string;
   content: string;
 }
 
@@ -135,4 +135,11 @@ export interface SingleAdProps {
   params: {
     id: string;
   };
+}
+
+export interface createAdContextProps {
+  location: string;
+  images: Images[];
+  setLocation: (location: string) => void;
+  setImages: (setImages: any) => void;
 }

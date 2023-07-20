@@ -21,6 +21,8 @@ import AddProducerLabelWrapper from './AddProducerLabelWrapper';
 import ImageUploader from './ImageUploader';
 import NewAds from './NewAds';
 import UserInfo from './UserInfo';
+import CreateAdForm from './CreateAdForm';
+import SelectLocation from './SelectLocation';
 
 export {
   Nav,
@@ -46,4 +48,6 @@ export {
   ImageUploader,
   NewAds,
   UserInfo,
+  CreateAdForm,
+  SelectLocation,
 };
