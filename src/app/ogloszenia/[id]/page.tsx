@@ -1,6 +1,6 @@
 import { PageTitle, Gallery } from '@/components';
 import { notFound } from 'next/navigation';
-import { formatFullDate } from '@/utils';
+import { formatFullDate } from '@/utils/helpers';
 import { SingleAdProps } from '@/types';
 
 export const generateMetadata = async ({

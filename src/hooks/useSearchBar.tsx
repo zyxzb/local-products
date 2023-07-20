@@ -3,7 +3,7 @@ import useDebounce from './useDebounce';
 import { miasta } from '@/data/miasta';
 import { dzielnice } from '@/data/dzielnice';
 import { wojewodztwa } from '@/data/wojewodztwa';
-import { convertDzielniceFormat, mergeCitiesWithAreas } from '@/utils';
+import { convertDzielniceFormat, mergeCitiesWithAreas } from '@/utils/helpers';
 
 const useSearchBar = (formData: { name: string; location: string }) => {
   const [mergedLocation, setMergedLocation] = useState<any[]>([]);

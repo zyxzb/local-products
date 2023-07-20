@@ -7,7 +7,7 @@ import Link from 'next/link';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { CardProps } from '@/types';
 // import { trimText } from '@/utils';
-import { formatFullDate } from '@/utils';
+import { formatFullDate } from '@/utils/helpers';
 
 const Card = async ({ item }: { item: CardProps }) => {
   const { title, location, _id, images, createdAt } = item;
