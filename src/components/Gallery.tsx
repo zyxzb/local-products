@@ -16,7 +16,6 @@ const Gallery = ({ images }: { images: Images[] }) => {
           <Carousel
             images={newImagesArray}
             style={{ height: 500, width: '100%' }}
-            shouldLazyLoad
           />
         </div>
       ) : null}
