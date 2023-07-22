@@ -1,10 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import {
-  SearchInput,
-  // LeafletMap
-} from '@/components';
+import { SearchInput, LeafletMap } from '@/components';
 import { CiLocationOn } from 'react-icons/ci';
 import { TfiClose } from 'react-icons/tfi';
 import useSearchBar from '@/hooks/useSearchBar';
@@ -82,7 +79,7 @@ const SelectLocation = () => {
           </div>
         )}
       </div>
-      {/* <LeafletMap coord={coord} /> */}
+      <LeafletMap coord={coord} />
     </>
   );
 };
