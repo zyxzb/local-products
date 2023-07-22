@@ -17,41 +17,46 @@ const LeafletMap = ({
   const { setCoord, location } = useCreateAdContext();
 
   useEffect(() => {
-    // Initialize the map
-    const map = L.map('leaflet-map').setView(coord, 12);
+    const leafletLoaded = typeof window !== 'undefined';
+    if (leafletLoaded) {
+      // Initialize the map
+      const map = L.map('leaflet-map').setView(coord, 12);
 
-    // Add OpenStreetMap tiles to the map
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution:
-        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-    }).addTo(map);
+      // Add OpenStreetMap tiles to the map
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution:
+          '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      }).addTo(map);
 
-    // Add a marker with a popup to the map
-    const marker = L.marker(coord, {
-      icon: new L.Icon({
-        iconUrl: MarkerIcon.src,
-        iconRetinaUrl: MarkerIcon.src,
-        iconSize: [25, 41],
-        iconAnchor: [12.5, 41],
-        popupAnchor: [0, -41],
-        shadowUrl: MarkerShadow.src,
-        shadowSize: [41, 41],
-      }),
-    }).addTo(map);
+      // Add a marker with a popup to the map
+      const marker = L.marker(coord, {
+        icon: new L.Icon({
+          iconUrl: MarkerIcon.src,
+          iconRetinaUrl: MarkerIcon.src,
+          iconSize: [25, 41],
+          iconAnchor: [12.5, 41],
+          popupAnchor: [0, -41],
+          shadowUrl: MarkerShadow.src,
+          shadowSize: [41, 41],
+        }),
+      }).addTo(map);
 
-    marker
-      .bindPopup(
-        title
-          ? title
-          : `${
-              location ? 'Wybrana lokalizacja:' : 'Wybierz Lokalizacje z listy'
-            } <br /> ${location}`,
-      )
-      .openPopup();
-    // Clean up the map when the component is unmounted
-    return () => {
-      map.remove();
-    };
+      marker
+        .bindPopup(
+          title
+            ? title
+            : `${
+                location
+                  ? 'Wybrana lokalizacja:'
+                  : 'Wybierz Lokalizacje z listy'
+              } <br /> ${location}`,
+        )
+        .openPopup();
+      // Clean up the map when the component is unmounted
+      return () => {
+        map.remove();
+      };
+    }
   }, [coord, location]);
 
   return (
