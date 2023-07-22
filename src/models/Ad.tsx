@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import { number } from 'yup';
 
 const { Schema } = mongoose;
 
@@ -30,6 +31,11 @@ const adSchema = new Schema(
     },
     images: {
       type: [Object],
+      required: false,
+      default: () => [],
+    },
+    coord: {
+      type: [Number, Number],
       required: false,
       default: () => [],
     },

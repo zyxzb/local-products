@@ -12,11 +12,13 @@ const Gallery = ({ images }: { images: Images[] }) => {
   return (
     <>
       {images.length ? (
-        <Carousel
-          images={newImagesArray}
-          style={{ height: 500, width: '100%' }}
-          shouldLazyLoad
-        />
+        <div className='bg-white rounded-md p-4'>
+          <Carousel
+            images={newImagesArray}
+            style={{ height: 500, width: '100%' }}
+            shouldLazyLoad
+          />
+        </div>
       ) : null}
     </>
   );

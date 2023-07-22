@@ -1,33 +1,27 @@
 import {
   HomeBannerSection,
   HomeTextSection,
+  Loader,
   NewAds,
   PageWrapper,
 } from '@/components';
-import { notFound } from 'next/navigation';
-
-const getData = async () => {
-  const res = await fetch(
-    `${
-      process.env.NEXTAUTH_URL || process.env.NEXTAUTH_URL2
-    }/api/ads/homePageAds`,
-    { cache: 'no-store' },
-  );
-
-  if (!res.ok) {
-    return notFound();
-  }
-  return res.json();
-};
+import { Suspense } from 'react';
 
 const Home = async () => {
-  const data = await getData();
-
   return (
     <PageWrapper>
       <div>
         <HomeBannerSection />
-        <NewAds data={data} />
+        {/* add skeleton for cards later*/}
+        <Suspense
+          fallback={
+            <div className='h-[200px]'>
+              <Loader />
+            </div>
+          }
+        >
+          <NewAds />
+        </Suspense>
         <HomeTextSection />
       </div>
     </PageWrapper>

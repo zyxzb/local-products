@@ -25,7 +25,8 @@ const initialValues = {
 const CreateAdForm = () => {
   const [isSending, setIsSending] = useState(false);
   const [isPopupActive, setIsPopupActive] = useState(false);
-  const { images, setImages, location, setLocation } = useCreateAdContext();
+  const { images, setImages, location, setLocation, coord } =
+    useCreateAdContext();
 
   const session = useSession();
 
@@ -46,6 +47,7 @@ const CreateAdForm = () => {
           username: session?.data?.user?.name,
           email: session?.data?.user?.email,
           images,
+          coord,
         }),
       });
       setIsPopupActive(true);
@@ -74,7 +76,7 @@ const CreateAdForm = () => {
             <AddProducerLabelWrapper text='Podaj krótki opis - będzie on widoczny na karcie ogłoszenia.'>
               <InputField name='desc' placeholder='Krótki opis...' />
             </AddProducerLabelWrapper>
-            <AddProducerLabelWrapper text='Wybierz dostępną lokalizacje.'>
+            <AddProducerLabelWrapper text='Wybierz najblizszą dostępną lokalizacje z listy.'>
               <SelectLocation />
             </AddProducerLabelWrapper>
             <AddProducerLabelWrapper

@@ -29,6 +29,18 @@ export interface MiastaProps {
   name_locative: string;
 }
 
+export interface MergedLocationsProps {
+  id: number;
+  name: string;
+  unique_name: string;
+  county_id: number;
+  voivodeship_id: number;
+  latitude: string;
+  longitude: string;
+  name_locative: string;
+  wojewodztwo: string;
+}
+
 export interface WojewodztwaProps {
   id: number;
   name: string;
@@ -107,6 +119,7 @@ export interface CardProps {
   createdAt: string;
   updatedAt: string;
   images: [{ fileUrl: String; fileKey: String }] | [];
+  coord: [number, number];
   __v: number;
 }
 
@@ -140,6 +153,8 @@ export interface SingleAdProps {
 export interface createAdContextProps {
   location: string;
   images: Images[];
+  coord: [number, number];
   setLocation: (location: string) => void;
   setImages: (setImages: any) => void;
+  setCoord: (setCoord: [number, number]) => void;
 }
