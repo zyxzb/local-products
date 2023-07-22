@@ -1,11 +1,11 @@
 import {
   HomeBannerSection,
   HomeTextSection,
-  Loader,
+  // Loader,
   NewAds,
   PageWrapper,
 } from '@/components';
-import { Suspense } from 'react';
+// import { Suspense } from 'react';
 
 const Home = async () => {
   return (
@@ -13,15 +13,15 @@ const Home = async () => {
       <div>
         <HomeBannerSection />
         {/* add skeleton for cards later*/}
-        <Suspense
+        {/* <Suspense
           fallback={
             <div className='h-[200px]'>
               <Loader />
             </div>
           }
-        >
-          <NewAds />
-        </Suspense>
+        > */}
+        <NewAds />
+        {/* </Suspense> */}
         <HomeTextSection />
       </div>
     </PageWrapper>
