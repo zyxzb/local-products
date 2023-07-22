@@ -1,18 +1,15 @@
 'use client';
 
 import React, { useState } from 'react';
-import { SearchInput } from '@/components';
+import {
+  SearchInput,
+  // LeafletMap
+} from '@/components';
 import { CiLocationOn } from 'react-icons/ci';
 import { TfiClose } from 'react-icons/tfi';
 import useSearchBar from '@/hooks/useSearchBar';
 import { useCreateAdContext } from '@/context/createAddContext';
 import { MergedLocationsProps } from '@/types';
-import dynamic from 'next/dynamic';
-
-const DynamicMap = dynamic(() => import('./LeafletMap'), {
-  ssr: false,
-  loading: () => <p>Loading Map...</p>,
-});
 
 const initState = {
   location: '',
@@ -85,7 +82,7 @@ const SelectLocation = () => {
           </div>
         )}
       </div>
-      <DynamicMap coord={coord} />
+      {/* <LeafletMap coord={coord} /> */}
     </>
   );
 };

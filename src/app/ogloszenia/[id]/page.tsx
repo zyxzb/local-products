@@ -1,4 +1,8 @@
-import { PageTitle, Gallery, LeafletMap } from '@/components';
+import {
+  PageTitle,
+  Gallery,
+  // LeafletMap
+} from '@/components';
 import { notFound } from 'next/navigation';
 import { formatFullDate } from '@/utils/helpers';
 import { SingleAdProps } from '@/types';
@@ -51,7 +55,7 @@ const SingleAd = async ({ params: { id } }: SingleAdProps) => {
       <PageTitle title={title} />
       {/* add grid layout later  */}
       <Gallery images={images} />
-      {coord.length ? <LeafletMap coord={coord} title={title} /> : null}
+      {/* {coord.length ? <LeafletMap coord={coord} title={title} /> : null} */}
       <div className='mt-8 flex flex-col gap-4'>
         <h2 className='text-2xl lg:text-3xl'>{desc}</h2>
         <p>
