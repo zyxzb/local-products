@@ -16,7 +16,7 @@ const SelectLocation = () => {
   const [formData, setFormData] = useState(initState);
   const { mergedLocation } = useSearchBar(formData);
   const [isListVisible, setIsListVisible] = useState(false);
-  const { setLocation, setCoord } = useCreateAdContext();
+  const { setLocation, setCoord, location } = useCreateAdContext();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -37,7 +37,7 @@ const SelectLocation = () => {
       <div className='w-full border-[1px] border-darkColor'>
         <SearchInput
           name='location'
-          placeholder='Lokalizacja...'
+          placeholder={location ? location : 'Wybierz lokalizacje z listy'}
           value={formData.location}
           onChange={handleChange}
           onFocus={() => setIsListVisible(true)}

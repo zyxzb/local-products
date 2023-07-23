@@ -1,11 +1,8 @@
 'use client';
 import dynamic from 'next/dynamic';
-
-// import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
-
 import 'leaflet/dist/leaflet.css';
-// import L from 'leaflet';
 import { useCreateAdContext } from '@/context/createAddContext';
+import L from 'leaflet';
 
 const LeafletMap = ({
   coord,
@@ -38,6 +35,11 @@ const LeafletMap = ({
   );
   const { location } = useCreateAdContext();
 
+  const customIcon = new L.Icon({
+    iconUrl: 'map-marker.svg',
+    iconSize: [45, 45],
+  });
+
   return (
     <div className='bg-white rounded-md p-4'>
       <MapContainer
@@ -55,10 +57,7 @@ const LeafletMap = ({
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
         />
-        <Marker
-          position={coord}
-          // icon={customIcon}
-        >
+        <Marker position={coord} icon={customIcon}>
           <Popup>
             {title
               ? title
