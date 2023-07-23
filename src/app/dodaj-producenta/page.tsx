@@ -7,10 +7,22 @@ import {
   PageWrapper,
   ImageUploaderSection,
   CreateAdForm,
-  SelectLocationSection,
 } from '@/components';
 import { useSession } from 'next-auth/react';
 import { AiOutlineLogin } from 'react-icons/ai';
+import dynamic from 'next/dynamic';
+
+const SelectLocationSection = dynamic(
+  () => import('@/components/SelectLocationSection'),
+  {
+    loading: () => (
+      <div className='w-full h-[500px] grid place-content-center'>
+        Loading Map...
+      </div>
+    ),
+    ssr: false,
+  },
+);
 
 const AddProducer = async () => {
   const session = useSession();
