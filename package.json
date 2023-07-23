@@ -12,6 +12,7 @@
     "@emailjs/browser": "^3.11.0",
     "@tippyjs/react": "^4.2.6",
     "@types/bcryptjs": "^2.4.2",
+    "@types/leaflet": "^1.9.3",
     "@types/node": "20.3.1",
     "@types/react": "18.2.12",
     "@types/react-dom": "18.2.5",
@@ -39,7 +40,6 @@
     "yup": "^1.2.0"
   },
   "devDependencies": {
-    "@types/leaflet": "^1.9.3",
     "@types/react-gallery-carousel": "^0.2.2"
   }
 }

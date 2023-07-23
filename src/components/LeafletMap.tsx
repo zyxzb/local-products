@@ -4,6 +4,7 @@ import 'leaflet/dist/leaflet.css';
 import { useCreateAdContext } from '@/context/createAddContext';
 
 // https://www.npmjs.com/package/leaflet-defaulticon-compatibility
+import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.webpack.css'; // Re-uses images from ~leaflet package
 import 'leaflet-defaulticon-compatibility';
 import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css';
 
