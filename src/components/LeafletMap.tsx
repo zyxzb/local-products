@@ -2,7 +2,10 @@
 import dynamic from 'next/dynamic';
 import 'leaflet/dist/leaflet.css';
 import { useCreateAdContext } from '@/context/createAddContext';
-import L from 'leaflet';
+
+// https://www.npmjs.com/package/leaflet-defaulticon-compatibility
+import 'leaflet-defaulticon-compatibility';
+import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css';
 
 const LeafletMap = ({
   coord,
@@ -35,11 +38,6 @@ const LeafletMap = ({
   );
   const { location } = useCreateAdContext();
 
-  const customIcon = new L.Icon({
-    iconUrl: 'map-marker.svg',
-    iconSize: [45, 45],
-  });
-
   return (
     <div className='bg-white rounded-md p-4'>
       <MapContainer
@@ -57,7 +55,7 @@ const LeafletMap = ({
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
         />
-        <Marker position={coord} icon={customIcon}>
+        <Marker position={coord}>
           <Popup>
             {title
               ? title
