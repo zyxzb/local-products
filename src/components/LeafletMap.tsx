@@ -41,14 +41,14 @@ const LeafletMap = ({
   const { location } = useCreateAdContext();
 
   return (
-    <div className='bg-white rounded-md p-4'>
+    <div className='bg-white rounded-md p-4 h-[500px]'>
       <MapContainer
         center={coord}
         zoom={13}
         zoomControl={false}
         scrollWheelZoom={true}
         style={{
-          height: '500px',
+          height: '100%',
           width: '100%',
           zIndex: 0,
         }}

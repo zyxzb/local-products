@@ -14,14 +14,7 @@ import dynamic from 'next/dynamic';
 
 const SelectLocationSection = dynamic(
   () => import('@/components/SelectLocationSection'),
-  {
-    loading: () => (
-      <div className='w-full h-[500px] grid place-content-center'>
-        Loading Map...
-      </div>
-    ),
-    ssr: false,
-  },
+  { ssr: false },
 );
 
 const AddProducer = async () => {
