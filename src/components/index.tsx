@@ -18,12 +18,13 @@ import PageWrapper from './PageWrapper';
 import Popup from './Popup';
 import Gallery from './Gallery';
 import AddProducerLabelWrapper from './AddProducerLabelWrapper';
-import ImageUploader from './ImageUploader';
+import ImageUploaderSection from './ImageUploaderSection';
 import NewAds from './NewAds';
 import UserInfo from './UserInfo';
 import CreateAdForm from './CreateAdForm';
 import SelectLocation from './SelectLocation';
 import LeafletMap from './LeafletMap';
+import SelectLocationSection from './SelectLocationSection';
 
 export {
   Nav,
@@ -46,10 +47,11 @@ export {
   Popup,
   Gallery,
   AddProducerLabelWrapper,
-  ImageUploader,
+  ImageUploaderSection,
   NewAds,
   UserInfo,
   CreateAdForm,
   SelectLocation,
   LeafletMap,
+  SelectLocationSection,
 };

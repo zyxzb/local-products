@@ -5,7 +5,7 @@ import '@uploadthing/react/styles.css';
 import { AddProducerLabelWrapper, Gallery } from '@/components';
 import { useCreateAdContext } from '@/context/createAddContext';
 
-const ImageUploader = () => {
+const ImageUploaderSection = () => {
   const { images, setImages } = useCreateAdContext();
 
   return (
@@ -54,4 +54,4 @@ const ImageUploader = () => {
   );
 };
 
-export default ImageUploader;
+export default ImageUploaderSection;

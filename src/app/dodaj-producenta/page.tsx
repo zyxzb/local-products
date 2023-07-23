@@ -5,8 +5,9 @@ import {
   PageTitle,
   CustomLink,
   PageWrapper,
-  ImageUploader,
+  ImageUploaderSection,
   CreateAdForm,
+  SelectLocationSection,
 } from '@/components';
 import { useSession } from 'next-auth/react';
 import { AiOutlineLogin } from 'react-icons/ai';
@@ -37,7 +38,8 @@ const AddProducer = async () => {
   return (
     <PageWrapper>
       <PageTitle title='Dodaj Producenta' />
-      <ImageUploader />
+      <ImageUploaderSection />
+      <SelectLocationSection />
       <CreateAdForm />
     </PageWrapper>
   );

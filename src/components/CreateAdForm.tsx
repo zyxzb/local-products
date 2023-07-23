@@ -5,7 +5,7 @@ import {
   CustomButton,
   Popup,
   AddProducerLabelWrapper,
-  SelectLocation,
+  // SelectLocation,
 } from '@/components';
 
 import { useState } from 'react';
@@ -76,9 +76,9 @@ const CreateAdForm = () => {
             <AddProducerLabelWrapper text='Podaj krótki opis - będzie on widoczny na karcie ogłoszenia.'>
               <InputField name='desc' placeholder='Krótki opis...' />
             </AddProducerLabelWrapper>
-            <AddProducerLabelWrapper text='Wybierz najblizszą dostępną lokalizacje z listy.'>
+            {/* <AddProducerLabelWrapper text='Wybierz najblizszą dostępną lokalizacje z listy.'>
               <SelectLocation />
-            </AddProducerLabelWrapper>
+            </AddProducerLabelWrapper> */}
             <AddProducerLabelWrapper
               text='Wpisz ważne informację - takie które sam chciałbyś zobaczyć w
             ogłoszniu.'
