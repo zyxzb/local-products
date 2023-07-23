@@ -1,11 +1,12 @@
 'use client';
 
-import {
-  AddProducerLabelWrapper,
-  SelectLocation,
-  LeafletMap,
-} from '@/components';
+import dynamic from 'next/dynamic';
+import { AddProducerLabelWrapper, SelectLocation } from '@/components';
 import { useCreateAdContext } from '@/context/createAddContext';
+
+const Map = dynamic(() => import('./LeafletMap'), {
+  ssr: false,
+});
 
 const SelectLocationSection = () => {
   const { coord } = useCreateAdContext();
@@ -15,7 +16,7 @@ const SelectLocationSection = () => {
       <AddProducerLabelWrapper text='Wybierz najblizszą dostępną lokalizacje z listy.'>
         <SelectLocation />
       </AddProducerLabelWrapper>
-      <LeafletMap coord={coord} />
+      <Map coord={coord} />
     </div>
   );
 };

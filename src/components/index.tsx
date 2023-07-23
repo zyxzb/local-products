@@ -23,7 +23,6 @@ import NewAds from './NewAds';
 import UserInfo from './UserInfo';
 import CreateAdForm from './CreateAdForm';
 import SelectLocation from './SelectLocation';
-import LeafletMap from './LeafletMap';
 
 export {
   Nav,
@@ -51,5 +50,4 @@ export {
   UserInfo,
   CreateAdForm,
   SelectLocation,
-  LeafletMap,
 };
