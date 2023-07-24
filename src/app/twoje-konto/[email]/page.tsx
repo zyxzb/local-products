@@ -1,8 +1,8 @@
-import { Card, PageTitle, PageWrapper, UserInfo } from '@/components';
+import { CardsContainer, PageTitle, UserInfo } from '@/components';
 import { getServerSession } from 'next-auth/next';
 import { authOptions } from '../../api/auth/[...nextauth]/route';
 import { notFound, redirect } from 'next/navigation';
-import { AccountProps, CardProps } from '@/types';
+import { AccountProps } from '@/types';
 
 const getData = async (email: string) => {
   const res = await fetch(
@@ -17,8 +17,7 @@ const getData = async (email: string) => {
   if (!res.ok) {
     return notFound();
   }
-  const data = res.json();
-  return data;
+  return res.json();
 };
 
 const Account = async ({ params: { email } }: AccountProps) => {
@@ -35,21 +34,15 @@ const Account = async ({ params: { email } }: AccountProps) => {
   }
 
   return (
-    <PageWrapper>
+    <>
+      <PageTitle title='Twoje konto' />
+      <h2>Witaj, {session.user?.name}</h2>
+      <UserInfo />
       <div>
-        <PageTitle title='Twoje konto' />
-        <h2>Witaj, {session.user?.name}</h2>
-        <UserInfo />
-        <div>
-          <h2>Ogłoszenia dodane przez Ciebie: </h2>
-          <div className='grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4'>
-            {data.map((item: CardProps) => {
-              return <Card key={item._id} item={item} />;
-            })}
-          </div>
-        </div>
+        <h2>Ogłoszenia dodane przez Ciebie: </h2>
+        <CardsContainer data={data} />
       </div>
-    </PageWrapper>
+    </>
   );
 };
 

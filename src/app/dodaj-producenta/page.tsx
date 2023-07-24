@@ -4,7 +4,6 @@ import {
   Loader,
   PageTitle,
   CustomLink,
-  PageWrapper,
   ImageUploaderSection,
   CreateAdForm,
 } from '@/components';
@@ -26,7 +25,7 @@ const AddProducer = async () => {
 
   if (session?.status === 'unauthenticated') {
     return (
-      <PageWrapper>
+      <>
         <PageTitle title='Dodaj Producenta' />
         <div className='flex flex-col gap-8 justify-center items-center text-center'>
           <h2 className='text-xl'>Zaloguj się aby dodać producenta</h2>
@@ -36,17 +35,17 @@ const AddProducer = async () => {
             icon={<AiOutlineLogin className='text-2xl' />}
           />
         </div>
-      </PageWrapper>
+      </>
     );
   }
 
   return (
-    <PageWrapper>
+    <>
       <PageTitle title='Dodaj Producenta' />
       <ImageUploaderSection />
       <SelectLocationSection />
       <CreateAdForm />
-    </PageWrapper>
+    </>
   );
 };
 

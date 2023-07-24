@@ -14,7 +14,6 @@ import Loader from './Loader';
 import CustomLink from './CustomLink';
 import HomeBannerSection from './HomeBannerSection';
 import HomeTextSection from './HomeTextSection';
-import PageWrapper from './PageWrapper';
 import Popup from './Popup';
 import Gallery from './Gallery';
 import AddProducerLabelWrapper from './AddProducerLabelWrapper';
@@ -24,6 +23,8 @@ import UserInfo from './UserInfo';
 import CreateAdForm from './CreateAdForm';
 import SelectLocation from './SelectLocation';
 import SkeletonCard from './SkeletonCard';
+import CardsContainer from './CardsContainer';
+import AllAds from './AllAds';
 
 export {
   Nav,
@@ -42,7 +43,6 @@ export {
   CustomLink,
   HomeBannerSection,
   HomeTextSection,
-  PageWrapper,
   Popup,
   Gallery,
   AddProducerLabelWrapper,
@@ -52,4 +52,6 @@ export {
   CreateAdForm,
   SelectLocation,
   SkeletonCard,
+  CardsContainer,
+  AllAds,
 };
