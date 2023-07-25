@@ -1,11 +1,15 @@
-import { PageTitle } from '@/components';
-import { AllAds } from '@/components';
+import { Loader, PageTitle } from '@/components';
+import dynamic from 'next/dynamic';
+
+const AllAdsDymanic = dynamic(() => import('@/components/AllAds'), {
+  loading: () => <Loader />,
+});
 
 const Ads = async () => {
   return (
     <>
       <PageTitle title='Lokalne ogłoszenia' />
-      <AllAds />
+      <AllAdsDymanic />
     </>
   );
 };

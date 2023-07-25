@@ -33,19 +33,26 @@ const SearchBar = () => {
   };
 
   const handleSubmit = (e: React.FormEvent) => {
-    const { name, location } = formData;
     e.preventDefault();
-    let path = '/ogloszenia/';
+    const { name, location } = formData;
+    const searchParams = new URLSearchParams(window.location.search);
 
-    if (name && location) {
-      path = `/ogloszenia?name=${name}&location=${location}`;
-    } else if (name) {
-      path = `/ogloszenia?name=${name}`;
-    } else if (location) {
-      path = `/ogloszenia?location=${location}`;
+    if (!name && !location) {
+      router.push('/ogloszenia');
+    } else {
+      if (name) {
+        searchParams.set('name', name);
+      } else {
+        searchParams.delete('name');
+      }
+      if (location) {
+        searchParams.set('location', location);
+      } else {
+        searchParams.delete('location');
+      }
+      const newPathName = `${'/ogloszenia'}?${searchParams.toString()}`;
+      router.push(newPathName);
     }
-
-    router.push(path);
   };
 
   return (
