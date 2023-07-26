@@ -12,10 +12,10 @@ const Gallery = ({ images }: { images: Images[] }) => {
   return (
     <>
       {images.length ? (
-        <div className='bg-white rounded-md p-4'>
+        <div className='bg-white rounded-md p-4 h-[280px] md:h-[500px]'>
           <Carousel
             images={newImagesArray}
-            style={{ height: 500, width: '100%' }}
+            style={{ height: '100%', width: '100%' }}
             canAutoPlay={false}
             hasIndexBoard='topLeft'
             hasThumbnails={false}
