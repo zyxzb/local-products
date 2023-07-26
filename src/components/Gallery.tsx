@@ -16,6 +16,12 @@ const Gallery = ({ images }: { images: Images[] }) => {
           <Carousel
             images={newImagesArray}
             style={{ height: 500, width: '100%' }}
+            canAutoPlay={false}
+            hasIndexBoard='topLeft'
+            hasThumbnails={false}
+            hasLeftButton={images.length > 1 && 'centerLeft'}
+            hasRightButton={images.length > 1 && 'centerRight'}
+            hasThumbnailsAtMax={true}
           />
         </div>
       ) : null}
