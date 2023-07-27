@@ -16,7 +16,11 @@ const SelectLocationSection = () => {
       <AddProducerLabelWrapper text='Wybierz najblizszą dostępną lokalizacje z listy.'>
         <SelectLocation />
       </AddProducerLabelWrapper>
-      <Map coord={coord} />
+      {Map ? (
+        <div className='bg-white rounded-md p-4 h-[250px] md:h-[500px]'>
+          <Map coord={coord} />
+        </div>
+      ) : null}
     </div>
   );
 };

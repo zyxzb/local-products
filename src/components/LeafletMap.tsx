@@ -41,33 +41,27 @@ const LeafletMap = ({
   const { location } = useCreateAdContext();
 
   return (
-    <div className='bg-white rounded-md p-4 h-[500px]'>
-      <MapContainer
-        center={coord}
-        zoom={13}
-        zoomControl={false}
-        scrollWheelZoom={true}
-        style={{
-          height: '100%',
-          width: '100%',
-          zIndex: 0,
-        }}
-      >
-        <TileLayer
-          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
-        />
-        <Marker position={coord}>
-          <Popup>
-            {title
-              ? title
-              : location
-              ? location
-              : 'Wybierz Lokalizacje z listy'}
-          </Popup>
-        </Marker>
-      </MapContainer>
-    </div>
+    <MapContainer
+      center={coord}
+      zoom={13}
+      zoomControl={false}
+      scrollWheelZoom={true}
+      style={{
+        height: '100%',
+        width: '100%',
+        zIndex: 0,
+      }}
+    >
+      <TileLayer
+        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+      />
+      <Marker position={coord}>
+        <Popup>
+          {title ? title : location ? location : 'Wybierz Lokalizacje z listy'}
+        </Popup>
+      </Marker>
+    </MapContainer>
   );
 };
 
