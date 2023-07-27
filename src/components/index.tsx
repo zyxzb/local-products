@@ -25,6 +25,7 @@ import SelectLocation from './SelectLocation';
 import SkeletonCard from './SkeletonCard';
 import CardsContainer from './CardsContainer';
 import AllAds from './AllAds';
+import Breadcrumbs from './Breadcrumbs';
 
 export {
   Nav,
@@ -54,4 +55,5 @@ export {
   SkeletonCard,
   CardsContainer,
   AllAds,
+  Breadcrumbs,
 };

@@ -1,4 +1,4 @@
-import { PageTitle, Gallery } from '@/components';
+import { Gallery, Breadcrumbs } from '@/components';
 import { notFound } from 'next/navigation';
 import { formatFullDate } from '@/utils/helpers';
 import { SingleAdProps } from '@/types';
@@ -55,6 +55,7 @@ const SingleAd = async ({ params: { id } }: SingleAdProps) => {
 
   return (
     <div>
+      <Breadcrumbs pageName='Ogłoszenia' adTitle={title} />
       <div className='flex flex-col lg:grid grid-cols-12 w-full gap-8'>
         {/* LEFT GRID */}
 

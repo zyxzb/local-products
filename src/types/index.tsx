@@ -158,3 +158,8 @@ export interface createAdContextProps {
   setImages: (setImages: any) => void;
   setCoord: (setCoord: [number, number]) => void;
 }
+
+export interface BreadcrumbsProps {
+  pageName: string;
+  adTitle?: string;
+}

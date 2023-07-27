@@ -1,4 +1,4 @@
-import { Loader, PageTitle } from '@/components';
+import { Loader, Breadcrumbs } from '@/components';
 import dynamic from 'next/dynamic';
 
 const AllAdsDymanic = dynamic(() => import('@/components/AllAds'), {
@@ -8,7 +8,7 @@ const AllAdsDymanic = dynamic(() => import('@/components/AllAds'), {
 const Ads = async () => {
   return (
     <>
-      <PageTitle title='Lokalne ogłoszenia' />
+      <Breadcrumbs pageName='Ogłoszenia' />
       <AllAdsDymanic />
     </>
   );
