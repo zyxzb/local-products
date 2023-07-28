@@ -46,7 +46,7 @@ const Nav = () => {
       {/* mobile nav */}
 
       <div className='flex lg:hidden z-30'>
-        <button type='button'>
+        <button type='button' aria-label='open menu'>
           {openNav ? (
             <TfiClose
               className='w-[30px] h-[30px] text-whiteColor'
