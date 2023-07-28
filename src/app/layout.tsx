@@ -3,10 +3,9 @@ import './globals.css';
 import { CreateAdContextProvider } from '@/context/createAddContext';
 
 export const metadata = {
-  title:
-    'WybierzLokalnie.pl - Odkryj Lokalnych Producentów Żywności w Twojej Okolicy',
+  title: 'Lokalni Producenci Żywności w Twojej Okolicy - WybierzLokalnie.pl',
   description:
-    'Ciesz się świeżymi produktami z Twojego sąsiedztwa. Dołącz do społeczności, która docenia wysoką jakość i autentyczność. Wybierz lokalnie - smakuj lokalnie!',
+    'Ciesz się świeżymi produktami z Twojego sąsiedztwa ⭐ Dołącz do społeczności, która docenia wysoką jakość i autentyczność ✔️ Wybierz lokalną żywność.',
 };
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {

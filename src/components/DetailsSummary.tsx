@@ -7,7 +7,7 @@ const DetailsSummary = () => {
       {homeData.map((data) => (
         <div key={data.header} className='py-5'>
           <details className='group'>
-            <summary className='flex justify-between cursor-pointer list-none text-sm md:text-base'>
+            <summary className='flex justify-between items-center cursor-pointer list-none text-sm md:text-base'>
               <span>{data.header}</span>
               <span className='transition group-open:rotate-180 ml-4'>
                 <HiChevronDown className='text-2xl' />
