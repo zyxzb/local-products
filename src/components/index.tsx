@@ -13,7 +13,6 @@ import RegisterForm from './RegisterForm';
 import Loader from './Loader';
 import CustomLink from './CustomLink';
 import HomeBannerSection from './HomeBannerSection';
-import HomeTextSection from './HomeTextSection';
 import Popup from './Popup';
 import Gallery from './Gallery';
 import AddProducerLabelWrapper from './AddProducerLabelWrapper';
@@ -26,6 +25,7 @@ import SkeletonCard from './SkeletonCard';
 import CardsContainer from './CardsContainer';
 import AllAds from './AllAds';
 import Breadcrumbs from './Breadcrumbs';
+import DetailsSummary from './DetailsSummary';
 
 export {
   Nav,
@@ -43,7 +43,6 @@ export {
   Loader,
   CustomLink,
   HomeBannerSection,
-  HomeTextSection,
   Popup,
   Gallery,
   AddProducerLabelWrapper,
@@ -56,4 +55,5 @@ export {
   CardsContainer,
   AllAds,
   Breadcrumbs,
+  DetailsSummary,
 };

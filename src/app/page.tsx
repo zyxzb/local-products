@@ -1,16 +1,54 @@
-import { HomeBannerSection, HomeTextSection, NewAds } from '@/components';
+import { HomeBannerSection, NewAds, DetailsSummary } from '@/components';
 
 const Home = async () => {
   return (
     <div className='flex flex-col gap-10 md:gap-20'>
       <HomeBannerSection />
-      <h2 className='md:text-xl'>
-        Aplikacja WybierzLokalnie.pl została stworzona z myślą o tych, którzy
-        pragną być bardziej świadomymi konsumentami, wspierać lokalne
-        gospodarstwa i cieszyć się najświeższymi, wysokiej jakości produktami.
-      </h2>
+      <section>
+        <div className='mb-10'>
+          <h2 className='md:text-xl mb-4 md:mb-8'>
+            Dla kogo jest aplikacja WybierzLokalnie.pl?
+          </h2>
+          <p className='text-sm md:text-base'>
+            Aplikacja WybierzLokalnie.pl została stworzona z myślą o tych,
+            którzy pragną być bardziej świadomymi konsumentami, wspierać lokalne
+            gospodarstwa i cieszyć się najświeższymi, wysokiej jakości
+            produktami.
+          </p>
+        </div>
+        <div>
+          <h2 className='md:text-xl mb-4 md:mb-8'>
+            Korzystanie z aplikacji WybierzLokalnie.pl - dodaj lub wyszukaj
+            lokalnych producentów żywnosci.
+          </h2>
+          <p className='text-sm md:text-base'>
+            Aplikacja WybierzLokalnie.pl jest narzędziem zbudowanym dla
+            wszystkich miłośników lokalnej żywności. Jej głównym celem jest
+            zachęcanie do wsparcia lokalnych producentów żywności oraz
+            ułatwienie znalezienia takich producentów w okolicy.
+            <strong>
+              {` `}
+              Aplikacja umożliwia dwie główne funkcje: dodawanie nowych
+              producentów lokalnej żywności oraz ich wyszukiwanie.
+              {` `}
+            </strong>
+            Jeśli jesteś lokalnym producentem, możesz skorzystać z aplikacji aby
+            promować swoje produkty, dotrzeć do szerszego grona klientów i
+            współpracować z lokalną społecznością. Z drugiej strony, jeśli
+            jesteś świadomym konsumentem, aplikacja pozwala na szybkie i łatwe
+            znalezienie różnorodnych lokalnych produktów spożywczych, wspierając
+            tym samym rozwój lokalnej gospodarki i pomagając w budowaniu
+            bardziej zrównoważonej społeczności.
+          </p>
+        </div>
+      </section>
       <NewAds />
-      <HomeTextSection />
+      <section>
+        <h2 className='md:text-xl mb-4 md:mb-8'>
+          Jakie korzyści niesie ze sobą używanie aplikacji WybierzLokalnie.pl?
+        </h2>
+        <DetailsSummary />
+      </section>
     </div>
   );
 };
