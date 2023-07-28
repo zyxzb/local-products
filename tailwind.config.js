@@ -24,11 +24,16 @@ module.exports = {
       },
       animation: {
         move: 'move 3s infinite alternate',
+        sweep: 'sweep 0.5s ease-in-out',
       },
       keyframes: {
         move: {
           '0%': { transform: 'translateY(-10px)' },
           '100%': { transform: 'translateY(10px)' },
+        },
+        sweep: {
+          '0%': { opacity: 0, transform: 'translateX(-10px)' },
+          '100%': { opacity: 1, transform: 'translateX(0)' },
         },
       },
       boxShadow: {

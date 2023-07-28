@@ -1,35 +1,37 @@
-'use client';
+// replaced by DetailsSummary component
 
-import { useIntersectionObserver } from 'usehooks-ts';
-import { useEffect, useRef, useState } from 'react';
-import { HomeDataProps } from '@/types';
+// 'use client';
 
-const HomePargaraph = ({ data }: { data: HomeDataProps }) => {
-  const { header, content } = data;
+// import { useIntersectionObserver } from 'usehooks-ts';
+// import { useEffect, useRef, useState } from 'react';
+// import { HomeDataProps } from '@/types';
 
-  const ref = useRef<HTMLParagraphElement | null>(null);
-  const entry = useIntersectionObserver(ref, {});
-  const [isVisible, setIsVisible] = useState(false);
+// const HomePargaraph = ({ data }: { data: HomeDataProps }) => {
+//   const { header, content } = data;
 
-  // animation when paragraph is visible only at the first time
-  useEffect(() => {
-    if (entry && entry.isIntersecting) {
-      setIsVisible(true);
-    }
-  }, [entry]);
+//   const ref = useRef<HTMLParagraphElement | null>(null);
+//   const entry = useIntersectionObserver(ref, {});
+//   const [isVisible, setIsVisible] = useState(false);
 
-  return (
-    <p
-      className={`mb-10 transition-all duration-[2500ms] ${
-        isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
-      }`}
-      ref={ref}
-    >
-      <strong>{header}</strong>
-      <br />
-      {content}
-    </p>
-  );
-};
+//   // animation when paragraph is visible only at the first time
+//   useEffect(() => {
+//     if (entry && entry.isIntersecting) {
+//       setIsVisible(true);
+//     }
+//   }, [entry]);
 
-export default HomePargaraph;
+//   return (
+//     <p
+//       className={`mb-10 transition-all duration-[2500ms] ${
+//         isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
+//       }`}
+//       ref={ref}
+//     >
+//       <strong>{header}</strong>
+//       <br />
+//       {content}
+//     </p>
+//   );
+// };
+
+// export default HomePargaraph;

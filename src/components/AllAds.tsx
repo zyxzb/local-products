@@ -23,7 +23,9 @@ const AllAds = async () => {
     <div>
       {data?.length > 4 && (
         <div className='mb-4'>
-          <p>Znaleziono {data.length} ogłoszeń</p>
+          <p className='text-sm md:text-base'>
+            Znaleziono {data.length} ogłoszeń
+          </p>
         </div>
       )}
       <CardsContainer data={data} />

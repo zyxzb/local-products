@@ -5,7 +5,7 @@ import { BsPeople } from 'react-icons/bs';
 
 const HomeBannerSection = () => {
   return (
-    <section className='hero mb-20 lg:mb-0 lg:pb-20'>
+    <section className='hero'>
       <div className='h-full flex flex-col'>
         <h1 className='leading-[50px] lg:leading-[70px] text-4xl lg:text-5xl xl:text-6xl bg-gradient-to-b from-lightGreen to-darkColor bg-clip-text text-transparent pb-2 transition-opacity duration-500 '>
           Odkryj Lokalnych Producentów Żywnosci w Twojej Okolicy.

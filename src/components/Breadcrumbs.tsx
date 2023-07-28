@@ -6,10 +6,10 @@ import { BreadcrumbsProps } from '@/types';
 
 const Breadcrumbs = ({ pageName, adTitle }: BreadcrumbsProps) => {
   return (
-    <section className='w-full text-darkColor text-lg flex items-center mb-20'>
+    <section className='w-full text-darkColor text-sm md:text-base flex items-center mb-10 md:mb-20'>
       <h3 className='flex items-center flex-wrap'>
         <Link href='/' className='flex items-center underline'>
-          <AiOutlineHome className='mr-2 text-2xl' /> Strona główna
+          <AiOutlineHome className='mr-2 text-lg md:text-2xl' /> Strona główna
         </Link>
         {pageName && !adTitle && (
           <>

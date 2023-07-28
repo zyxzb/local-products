@@ -19,8 +19,8 @@ const NewAds = async () => {
   const data = await getData();
 
   return (
-    <div className='mb-10'>
-      <h2 className='text-xl mb-10'>Ostatnio dodane ogłoszenia</h2>
+    <div>
+      <p className='mb-4 text-sm md:text-base'>Ostatnio dodane ogłoszenia</p>
       <CardsContainer data={data} />
     </div>
   );
