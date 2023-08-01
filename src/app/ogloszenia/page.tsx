@@ -1,15 +1,16 @@
-import { Loader, Breadcrumbs } from '@/components';
-import dynamic from 'next/dynamic';
+import { Breadcrumbs, AllAds } from '@/components';
 
-const AllAdsDymanic = dynamic(() => import('@/components/AllAds'), {
-  loading: () => <Loader />,
-});
+export const metadata = {
+  title: 'Wyszukaj producentów żywności - WybierzLokalnie.pl',
+  description:
+    'Odkryj świeże produkty z Twojego sąsiedztwa! ✔️ Skorzystaj z wyszukiwarki i ciesz się lokalną jakością. ✔️ Dołącz już teraz!',
+};
 
-const Ads = async () => {
+const Ads = () => {
   return (
     <>
       <Breadcrumbs pageName='Ogłoszenia' />
-      <AllAdsDymanic />
+      <AllAds />
     </>
   );
 };

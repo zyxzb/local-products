@@ -1,3 +1,5 @@
+'use client';
+
 import { SkeletonCard } from '@/components';
 import { CardProps } from '@/types';
 import dynamic from 'next/dynamic';
