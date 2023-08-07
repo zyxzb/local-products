@@ -17,7 +17,7 @@ const Nav = () => {
     <nav className='nav-links h-[70px] fixed top-0 left-0 right-0 z-30 flex justify-between items-center bg-darkColor px-[15px]'>
       <div>
         <Link href='/' className='flex items-center gap-2 text-whiteColor px-2'>
-          <FiMapPin className='text-4xl' />
+          <FiMapPin className='text-xl lg:text-3xl' />
           <span>WybierzLokalnie.pl</span>
         </Link>
       </div>
@@ -60,7 +60,7 @@ const Nav = () => {
           )}
         </button>
         <aside
-          className={`absolute top-0 left-0 h-[100dvh] w-2/3 transition-all bg-darkGreen z-10 p-4 text-whiteColor text-sm sm:text-lg ${
+          className={`absolute top-0 left-0 h-[100dvh] w-2/3 transition-all bg-darkColor z-10 p-4 text-whiteColor text-sm sm:text-lg ${
             openNav
               ? 'translate-x-0 opacity-100 visible'
               : '-translate-x-full opacity-0 invisible'
@@ -71,7 +71,7 @@ const Nav = () => {
             return (
               <div key={name} className='my-6 relative'>
                 <span
-                  className={`absolute top-1/2 -translate-y-1/2 w-6 h-[5px] -left-6 bg-darkColor ${
+                  className={`absolute top-1/2 -translate-y-1/2 w-6 h-[5px] -left-6 bg-darkGreen ${
                     currentRoute === url ? 'block' : 'hidden'
                   }`}
                 />
