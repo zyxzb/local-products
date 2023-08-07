@@ -59,29 +59,34 @@ const Nav = () => {
             />
           )}
         </button>
-        {openNav && (
-          <aside className='absolute top-0 left-0 h-[100dvh] w-2/3 sm:w-[300px] bg-darkGreen z-10 p-4 text-whiteColor text-sm sm:text-lg'>
-            {navLinks.map((link) => {
-              const { name, url, icon } = link;
-              return (
-                <div key={name} className='my-6 relative'>
-                  <span
-                    className={`absolute top-1/2 -translate-y-1/2 w-6 h-[5px] -left-6 bg-darkColor ${
-                      currentRoute === url ? 'block' : 'hidden'
-                    }`}
-                  />
-                  <Link
-                    href={url}
-                    className='uppercase text-whiteColor ml-4 flex gap-2 items-center'
-                  >
-                    {name}
-                    {icon}
-                  </Link>
-                </div>
-              );
-            })}
-          </aside>
-        )}
+        <aside
+          className={`absolute top-0 left-0 h-[100dvh] w-2/3 transition-all bg-darkGreen z-10 p-4 text-whiteColor text-sm sm:text-lg ${
+            openNav
+              ? 'translate-x-0 opacity-100 visible'
+              : '-translate-x-full opacity-0 invisible'
+          }`}
+        >
+          {navLinks.map((link) => {
+            const { name, url, icon } = link;
+            return (
+              <div key={name} className='my-6 relative'>
+                <span
+                  className={`absolute top-1/2 -translate-y-1/2 w-6 h-[5px] -left-6 bg-darkColor ${
+                    currentRoute === url ? 'block' : 'hidden'
+                  }`}
+                />
+                <Link
+                  href={url}
+                  className='uppercase text-whiteColor ml-4 flex gap-2 items-center'
+                  onClick={() => setOpenNav(false)}
+                >
+                  {icon}
+                  {name}
+                </Link>
+              </div>
+            );
+          })}
+        </aside>
       </div>
     </nav>
   );
