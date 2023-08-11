@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-import { number } from 'yup';
 
 const { Schema } = mongoose;
 

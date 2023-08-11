@@ -7,6 +7,7 @@ import {
   MdOutlineKeyboardArrowLeft,
   MdOutlineKeyboardArrowRight,
 } from 'react-icons/md';
+import { ImSortNumbericDesc, ImSortNumericAsc } from 'react-icons/im';
 
 const fetcher = (args: any) => fetch(args).then((res) => res.json());
 
@@ -14,8 +15,9 @@ const ITEMS_PER_PAGE = 20;
 
 const AllAds = () => {
   const [currentPage, setCurrentPage] = useState(1);
+  const [dateIsDesc, setDateIsDesc] = useState(true);
   const { data, error, isLoading } = useSWR(
-    `/api/ads?page=${currentPage}&limit=${ITEMS_PER_PAGE}`,
+    `/api/ads?page=${currentPage}&limit=${ITEMS_PER_PAGE}&dateDesc=${dateIsDesc}`,
     fetcher,
   );
 
@@ -39,18 +41,45 @@ const AllAds = () => {
     setCurrentPage(page);
   };
 
+  const handleSort = () => {
+    setDateIsDesc((prev) => !prev);
+  };
+
   const { items, totalCount, totalPages } = data;
-  console.log(data);
 
   return (
     <div>
-      {totalCount > 0 && (
-        <div className='mb-4'>
-          <p className='text-sm md:text-base'>
-            Znaleziono {totalCount} ogłoszeń
-          </p>
+      <div className='flex gap-4 items-center justify-between mb-4 flex-wrap'>
+        <div>
+          {totalCount > 0 && (
+            <div>
+              <p className='text-sm md:text-base'>
+                Znaleziono {totalCount} ogłoszeń
+              </p>
+            </div>
+          )}
         </div>
-      )}
+        <div>
+          <button
+            type='button'
+            className='text-sm md:text-base flex items-center gap-4 hover:underline'
+            aria-label='sortowanie według daty'
+            onClick={handleSort}
+          >
+            {dateIsDesc ? (
+              <>
+                <ImSortNumbericDesc />
+                <span>Od najnowszych do najstarszych</span>
+              </>
+            ) : (
+              <>
+                <ImSortNumericAsc />
+                <span>Od najstarszych do najnowszych</span>
+              </>
+            )}
+          </button>
+        </div>
+      </div>
       <CardsContainer data={items} />
       {data && (
         <div className='flex justify-center mt-10 md:mt-20 text-sm md:text-base'>
