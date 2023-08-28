@@ -1,6 +1,6 @@
 import { HomeBannerSection, NewAds, DetailsSummary } from '@/components';
 
-const Home = async () => {
+const Home = () => {
   return (
     <div className='flex flex-col gap-10 md:gap-20'>
       <HomeBannerSection />

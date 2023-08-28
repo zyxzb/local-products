@@ -16,7 +16,7 @@ const SelectLocationSection = dynamic(
   { ssr: false },
 );
 
-const AddProducer = async () => {
+const AddProducer = () => {
   const session = useSession();
 
   if (session?.status === 'loading') {

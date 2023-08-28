@@ -8,7 +8,8 @@ const getData = async () => {
     }/api/ads/homePageAds`,
     {
       next: {
-        revalidate: 600,
+        revalidate: 0,
+        // 0 - app do not use cache
       },
     },
   );

@@ -10,13 +10,19 @@ const Map = dynamic(() => import('@/components/LeafletMap'), {
   ssr: false,
 });
 
+export const dynamicParams = true;
+
 export const generateMetadata = async ({
-  params: { id },
+  params,
 }: {
   params: { id: string };
 }): Promise<{ title: string; description: string }> => {
-  const ad = await getData(id);
+  const id = params.id;
+  const res = await fetch(
+    `${process.env.NEXTAUTH_URL || process.env.NEXTAUTH_URL2}/api/ads/${id}`,
+  );
 
+  const ad = await res.json();
   return {
     title: `${ad.title} - ${ad.location}`,
     description: ad.desc,
@@ -26,6 +32,11 @@ export const generateMetadata = async ({
 const getData = async (id: string) => {
   const res = await fetch(
     `${process.env.NEXTAUTH_URL || process.env.NEXTAUTH_URL2}/api/ads/${id}`,
+    {
+      next: {
+        revalidate: 600,
+      },
+    },
   );
 
   if (!res.ok) {
