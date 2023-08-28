@@ -26,11 +26,6 @@ export const generateMetadata = async ({
 const getData = async (id: string) => {
   const res = await fetch(
     `${process.env.NEXTAUTH_URL || process.env.NEXTAUTH_URL2}/api/ads/${id}`,
-    {
-      next: {
-        revalidate: 60,
-      },
-    },
   );
 
   if (!res.ok) {
@@ -38,17 +33,6 @@ const getData = async (id: string) => {
   }
   const data = res.json();
   return data;
-};
-
-// generate pages
-export const generateStaticParams = async () => {
-  const res = await fetch(
-    `${process.env.NEXTAUTH_URL || process.env.NEXTAUTH_URL2}/api/ads`,
-  );
-  const { ads } = await res.json();
-  return ads.map((ad: any) => ({
-    id: ad._id,
-  }));
 };
 
 const SingleAd = async ({ params: { id } }: SingleAdProps) => {
