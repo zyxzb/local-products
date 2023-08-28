@@ -17,7 +17,7 @@ const AllAds = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [dateIsDesc, setDateIsDesc] = useState(true);
   const { data, error, isLoading } = useSWR(
-    `/api/ads?page=${currentPage}&limit=${ITEMS_PER_PAGE}&dateDesc=${dateIsDesc}`,
+    `/api/ads/search?page=${currentPage}&limit=${ITEMS_PER_PAGE}&dateDesc=${dateIsDesc}`,
     fetcher,
   );
 

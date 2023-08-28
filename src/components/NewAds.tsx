@@ -6,7 +6,11 @@ const getData = async () => {
     `${
       process.env.NEXTAUTH_URL || process.env.NEXTAUTH_URL2
     }/api/ads/homePageAds`,
-    { cache: 'no-store' },
+    {
+      next: {
+        revalidate: 600,
+      },
+    },
   );
 
   if (!res.ok) {
