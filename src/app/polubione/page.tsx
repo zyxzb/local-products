@@ -1,12 +1,4 @@
 import { Card, PageTitle } from '@/components';
-import { Metadata } from 'next';
-
-export const metadata: Metadata = {
-  robots: {
-    index: false,
-    nocache: true,
-  },
-};
 
 const Liked = () => {
   return (
