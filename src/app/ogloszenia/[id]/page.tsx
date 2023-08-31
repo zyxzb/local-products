@@ -4,6 +4,7 @@ import { formatFullDate } from '@/utils/helpers';
 import { SingleAdProps } from '@/types';
 import { BsFillPersonCheckFill } from 'react-icons/bs';
 import { IoLocationSharp } from 'react-icons/io5';
+import { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 
 const Map = dynamic(() => import('@/components/LeafletMap'), {
@@ -16,7 +17,7 @@ export const generateMetadata = async ({
   params,
 }: {
   params: { id: string };
-}): Promise<{ title: string; description: string }> => {
+}): Promise<Metadata> => {
   const id = params.id;
   const res = await fetch(
     `${process.env.NEXTAUTH_URL || process.env.NEXTAUTH_URL2}/api/ads/${id}`,
@@ -26,17 +27,25 @@ export const generateMetadata = async ({
   return {
     title: `${ad.title} - ${ad.location}`,
     description: ad.desc,
+    alternates: {
+      canonical: `/ogloszenia/${id}`,
+    },
   };
 };
+
+// export const generateStaticParams = async () => {
+//   const res = await fetch(
+//     `${process.env.NEXTAUTH_URL || process.env.NEXTAUTH_URL2}/api/ads/`,
+//   );
+//   const ads = await res.json();
+//   return ads.map((ad: any) => ({
+//     id: ad._id,
+//   }));
+// };
 
 const getData = async (id: string) => {
   const res = await fetch(
     `${process.env.NEXTAUTH_URL || process.env.NEXTAUTH_URL2}/api/ads/${id}`,
-    {
-      next: {
-        revalidate: 600,
-      },
-    },
   );
 
   if (!res.ok) {

@@ -1,4 +1,11 @@
 import { HomeBannerSection, NewAds, DetailsSummary } from '@/components';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: 'https://www.wybierzlokalnie.pl',
+  },
+};
 
 const Home = () => {
   return (

@@ -1,6 +1,14 @@
 import { ContactForm, PageTitle } from '@/components';
 import FormImg from 'public/undraw_form.svg';
 import Image from 'next/image';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Kontakt - WybierzLokalnie.pl',
+  alternates: {
+    canonical: 'https://www.wybierzlokalnie.pl/kontakt',
+  },
+};
 
 const Contact = () => {
   return (

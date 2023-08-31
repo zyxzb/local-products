@@ -1,8 +1,12 @@
 import { Footer, Nav, SearchBar, AuthProvider } from '@/components';
 import './globals.css';
 import { CreateAdContextProvider } from '@/context/createAddContext';
+import { Metadata } from 'next';
 
-export const metadata = {
+export const dynamic = 'force-dynamic';
+
+export const metadata: Metadata = {
+  metadataBase: new URL('https://www.wybierzlokalnie.pl'),
   title: 'Lokalni Producenci Żywności w Twojej Okolicy - WybierzLokalnie.pl',
   description:
     'Ciesz się świeżymi produktami z Twojego sąsiedztwa ⭐ Dołącz do społeczności, która docenia wysoką jakość i autentyczność ✔️ Wybierz lokalną żywność.',

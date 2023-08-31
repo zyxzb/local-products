@@ -7,7 +7,7 @@ export const GET = async (request: NextRequest) => {
     await connect();
     const ads = await Ad.find().sort({ createdAt: -1 });
 
-    return new NextResponse(JSON.stringify({ ads }), {
+    return new NextResponse(JSON.stringify(ads), {
       status: 200,
     });
   } catch (err) {
