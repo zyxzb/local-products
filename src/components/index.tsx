@@ -26,6 +26,7 @@ import CardsContainer from './CardsContainer';
 import AllAds from './AllAds';
 import Breadcrumbs from './Breadcrumbs';
 import DetailsSummary from './DetailsSummary';
+import LazyImage from './LazyImage';
 
 export {
   Nav,
@@ -56,4 +57,5 @@ export {
   AllAds,
   Breadcrumbs,
   DetailsSummary,
+  LazyImage,
 };

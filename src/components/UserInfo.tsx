@@ -1,13 +1,13 @@
 'use client';
 
 import { signOut } from 'next-auth/react';
-import CustomButton from './CustomButton';
+import { CustomLink, CustomButton } from '@/components';
 
 const UserInfo = () => {
   return (
-    <div>
-      {/* more user info here */}
+    <div className='flex gap-10 flex-wrap'>
       <CustomButton text='Wyloguj' type='button' onClick={() => signOut()} />
+      <CustomLink text='Dodaj kolejne' link='/dodaj-producenta' />
     </div>
   );
 };

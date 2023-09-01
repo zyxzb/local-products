@@ -2,11 +2,11 @@
 
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
-import Image from 'next/image';
 import Link from 'next/link';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { CardProps } from '@/types';
 import { formatFullDate } from '@/utils/helpers';
+import { LazyImage } from '@/components';
 
 const Card = async ({ item }: { item: CardProps }) => {
   const { title, location, _id, images, createdAt } = item;
@@ -19,11 +19,11 @@ const Card = async ({ item }: { item: CardProps }) => {
     <Link href={`/ogloszenia/${_id}`}>
       <div className='bg-white rounded-md transition cursor-pointer h-[280px] sm:h-[360px] flex flex-col gap-4 p-3 group shadow hover:shadow-label'>
         <div className='relative w-full h-[65%]'>
-          <Image
-            src={cardImage}
-            alt={`${title} - ${location}`}
-            fill={true}
-            className='object-cover group-hover:opacity-80 transition-opacity'
+          <LazyImage
+            cardImage={cardImage}
+            title={title}
+            location={location}
+            classNames='object-cover group-hover:opacity-80 transition-opacity'
           />
         </div>
         <div className='flex flex-col justify-between h-[35%]'>
