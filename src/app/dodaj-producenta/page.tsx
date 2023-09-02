@@ -27,11 +27,14 @@ const AddProducer = () => {
     return (
       <>
         <PageTitle title='Dodaj Producenta' />
-        <div className='flex flex-col gap-8 justify-center items-center text-center'>
-          <h2 className='text-xl'>Zaloguj się aby dodać producenta</h2>
+        <div className='text-center'>
+          <h2 className='md:text-lg mb-4 md:mb-8'>
+            Zaloguj się aby dodać producenta
+          </h2>
           <CustomLink
             link='/twoje-konto/login'
             text='Przejdź do logowania'
+            extraStyles='max-w-max mx-auto'
             icon={<AiOutlineLogin className='text-2xl' />}
           />
         </div>

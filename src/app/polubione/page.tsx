@@ -1,15 +1,29 @@
-import { Card, PageTitle } from '@/components';
+'use client';
+
+import { PageTitle, CardsContainer, CustomLink } from '@/components';
+import { useAddToFavorites } from '@/context/addToFavorites';
 
 const Liked = () => {
+  const { favoritesAds } = useAddToFavorites();
+
   return (
-    <>
-      <div>
-        <PageTitle title='Polubione Ogłoszenia' />
-        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6'>
-          {/* add here liked cards */}
+    <div>
+      <PageTitle title='Polubione Ogłoszenia' />
+      {favoritesAds.length > 0 ? (
+        <CardsContainer data={favoritesAds} canDelete={true} />
+      ) : (
+        <div className='text-center'>
+          <h2 className='md:text-lg mb-4 md:mb-8'>
+            Brak polubionych ogłoszeń. Dodaj pierwsze.
+          </h2>
+          <CustomLink
+            text='Przeglądaj ogłoszenia'
+            link='/ogloszenia'
+            extraStyles='max-w-max mx-auto'
+          />
         </div>
-      </div>
-    </>
+      )}
+    </div>
   );
 };
 

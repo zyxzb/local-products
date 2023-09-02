@@ -163,3 +163,8 @@ export interface BreadcrumbsProps {
   pageName: string;
   adTitle?: string;
 }
+
+export interface addToFavoritesContextProps {
+  favoritesAds: CardProps[] | [];
+  setFavoritesAds: (newFavoritesAds: CardProps[]) => void;
+}
