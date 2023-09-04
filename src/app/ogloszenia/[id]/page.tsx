@@ -23,6 +23,10 @@ export const generateMetadata = async ({
     `${process.env.NEXTAUTH_URL || process.env.NEXTAUTH_URL2}/api/ads/${id}`,
   );
 
+  if (!res.ok) {
+    return notFound();
+  }
+
   const ad = await res.json();
   return {
     title: `${ad.title} - ${ad.location}`,
@@ -51,6 +55,7 @@ const getData = async (id: string) => {
   if (!res.ok) {
     return notFound();
   }
+
   const data = res.json();
   return data;
 };
