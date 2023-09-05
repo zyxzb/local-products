@@ -27,6 +27,8 @@ import AllAds from './AllAds';
 import Breadcrumbs from './Breadcrumbs';
 import DetailsSummary from './DetailsSummary';
 import LazyImage from './LazyImage';
+import CardButtons from './CardButtons';
+import FavoritesAds from './FavoritesAds';
 
 export {
   Nav,
@@ -58,4 +60,6 @@ export {
   Breadcrumbs,
   DetailsSummary,
   LazyImage,
+  CardButtons,
+  FavoritesAds,
 };

@@ -1,38 +1,16 @@
 'use client';
 
-import Tippy from '@tippyjs/react';
-import 'tippy.js/dist/tippy.css';
 import Link from 'next/link';
-import { AiFillHeart, AiOutlineDelete } from 'react-icons/ai';
 import { CardProps } from '@/types';
 import { formatFullDate } from '@/utils/helpers';
-import { LazyImage } from '@/components';
-import { useAddToFavorites } from '@/context/addToFavorites';
-import { toast } from 'react-toastify';
+import { LazyImage, CardButtons } from '@/components';
 
 const Card = ({ item, canDelete }: { item: CardProps; canDelete?: true }) => {
   const { title, location, _id, images, createdAt } = item;
-  const { favoritesAds, setFavoritesAds } = useAddToFavorites();
 
   const cardImage = images.length
     ? String(images[0].fileUrl)
     : '/landWhite.png';
-
-  const handleAddToFavorites = () => {
-    const tempFavoriteAd = favoritesAds.filter((ad) => ad._id === _id);
-    if (tempFavoriteAd.length > 0) {
-      toast.info(`${title} juz istnieje w polubionych`);
-    } else {
-      setFavoritesAds([...favoritesAds, item]);
-      toast.success(`Dodano: ${title} do polubionych`);
-    }
-  };
-
-  const handleRemoveFromFavorites = () => {
-    const tempFavoritesCard = favoritesAds.filter((ad) => ad._id !== _id);
-    setFavoritesAds([...tempFavoritesCard]);
-    toast.info(`${title} usunięto z polubionych`);
-  };
 
   return (
     <Link href={`/ogloszenia/${_id}`}>
@@ -56,37 +34,7 @@ const Card = ({ item, canDelete }: { item: CardProps; canDelete?: true }) => {
               <span className='line-clamp-1'>{location}</span>
               <span className='line-clamp-1'>{formatFullDate(createdAt)}</span>
             </div>
-            <Tippy
-              content={
-                canDelete ? 'Usuń z polubionych' : 'Dodaj do polubionych'
-              }
-            >
-              {canDelete ? (
-                <button
-                  type='button'
-                  aria-label='remove from favorites'
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleRemoveFromFavorites();
-                  }}
-                  className='text-3xl text-darkColor hover:text-lightGreen self-end transition'
-                >
-                  <AiOutlineDelete />
-                </button>
-              ) : (
-                <button
-                  type='button'
-                  aria-label='add to favorites'
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleAddToFavorites();
-                  }}
-                  className='text-3xl text-darkColor hover:text-lightGreen self-end transition'
-                >
-                  <AiFillHeart />
-                </button>
-              )}
-            </Tippy>
+            <CardButtons item={item} canDelete={canDelete} />
           </div>
         </div>
       </div>

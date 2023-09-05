@@ -36,13 +36,13 @@ const Account = async ({ params: { email } }: AccountProps) => {
   return (
     <>
       <PageTitle title='Twoje konto' />
-      <div className='flex items-center justify-between flex-wrap gap-10 mb-10'>
-        <h2 className='text-xl sm:text-3xl'>Witaj, {session?.user?.name}</h2>
-        <UserInfo />
-      </div>
-      <div>
-        <h2 className='mb-5'>Ogłoszenia dodane przez Ciebie: </h2>
+      <div className='flex flex-col gap-10 md:gap-20'>
+        <h2 className='text-xl sm:text-3xl'>
+          Witaj, {session?.user?.name}! Poniżej znajdują się dodane przez Ciebie
+          ogłoszenia.
+        </h2>
         <CardsContainer data={data} />
+        <UserInfo />
       </div>
     </>
   );

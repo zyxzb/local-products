@@ -14,3 +14,16 @@ export const GET = async (
     return new NextResponse('Database Error', { status: 500 });
   }
 };
+
+export const DELETE = async (
+  request: NextRequest,
+  { params: { id } }: { params: { id: string } },
+) => {
+  try {
+    await connect();
+    await Ad.findByIdAndDelete(id);
+    return new NextResponse('Ad has been deleted', { status: 200 });
+  } catch (error) {
+    return new NextResponse('Database Error', { status: 500 });
+  }
+};

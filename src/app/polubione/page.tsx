@@ -1,28 +1,27 @@
-'use client';
+import { FavoritesAds, PageTitle } from '@/components';
+import { notFound } from 'next/navigation';
 
-import { PageTitle, CardsContainer, CustomLink } from '@/components';
-import { useAddToFavorites } from '@/context/addToFavorites';
+const getData = async () => {
+  const res = await fetch(
+    `${process.env.NEXTAUTH_URL || process.env.NEXTAUTH_URL2}/api/ads`,
+    {
+      cache: 'no-store',
+    },
+  );
 
-const Liked = () => {
-  const { favoritesAds } = useAddToFavorites();
+  if (!res.ok) {
+    return notFound();
+  }
+  return res.json();
+};
+
+const Liked = async () => {
+  const data = await getData();
 
   return (
     <div>
       <PageTitle title='Polubione Ogłoszenia' />
-      {favoritesAds.length > 0 ? (
-        <CardsContainer data={favoritesAds} canDelete={true} />
-      ) : (
-        <div className='text-center'>
-          <h2 className='md:text-lg mb-4 md:mb-8'>
-            Brak polubionych ogłoszeń. Dodaj pierwsze.
-          </h2>
-          <CustomLink
-            text='Przeglądaj ogłoszenia'
-            link='/ogloszenia'
-            extraStyles='max-w-max mx-auto'
-          />
-        </div>
-      )}
+      <FavoritesAds ads={data} />
     </div>
   );
 };
