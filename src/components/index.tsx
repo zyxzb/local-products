@@ -29,6 +29,7 @@ import DetailsSummary from './DetailsSummary';
 import LazyImage from './LazyImage';
 import CardButtons from './CardButtons';
 import FavoritesAds from './FavoritesAds';
+import SearchButton from './SearchButton';
 
 export {
   Nav,
@@ -62,4 +63,5 @@ export {
   LazyImage,
   CardButtons,
   FavoritesAds,
+  SearchButton,
 };

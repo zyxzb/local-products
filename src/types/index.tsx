@@ -186,3 +186,7 @@ export interface searchContextProps {
   handlePageChange: (page: number) => void;
   handleSort: () => void;
 }
+
+export interface SearchButtonProps {
+  onClick: () => void;
+}

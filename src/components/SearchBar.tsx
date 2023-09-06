@@ -3,9 +3,8 @@
 import React, { useState, useRef } from 'react';
 import { useOnClickOutside } from 'usehooks-ts';
 import Link from 'next/link';
-import { CustomButton, SearchInput } from '@/components';
+import { CustomButton, SearchInput, SearchButton } from '@/components';
 import { CiLocationOn, CiSearch } from 'react-icons/ci';
-import { TfiClose } from 'react-icons/tfi';
 import useSearchBar from '@/hooks/useSearchBar';
 import { useRouter } from 'next/navigation';
 import { useSearch } from '@/context/searchContext';
@@ -17,9 +16,9 @@ const initState = {
 
 const SearchBar = () => {
   const [formData, setFormData] = useState(initState);
+  const [isListVisible, setIsListVisible] = useState(false);
   const { mergedLocation } = useSearchBar(formData);
   const { setName, setLocation, handlePageChange } = useSearch();
-  const [isListVisible, setIsListVisible] = useState(false);
   const myRef = useRef(null);
   const router = useRouter();
 
@@ -38,14 +37,13 @@ const SearchBar = () => {
     e.preventDefault();
     const { name, location } = formData;
     handlePageChange(1);
+    router.push('/ogloszenia');
     if (!name && !location) {
-      router.push('/ogloszenia');
       setName('');
       setLocation('');
     } else {
       setName(name);
       setLocation(location);
-      router.push('/ogloszenia');
     }
   };
 
@@ -66,6 +64,9 @@ const SearchBar = () => {
               <CiSearch className='absolute left-[10px] top-1/2 -translate-y-1/2 text-2xl' />
             }
           />
+          <SearchButton
+            onClick={() => setFormData({ ...formData, ['name']: '' })}
+          />
         </div>
         <div className='flex flex-1 relative text-darkColor' ref={myRef}>
           <SearchInput
@@ -78,12 +79,9 @@ const SearchBar = () => {
               <CiLocationOn className='absolute left-[10px] top-1/2 -translate-y-1/2 text-2xl' />
             }
           />
-          <div
-            className='cursor-pointer'
+          <SearchButton
             onClick={() => setFormData({ ...formData, ['location']: '' })}
-          >
-            <TfiClose className='absolute right-[10px] top-1/2 -translate-y-1/2 text-2xl text-darkColor' />
-          </div>
+          />
           {mergedLocation.length > 0 && (
             <div
               className={`absolute flex flex-col gap-2 p-4 top-full left-0 right-0 max-h-[200px] overflow-y-auto bg-darkColor text-whiteColor z-20 ${
