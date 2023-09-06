@@ -67,7 +67,7 @@ const CardButtons = ({
         <Tippy content='Usuń ogłoszenie'>
           <button
             type='button'
-            aria-label='delete ad'
+            aria-label='usuń ogłoszenie'
             onClick={(e) => {
               e.preventDefault();
               handleDelete();
@@ -84,7 +84,7 @@ const CardButtons = ({
         {canDelete ? (
           <button
             type='button'
-            aria-label='remove from favorites'
+            aria-label='usuń z polubionych'
             onClick={(e) => {
               e.preventDefault();
               handleRemoveFromFavorites();
@@ -96,7 +96,7 @@ const CardButtons = ({
         ) : (
           <button
             type='button'
-            aria-label='add to favorites'
+            aria-label='dodaj do polubionych'
             onClick={(e) => {
               e.preventDefault();
               handleAddToFavorites();
