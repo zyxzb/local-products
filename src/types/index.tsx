@@ -168,3 +168,21 @@ export interface addToFavoritesContextProps {
   favoritesAds: CardProps[] | [];
   setFavoritesAds: (newFavoritesAds: CardProps[]) => void;
 }
+
+export interface searchContextProps {
+  currentPage: number;
+  setCurrentPage: (currentPage: number) => void;
+  dateIsDesc: boolean;
+  setDateIsDesc: (dateIsDesc: boolean) => void;
+  name: string;
+  setName: (name: string) => void;
+  location: string;
+  setLocation: (location: string) => void;
+  data: any;
+  error: any;
+  isLoading: boolean;
+  handlePrevPage: () => void;
+  handleNextPage: () => void;
+  handlePageChange: (page: number) => void;
+  handleSort: () => void;
+}

@@ -8,6 +8,7 @@ import { CiLocationOn, CiSearch } from 'react-icons/ci';
 import { TfiClose } from 'react-icons/tfi';
 import useSearchBar from '@/hooks/useSearchBar';
 import { useRouter } from 'next/navigation';
+import { useSearch } from '@/context/searchContext';
 
 const initState = {
   name: '',
@@ -17,6 +18,7 @@ const initState = {
 const SearchBar = () => {
   const [formData, setFormData] = useState(initState);
   const { mergedLocation } = useSearchBar(formData);
+  const { setName, setLocation, handlePageChange } = useSearch();
   const [isListVisible, setIsListVisible] = useState(false);
   const myRef = useRef(null);
   const router = useRouter();
@@ -32,26 +34,18 @@ const SearchBar = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const { name, location } = formData;
-    const searchParams = new URLSearchParams(window.location.search);
-
+    handlePageChange(1);
     if (!name && !location) {
       router.push('/ogloszenia');
+      setName('');
+      setLocation('');
     } else {
-      if (name) {
-        searchParams.set('name', name);
-      } else {
-        searchParams.delete('name');
-      }
-      if (location) {
-        searchParams.set('location', location);
-      } else {
-        searchParams.delete('location');
-      }
-      const newPathName = `${'/ogloszenia'}?${searchParams.toString()}`;
-      router.push(newPathName);
+      setName(name);
+      setLocation(location);
+      router.push('/ogloszenia');
     }
   };
 
@@ -65,7 +59,7 @@ const SearchBar = () => {
         <div className='flex flex-1 relative text-darkColor'>
           <SearchInput
             name='name'
-            placeholder='Produkt lub dostawca...'
+            placeholder='Produkt lub producent...'
             value={formData.name}
             onChange={handleChange}
             icon={
