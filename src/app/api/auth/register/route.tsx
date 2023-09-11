@@ -15,12 +15,22 @@ export const POST = async (request: NextRequest) => {
   });
 
   try {
-    await newUser.save();
-    return new NextResponse('User has been created successfully', {
-      status: 201,
+    const user = await User.findOne({
+      email,
     });
+    if (user) {
+      return new NextResponse('User already exist in database', {
+        status: 409,
+      });
+    }
+    if (!user) {
+      await newUser.save();
+      return new NextResponse('User has been created successfully', {
+        status: 201,
+      });
+    }
   } catch (error: any) {
-    return new NextResponse(error.message, {
+    return new NextResponse(error, {
       status: 500,
     });
   }

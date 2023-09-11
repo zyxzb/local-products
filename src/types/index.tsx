@@ -190,3 +190,21 @@ export interface searchContextProps {
 export interface SearchButtonProps {
   onClick: () => void;
 }
+
+export interface AdsSearchParams {
+  page?: number;
+  limit?: number;
+  dateDesc?: string;
+  name?: string;
+  location?: string;
+}
+
+export interface AllAdsServerProps {
+  items: CardProps[];
+  totalCount: number;
+  totalPages: number;
+}
+
+export interface PaginationProps {
+  totalPages: number;
+}

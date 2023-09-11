@@ -6,6 +6,7 @@ import { CustomButton, InputField, Popup } from '@/components';
 import { AiOutlineUserAdd } from 'react-icons/ai';
 import { ContactFormProps } from '@/types';
 import { registerSchema } from '@/utils/validationSchemas';
+import { toast } from 'react-toastify';
 
 const initialValues = {
   name: '',
@@ -40,8 +41,14 @@ const RegisterForm = () => {
         setIsPopupActive(true);
         actions.resetForm();
       }
-      res.status === 500 &&
-        alert('Podany adres email już istnieje w bazie danych');
+
+      if (res.status === 409) {
+        toast.info(`Adres: ${email} już istnieje w bazie danych`);
+      }
+
+      if (res.status === 500) {
+        toast.error('Błąd serwera');
+      }
     } catch (error) {
       setError(true);
     } finally {

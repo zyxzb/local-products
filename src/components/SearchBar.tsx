@@ -1,13 +1,12 @@
 'use client';
 
-import React, { useState, useRef } from 'react';
+import { useState, useRef } from 'react';
 import { useOnClickOutside } from 'usehooks-ts';
 import Link from 'next/link';
 import { CustomButton, SearchInput, SearchButton } from '@/components';
 import { CiLocationOn, CiSearch } from 'react-icons/ci';
 import useSearchBar from '@/hooks/useSearchBar';
 import { useRouter } from 'next/navigation';
-import { useSearch } from '@/context/searchContext';
 
 const initState = {
   name: '',
@@ -18,7 +17,6 @@ const SearchBar = () => {
   const [formData, setFormData] = useState(initState);
   const [isListVisible, setIsListVisible] = useState(false);
   const { mergedLocation } = useSearchBar(formData);
-  const { setName, setLocation, handlePageChange } = useSearch();
   const myRef = useRef(null);
   const router = useRouter();
 
@@ -36,14 +34,23 @@ const SearchBar = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const { name, location } = formData;
-    handlePageChange(1);
-    router.push('/ogloszenia');
+    const searchParams = new URLSearchParams(window.location.search);
+
     if (!name && !location) {
-      setName('');
-      setLocation('');
+      router.push('/ogloszenia');
     } else {
-      setName(name);
-      setLocation(location);
+      if (name) {
+        searchParams.set('name', name);
+      } else {
+        searchParams.delete('name');
+      }
+      if (location) {
+        searchParams.set('location', location);
+      } else {
+        searchParams.delete('location');
+      }
+      const newPathName = `/ogloszenia?${searchParams.toString()}`;
+      router.push(newPathName);
     }
   };
 

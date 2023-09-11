@@ -12,7 +12,7 @@ interface Query {
 export const GET = async (request: NextRequest) => {
   try {
     await connect();
-    const url = new URL(request.url);
+    const url = new URL(request.nextUrl);
     const page = parseInt(url.searchParams.get('page') || '1');
     const itemsPerPage = parseInt(url.searchParams.get('limit') || '20');
     const sortByDateItems = url.searchParams.get('dateDesc') || 'true';
