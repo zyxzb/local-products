@@ -46,14 +46,23 @@ const CardButtons = ({
 
     if (confirm) {
       try {
-        await fetch(`/api/ads/${_id}`, {
+        const res = await fetch(`/api/ads/${_id}`, {
           method: 'DELETE',
           headers: {
             'Content-Type': 'application/json',
           },
         });
+        if (res.status === 200) {
+          toast.success(`Usunięto ogłoszenie z id: ${_id}`);
+        }
+        if (res.status === 500) {
+          toast.error(`Błąd serwera `);
+        }
         router.refresh();
       } catch (err) {
+        toast.error(
+          `Bład: ${err}. Wyłącz AdBlocka lub otwórz przeglądarkę w trybie incognito.`,
+        );
         console.log(err);
       }
     } else {
