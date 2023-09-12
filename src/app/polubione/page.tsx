@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 
 const getData = async () => {
   const res = await fetch(
-    `${process.env.NEXTAUTH_URL || process.env.NEXTAUTH_URL2}/api/ads`,
+    `${process.env.NEXTAUTH_URL || process.env.NEXTAUTH_URL2}/api/items`,
     {
       cache: 'no-store',
     },

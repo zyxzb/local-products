@@ -20,7 +20,7 @@ export const generateMetadata = async ({
 }): Promise<Metadata> => {
   const id = params.id;
   const res = await fetch(
-    `${process.env.NEXTAUTH_URL || process.env.NEXTAUTH_URL2}/api/ads/${id}`,
+    `${process.env.NEXTAUTH_URL || process.env.NEXTAUTH_URL2}/api/items/${id}`,
   );
 
   if (!res.ok) {
@@ -39,7 +39,7 @@ export const generateMetadata = async ({
 
 // export const generateStaticParams = async () => {
 //   const res = await fetch(
-//     `${process.env.NEXTAUTH_URL || process.env.NEXTAUTH_URL2}/api/ads/`,
+//     `${process.env.NEXTAUTH_URL || process.env.NEXTAUTH_URL2}/api/items/`,
 //   );
 //   const ads = await res.json();
 //   return ads.map((ad: any) => ({
@@ -49,7 +49,7 @@ export const generateMetadata = async ({
 
 const getData = async (id: string) => {
   const res = await fetch(
-    `${process.env.NEXTAUTH_URL || process.env.NEXTAUTH_URL2}/api/ads/${id}`,
+    `${process.env.NEXTAUTH_URL || process.env.NEXTAUTH_URL2}/api/items/${id}`,
   );
 
   if (!res.ok) {

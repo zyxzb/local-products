@@ -22,7 +22,7 @@ const getData = async (
   const res = await fetch(
     `${
       process.env.NEXTAUTH_URL || process.env.NEXTAUTH_URL2
-    }/api/ads/search?page=${page}&limit=${limit}&dateDesc=${dateDesc}&name=${name}&location=${location}`,
+    }/api/items/search?page=${page}&limit=${limit}&dateDesc=${dateDesc}&name=${name}&location=${location}`,
     {
       cache: 'no-store',
     },

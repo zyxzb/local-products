@@ -37,7 +37,7 @@
 //   const [name, setName] = useState('');
 //   const [location, setLocation] = useState('');
 //   const { data, error, isLoading } = useSWR(
-//     `/api/ads/search?page=${currentPage}&limit=${ITEMS_PER_PAGE}&dateDesc=${dateIsDesc}&name=${name}&location=${location}`,
+//     `/api/items/search?page=${currentPage}&limit=${ITEMS_PER_PAGE}&dateDesc=${dateIsDesc}&name=${name}&location=${location}`,
 //     fetcher,
 //   );
 

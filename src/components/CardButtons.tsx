@@ -46,7 +46,7 @@ const CardButtons = ({
 
     if (confirm) {
       try {
-        const res = await fetch(`/api/ads/${_id}`, {
+        const res = await fetch(`/api/items/${_id}`, {
           method: 'DELETE',
           headers: {
             'Content-Type': 'application/json',

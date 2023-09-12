@@ -37,7 +37,7 @@ const CreateAdForm = () => {
     const { title, desc, content } = values;
     setIsSending(true);
     try {
-      await fetch('/api/ads', {
+      await fetch('/api/items', {
         method: 'POST',
         body: JSON.stringify({
           title,
