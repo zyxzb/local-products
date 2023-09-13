@@ -5,6 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import { CreateAdContextProvider } from '@/context/createAddContext';
 import { AddToFavoritesContextProvider } from '@/context/addToFavorites';
+import NextTopLoader from 'nextjs-toploader';
 import { ToastContainer } from 'react-toastify';
 import { Metadata } from 'next';
 
@@ -24,6 +25,11 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
         <AuthProvider>
           <AddToFavoritesContextProvider>
             <CreateAdContextProvider>
+              <NextTopLoader
+                showSpinner={false}
+                shadow={false}
+                color='#adc698'
+              />
               <Nav />
               <div className='w-full min-h-[calc(100vh_-_70px)] mx-auto flex flex-col pt-[70px] pb-10 md:pb-20'>
                 <div className='bg-lightGreen mb-10 md:mb-20'>
