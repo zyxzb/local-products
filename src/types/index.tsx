@@ -194,7 +194,7 @@ export interface SearchButtonProps {
 export interface AdsSearchParams {
   page?: number;
   limit?: number;
-  dateDesc?: string;
+  sort?: string;
   name?: string;
   location?: string;
 }

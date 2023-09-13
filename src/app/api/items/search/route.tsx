@@ -1,6 +1,7 @@
 import { NextResponse, NextRequest } from 'next/server';
 import connect from '@/utils/db';
 import Ad from '@/models/Ad';
+import { SortOrder } from 'mongoose';
 
 export const dynamic = 'force-dynamic';
 
@@ -15,7 +16,7 @@ export const GET = async (request: NextRequest) => {
     const url = new URL(request.nextUrl);
     const page = parseInt(url.searchParams.get('page') || '1');
     const itemsPerPage = parseInt(url.searchParams.get('limit') || '20');
-    const sortByDateItems = url.searchParams.get('dateDesc') || 'true';
+    const sortParam = url.searchParams.get('sort') || 'dateNewest';
 
     const name = url.searchParams.get('name')?.toLocaleLowerCase();
     const location = url.searchParams.get('location')?.toLocaleLowerCase();
@@ -31,10 +32,29 @@ export const GET = async (request: NextRequest) => {
     }
 
     const skip = (page - 1) * itemsPerPage;
-    const sortOrder = sortByDateItems === 'true' ? -1 : 1;
+
+    let sortOrder: SortOrder = -1; // Default sorting
+    let sortField: string = 'createdAt'; // Default sorting
+
+    if (sortParam === 'dateOldest') {
+      sortOrder = 1;
+    } else if (sortParam === 'nameAZ') {
+      sortField = 'title';
+      sortOrder = 1;
+    } else if (sortParam === 'nameZA') {
+      sortField = 'title';
+      sortOrder = -1;
+    }
+
+    const collation = {
+      locale: 'pl',
+      caseLevel: true,
+      numericOrdering: true,
+    };
 
     const ads = await Ad.find(query)
-      .sort({ createdAt: sortOrder })
+      .collation(collation)
+      .sort({ [sortField]: sortOrder })
       .skip(skip)
       .limit(itemsPerPage);
 

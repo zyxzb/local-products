@@ -2,50 +2,46 @@
 
 'use client';
 
-import { ImSortNumbericDesc, ImSortNumericAsc } from 'react-icons/im';
-import { useSearchParams } from 'next/navigation';
-import { useRouter } from 'next/navigation';
+import { useState, useEffect } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 
-const FilterSortAds = () => {
+const FilterSortAds = ({ totalCount }: { totalCount: number }) => {
   const searchParams = useSearchParams();
+  const [sortValue, setSortValue] = useState(
+    searchParams.get('sort') ?? 'dateNewest',
+  );
   const router = useRouter();
-  const dateIsDesc = searchParams.get('dateDesc');
 
-  const handleSort = () => {
+  useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
-
-    if (dateIsDesc === null) {
-      searchParams.set('dateDesc', 'false');
-    } else if (dateIsDesc === 'true') {
-      searchParams.set('dateDesc', 'false');
-    } else {
-      searchParams.set('dateDesc', 'true');
-    }
-
+    searchParams.set('sort', `${sortValue}`);
     const newPathName = `/ogloszenia?${searchParams.toString()}`;
     router.push(newPathName);
-  };
+  }, [sortValue]);
 
   return (
-    <div>
-      <button
-        type='button'
-        className='text-sm md:text-base flex items-center gap-4 hover:underline'
-        aria-label='sortowanie według daty'
-        onClick={handleSort}
-      >
-        {dateIsDesc === 'false' ? (
-          <>
-            <ImSortNumericAsc />
-            <span>Od najstarszych do najnowszych</span>
-          </>
-        ) : (
-          <>
-            <ImSortNumbericDesc />
-            <span>Od najnowszych do najstarszych</span>
-          </>
-        )}
-      </button>
+    <div className='text-sm md:text-base mb-10 grid grid-cols-1 sm:grid-cols-[auto_1fr_auto] items-center gap-4'>
+      <p>
+        Znaleziono <span className='font-semibold'>{totalCount} ogłoszeń</span>
+      </p>
+      <hr className='bg-darkColor border-0 h-px' />
+      <form>
+        <label htmlFor='sort'>Sortuj według: </label>
+        <select
+          name='sort'
+          id='sort'
+          className='bg-transparent'
+          value={sortValue}
+          onChange={(e) => setSortValue(e.target.value)}
+        >
+          <option value='dateNewest' selected>
+            Data dodania (od najnowszych)
+          </option>
+          <option value='dateOldest'>Data dodania (od najstarszych)</option>
+          <option value='nameAZ'>Nazwa (A-Z)</option>
+          <option value='nameZA'>Nazwa (Z-A)</option>
+        </select>
+      </form>
     </div>
   );
 };

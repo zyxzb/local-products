@@ -7,18 +7,7 @@ const AllAdsServer = ({ data }: { data: AllAdsServerProps }) => {
     <div>
       {items.length > 0 ? (
         <>
-          <div className='flex gap-4 items-center justify-between mb-4 flex-wrap'>
-            <div>
-              {items.length > 0 && (
-                <div>
-                  <p className='text-sm md:text-base'>
-                    Znaleziono {totalCount} ogłoszeń
-                  </p>
-                </div>
-              )}
-            </div>
-            <FilterSortAds />
-          </div>
+          <FilterSortAds totalCount={totalCount} />
           <CardsContainer data={items} />
           <Pagination totalPages={totalPages} />
         </>

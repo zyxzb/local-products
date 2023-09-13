@@ -15,14 +15,14 @@ export const metadata: Metadata = {
 const getData = async (
   page: number,
   limit: number,
-  dateDesc: string,
+  sort: string,
   name: string,
   location: string,
 ) => {
   const res = await fetch(
     `${
       process.env.NEXTAUTH_URL || process.env.NEXTAUTH_URL2
-    }/api/items/search?page=${page}&limit=${limit}&dateDesc=${dateDesc}&name=${name}&location=${location}`,
+    }/api/items/search?page=${page}&limit=${limit}&sort=${sort}&name=${name}&location=${location}`,
     {
       cache: 'no-store',
     },
@@ -38,12 +38,12 @@ const Ads = async ({ searchParams }: { searchParams: AdsSearchParams }) => {
   const {
     page = 1,
     limit = 20,
-    dateDesc = 'true',
+    sort = 'dateNewest',
     name = '',
     location = '',
     // from url
   } = searchParams;
-  const data = await getData(page, limit, dateDesc, name, location);
+  const data = await getData(page, limit, sort, name, location);
 
   return (
     <>
