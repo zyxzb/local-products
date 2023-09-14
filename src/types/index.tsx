@@ -5,6 +5,8 @@ export interface CustomButtonProps {
   text: string;
   extraStyles?: string;
   icon?: JSX.Element;
+  reverse?: boolean;
+  isLight?: boolean;
   onClick?: () => void;
 }
 

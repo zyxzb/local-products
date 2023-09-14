@@ -32,6 +32,7 @@ import SearchButton from './SearchButton';
 import AllAdsServer from './AllAdsServer';
 import FilterSortAds from './FilterSortAds';
 import Pagination from './Pagination';
+import ButtonsSection from './ButtonsSection';
 // import AllAds from './AllAds';
 
 export {
@@ -69,5 +70,6 @@ export {
   AllAdsServer,
   FilterSortAds,
   Pagination,
+  ButtonsSection,
   // AllAds,
 };

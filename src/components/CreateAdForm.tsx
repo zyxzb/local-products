@@ -15,6 +15,7 @@ import { useSession } from 'next-auth/react';
 import { useCreateAdContext } from '@/context/createAddContext';
 import { adSchema } from '@/utils/validationSchemas';
 import { BiMailSend } from 'react-icons/bi';
+import { useRouter } from 'next/navigation';
 
 const initialValues = {
   title: '',
@@ -28,6 +29,7 @@ const CreateAdForm = () => {
   const { images, setImages, location, setLocation, coord } =
     useCreateAdContext();
 
+  const router = useRouter();
   const session = useSession();
 
   const handleCreateAd = async (
@@ -54,6 +56,7 @@ const CreateAdForm = () => {
       actions.resetForm();
       setImages([]);
       setLocation('');
+      router.refresh();
     } catch (error) {
       alert(`Something went wrong :( \n Error: ${error} \n Try again!`);
     } finally {

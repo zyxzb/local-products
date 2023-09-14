@@ -55,7 +55,7 @@ const SearchBar = () => {
   };
 
   return (
-    <div className='flex items-center justify-center w-full p-[20px] md:py-[40px]  max-w-[1200px] mx-auto'>
+    <div className='flex items-center justify-center w-full p-[20px] md:py-[40px] max-w-[1200px] mx-auto'>
       <form
         className='flex flex-col md:flex-row gap-[20px] w-full'
         autoComplete='off'
