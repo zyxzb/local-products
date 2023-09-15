@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { PaginationProps } from '@/types';
 
@@ -16,23 +16,26 @@ const Pagination = ({ totalPages }: PaginationProps) => {
   );
   const router = useRouter();
 
-  useEffect(() => {
-    const searchParams = new URLSearchParams(window.location.search);
-    searchParams.set('page', `${currentPage}`);
-    const newPathName = `/ogloszenia?${searchParams.toString()}`;
-    router.push(newPathName);
-  }, [currentPage]);
-
   const handlePrevPage = () => {
-    setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
+    const newPage = Math.max(currentPage - 1, 1);
+    updatePageAndURL(newPage);
   };
 
   const handleNextPage = () => {
-    setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
+    const newPage = Math.min(currentPage + 1, totalPages);
+    updatePageAndURL(newPage);
   };
 
   const handlePageChange = (page: number) => {
-    setCurrentPage(page);
+    updatePageAndURL(page);
+  };
+
+  const updatePageAndURL = (newPage: number) => {
+    const searchParams = new URLSearchParams(window.location.search);
+    setCurrentPage(newPage);
+    searchParams.set('page', String(newPage));
+    const newPathName = `/ogloszenia?${searchParams.toString()}`;
+    router.push(newPathName.toString());
   };
 
   return (

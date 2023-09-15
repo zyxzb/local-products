@@ -2,22 +2,26 @@
 
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
 const FilterSortAds = ({ totalCount }: { totalCount: number }) => {
   const searchParams = useSearchParams();
-  const [sortValue, setSortValue] = useState(
-    searchParams.get('sort') ?? 'dateNewest',
-  );
+  const [sortValue, setSortValue] = useState(searchParams.get('sort') || '');
   const router = useRouter();
 
-  useEffect(() => {
+  const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const newSortValue = e.target.value;
+    setSortValue(newSortValue);
+    updateSortParam(newSortValue);
+  };
+
+  const updateSortParam = (newSortValue: string) => {
     const searchParams = new URLSearchParams(window.location.search);
-    searchParams.set('sort', `${sortValue}`);
+    searchParams.set('sort', newSortValue);
     const newPathName = `/ogloszenia?${searchParams.toString()}`;
     router.push(newPathName);
-  }, [sortValue]);
+  };
 
   return (
     <div className='text-sm md:text-base mb-10 grid grid-cols-1 sm:grid-cols-[auto_1fr_auto] items-center gap-4'>
@@ -32,11 +36,9 @@ const FilterSortAds = ({ totalCount }: { totalCount: number }) => {
           id='sort'
           className='bg-transparent'
           value={sortValue}
-          onChange={(e) => setSortValue(e.target.value)}
+          onChange={handleSortChange}
         >
-          <option value='dateNewest' selected>
-            Data dodania (od najnowszych)
-          </option>
+          <option value='dateNewest'>Data dodania (od najnowszych)</option>
           <option value='dateOldest'>Data dodania (od najstarszych)</option>
           <option value='nameAZ'>Nazwa (A-Z)</option>
           <option value='nameZA'>Nazwa (Z-A)</option>

@@ -22,14 +22,10 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang='pl'>
       <body>
+        <NextTopLoader showSpinner={false} shadow={false} color='#adc698' />
         <AuthProvider>
           <AddToFavoritesContextProvider>
             <CreateAdContextProvider>
-              <NextTopLoader
-                showSpinner={false}
-                shadow={false}
-                color='#adc698'
-              />
               <Nav />
               <div className='w-full min-h-[calc(100vh_-_70px)] mx-auto flex flex-col pt-[70px] pb-10 md:pb-20'>
                 <div className='bg-lightGreen mb-10 md:mb-20'>
