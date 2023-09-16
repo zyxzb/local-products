@@ -78,7 +78,7 @@ const SingleAd = async ({ params: { id } }: SingleAdProps) => {
   return (
     <div>
       <Breadcrumbs pageName='Ogłoszenia' adTitle={title} />
-      <ButtonsSection />
+      <ButtonsSection item={data} />
       <div className='flex flex-col lg:grid grid-cols-12 w-full gap-8'>
         {/* LEFT GRID */}
 

@@ -169,6 +169,8 @@ export interface BreadcrumbsProps {
 export interface addToFavoritesContextProps {
   favoritesAds: CardProps[] | [];
   setFavoritesAds: (newFavoritesAds: CardProps[]) => void;
+  handleAddToFavorites: (ad: CardProps) => void;
+  handleRemoveFromFavorites: (ad: CardProps) => void;
 }
 
 export interface searchContextProps {

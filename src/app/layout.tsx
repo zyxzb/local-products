@@ -4,7 +4,7 @@ import './globals.css';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { CreateAdContextProvider } from '@/context/createAddContext';
-import { AddToFavoritesContextProvider } from '@/context/addToFavorites';
+import { AddToFavoritesContextProvider } from '@/context/addToFavoritesContext';
 import NextTopLoader from 'nextjs-toploader';
 import { ToastContainer } from 'react-toastify';
 import { Metadata } from 'next';

@@ -4,8 +4,11 @@ import { CustomButton } from '@/components';
 import { useRouter } from 'next/navigation';
 import { IoMdArrowBack } from 'react-icons/io';
 import { AiFillHeart } from 'react-icons/ai';
+import { CardProps } from '@/types';
+import { useAddToFavorites } from '@/context/addToFavoritesContext';
 
-const ButtonsSection = () => {
+const ButtonsSection = ({ item }: { item: CardProps }) => {
+  const { handleAddToFavorites } = useAddToFavorites();
   const router = useRouter();
 
   return (
@@ -21,7 +24,7 @@ const ButtonsSection = () => {
       />
       <CustomButton
         type='button'
-        onClick={() => {}}
+        onClick={() => handleAddToFavorites(item)}
         text='Dodaj do ulubionych'
         extraStyles='text-sm md:text-base px-4 py-[5px] sm:py-[10px]'
         isLight

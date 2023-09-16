@@ -7,7 +7,7 @@ import { useSession } from 'next-auth/react';
 import { AiFillHeart, AiOutlineDelete } from 'react-icons/ai';
 import { FaHeartBroken } from 'react-icons/fa';
 import { CardProps } from '@/types';
-import { useAddToFavorites } from '@/context/addToFavorites';
+import { useAddToFavorites } from '@/context/addToFavoritesContext';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
 
@@ -19,25 +19,10 @@ const CardButtons = ({
   canDelete?: true;
 }) => {
   const { title, _id, email } = item;
-  const { favoritesAds, setFavoritesAds } = useAddToFavorites();
+  const { handleAddToFavorites, handleRemoveFromFavorites } =
+    useAddToFavorites();
   const session = useSession();
   const router = useRouter();
-
-  const handleAddToFavorites = () => {
-    const tempFavoriteAd = favoritesAds.filter((ad) => ad._id === _id);
-    if (tempFavoriteAd.length > 0) {
-      toast.info(`${title} juz istnieje w polubionych`);
-    } else {
-      setFavoritesAds([...favoritesAds, item]);
-      toast.success(`Dodano: ${title} do polubionych`);
-    }
-  };
-
-  const handleRemoveFromFavorites = () => {
-    const tempFavoritesCard = favoritesAds.filter((ad) => ad._id !== _id);
-    setFavoritesAds([...tempFavoritesCard]);
-    toast.info(`${title} usunięto z polubionych`);
-  };
 
   const handleDelete = async () => {
     const confirm = window.confirm(
@@ -96,7 +81,7 @@ const CardButtons = ({
             aria-label='usuń z polubionych'
             onClick={(e) => {
               e.preventDefault();
-              handleRemoveFromFavorites();
+              handleRemoveFromFavorites(item);
             }}
             className='card-btn'
           >
@@ -108,7 +93,7 @@ const CardButtons = ({
             aria-label='dodaj do polubionych'
             onClick={(e) => {
               e.preventDefault();
-              handleAddToFavorites();
+              handleAddToFavorites(item);
             }}
             className='card-btn'
           >

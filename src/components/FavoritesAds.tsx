@@ -1,7 +1,7 @@
 'use client';
 
 import { CardsContainer, CustomLink } from '@/components';
-import { useAddToFavorites } from '@/context/addToFavorites';
+import { useAddToFavorites } from '@/context/addToFavoritesContext';
 import { CardProps } from '@/types';
 
 const FavoritesAds = ({ ads }: { ads: CardProps[] }) => {
