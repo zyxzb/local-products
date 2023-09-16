@@ -1,5 +1,11 @@
-import { HomeBannerSection, NewAds, DetailsSummary } from '@/components';
+import {
+  HomeBannerSection,
+  NewAds,
+  DetailsSummary,
+  Loader,
+} from '@/components';
 import { Metadata } from 'next';
+import { Suspense } from 'react';
 
 export const metadata: Metadata = {
   alternates: {
@@ -49,7 +55,9 @@ const Home = () => {
           </p>
         </div>
       </section>
-      <NewAds />
+      <Suspense fallback={<Loader />}>
+        <NewAds />
+      </Suspense>
       <section>
         <h2 className='md:text-xl mb-4 md:mb-8'>
           Jakie korzyści niesie ze sobą używanie aplikacji WybierzLokalnie.pl?

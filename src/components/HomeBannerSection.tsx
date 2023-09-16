@@ -20,7 +20,12 @@ const HomeBannerSection = () => {
         />
       </div>
       <div className='animate-move -z-10 sm:py-10'>
-        <Image src={HeroImg} alt='hero-image' className='w-full h-[350px]' />
+        <Image
+          src={HeroImg}
+          priority={true}
+          alt='hero-image'
+          className='w-full h-[350px]'
+        />
       </div>
     </section>
   );
