@@ -5,11 +5,13 @@ import { CardProps, addToFavoritesContextProps } from '@/types';
 import { toast } from 'react-toastify';
 
 const getLocalStorage = () => {
-  let localStorageAds = localStorage.getItem('favorites');
-  if (localStorageAds) {
-    return JSON.parse(localStorage.getItem('favorites') || '');
-  } else {
-    return [];
+  if (typeof window !== 'undefined') {
+    let localStorageAds = localStorage.getItem('favorites');
+    if (localStorageAds) {
+      return JSON.parse(localStorage.getItem('favorites') || '');
+    } else {
+      return [];
+    }
   }
 };
 
