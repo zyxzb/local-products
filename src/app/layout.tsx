@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://www.wybierzlokalnie.pl'),
   title: 'Lokalni Producenci Żywności w Twojej Okolicy - WybierzLokalnie.pl',
   description:
-    'Ciesz się świeżymi produktami z Twojego sąsiedztwa ⭐ Dołącz do społeczności, która docenia wysoką jakość i autentyczność ✔️ Wybierz lokalną żywność.',
+    'Świeże produkty z Twojego sąsiedztwa ✔️ Dołącz do społeczności, która docenia wysoką jakość ⚡ Znajdź lokalnych producentów żywności ⭐ Wybierz świadomie.',
 };
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {

@@ -7,11 +7,14 @@ const HomeBannerSection = () => {
   return (
     <section className='grid grid-cols-banner'>
       <div className='h-full flex flex-col'>
-        <h1 className='leading-[50px] lg:leading-[70px] text-4xl lg:text-5xl xl:text-6xl bg-gradient-to-b from-lightGreen to-darkColor bg-clip-text text-transparent pb-2 transition-opacity duration-500 '>
-          Odkryj Lokalnych Producentów Żywnosci w Twojej Okolicy.
+        <span className='text-4xl lg:text-5xl xl:text-[55px] bg-gradient-to-b from-lightGreen to-darkColor bg-clip-text text-transparent pb-2 font-bold'>
+          <h1>Lokalni Producenci Żywności</h1>
+          w Twojej Okolicy.
           <br />
-          Wybierz Lokalnie.
-        </h1>
+          Wybierz Świadomie.
+          <br />
+          Wybierz Lokalnie!
+        </span>
         <CustomLink
           text='Dołacz do społecznosci'
           link='/twoje-konto/login'

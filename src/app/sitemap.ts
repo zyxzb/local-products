@@ -1,8 +1,6 @@
 const sitemap = async () => {
   const baseUrl = 'https://www.wybierzlokalnie.pl';
 
-  // error??
-
   // const res = await fetch(
   //   `${process.env.NEXTAUTH_URL || process.env.NEXTAUTH_URL2}/api/ads`,
   // );
@@ -16,6 +14,8 @@ const sitemap = async () => {
   return [
     { url: baseUrl, lastModified: new Date() },
     { url: `${baseUrl}/kontakt`, lastModified: new Date() },
+    { url: `${baseUrl}/polubione`, lastModified: new Date() },
+    { url: `${baseUrl}/dodaj-producenta`, lastModified: new Date() },
     { url: `${baseUrl}/ogloszania`, lastModified: new Date() },
     // ...postsUrls,
   ];

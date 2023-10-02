@@ -1,7 +1,5 @@
 User-agent: *
 Allow: /
 Disallow: /twoje-konto/
-Disallow: /dodaj-producenta
-Disallow: /polubione
 
 Sitemap: https://www.wybierzlokalnie.pl/sitemap.xml
