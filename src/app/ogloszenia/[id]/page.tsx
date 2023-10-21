@@ -1,17 +1,16 @@
 import { Gallery, Breadcrumbs, ButtonsSection } from '@/components';
-import { notFound } from 'next/navigation';
 import { formatFullDate } from '@/utils/helpers';
 import { SingleAdProps } from '@/types';
 import { BsFillPersonCheckFill } from 'react-icons/bs';
 import { IoLocationSharp } from 'react-icons/io5';
 import { Metadata } from 'next';
 import dynamic from 'next/dynamic';
+import getAllListings from '@/actions/getAllListings';
+import getListingById from '@/actions/getListingById';
 
 const Map = dynamic(() => import('@/components/LeafletMap'), {
   ssr: false,
 });
-
-export const dynamicParams = true;
 
 export const generateMetadata = async ({
   params,
@@ -19,15 +18,8 @@ export const generateMetadata = async ({
   params: { id: string };
 }): Promise<Metadata> => {
   const id = params.id;
-  const res = await fetch(
-    `${process.env.NEXTAUTH_URL || process.env.NEXTAUTH_URL2}/api/items/${id}`,
-  );
+  const ad = await getListingById(id);
 
-  if (!res.ok) {
-    return notFound();
-  }
-
-  const ad = await res.json();
   return {
     title: `${ad.title} - ${ad.location}`,
     description: ad.desc,
@@ -37,31 +29,15 @@ export const generateMetadata = async ({
   };
 };
 
-// export const generateStaticParams = async () => {
-//   const res = await fetch(
-//     `${process.env.NEXTAUTH_URL || process.env.NEXTAUTH_URL2}/api/items/`,
-//   );
-//   const ads = await res.json();
-//   return ads.map((ad: any) => ({
-//     id: ad._id,
-//   }));
-// };
-
-const getData = async (id: string) => {
-  const res = await fetch(
-    `${process.env.NEXTAUTH_URL || process.env.NEXTAUTH_URL2}/api/items/${id}`,
-  );
-
-  if (!res.ok) {
-    return notFound();
-  }
-
-  const data = res.json();
-  return data;
+export const generateStaticParams = async () => {
+  const listings = await getAllListings();
+  return listings.map((listing: any) => ({
+    id: listing._id.toString(),
+  }));
 };
 
 const SingleAd = async ({ params: { id } }: SingleAdProps) => {
-  const data = await getData(id);
+  const data = await getListingById(id);
   const {
     _id,
     title,
