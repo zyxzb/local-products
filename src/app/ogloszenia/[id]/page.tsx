@@ -1,49 +1,54 @@
 import { Gallery, Breadcrumbs, ButtonsSection } from '@/components';
 import { formatFullDate } from '@/utils/helpers';
-import { SingleAdProps } from '@/types';
+// import { SingleAdProps } from '@/types';
 import { BsFillPersonCheckFill } from 'react-icons/bs';
 import { IoLocationSharp } from 'react-icons/io5';
-import { Metadata } from 'next';
+// import { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 import getAllListings from '@/actions/getAllListings';
 import getListingById from '@/actions/getListingById';
+import { Listing, User } from '@prisma/client';
 
 const Map = dynamic(() => import('@/components/LeafletMap'), {
   ssr: false,
 });
 
-export const generateMetadata = async ({
-  params,
-}: {
-  params: { id: string };
-}): Promise<Metadata> => {
-  const id = params.id;
-  const ad = await getListingById(id);
+interface IParams {
+  id?: string;
+}
 
-  return {
-    title: `${ad.title} - ${ad.location}`,
-    description: ad.desc,
-    alternates: {
-      canonical: `/ogloszenia/${id}`,
-    },
-  };
-};
+// export const generateMetadata = async ({
+//   params,
+// }: {
+//   params: { id: string };
+// }): Promise<Metadata> => {
+//   const id = params.id;
+//   const ad = await getListingById(id);
 
-export const generateStaticParams = async () => {
-  const listings = await getAllListings();
-  return listings.map((listing: any) => ({
-    id: listing._id.toString(),
-  }));
-};
+//   return {
+//     title: `${ad.title} - ${ad.location}`,
+//     description: ad.desc,
+//     alternates: {
+//       canonical: `/ogloszenia/${id}`,
+//     },
+//   };
+// };
 
-const SingleAd = async ({ params: { id } }: SingleAdProps) => {
-  const data = await getListingById(id);
+// export const generateStaticParams = async () => {
+//   const listings = await getAllListings();
+//   return listings.map((listing: any) => ({
+//     id: listing.id.toString(),
+//   }));
+// };
+
+const SingleAd = async ({ params }: { params: IParams }) => {
+  // change types later
+  const data: any = await getListingById(params);
   const {
-    _id,
+    id,
     title,
-    // desc,
-    location,
     content,
+    location,
     username,
     createdAt,
     updatedAt,
@@ -104,12 +109,14 @@ const SingleAd = async ({ params: { id } }: SingleAdProps) => {
       <hr className='mt-8 mb-4' />
       {/* ADD FOOTER */}
 
-      <div className='opacity-50 flex justify-between flex-wrap gap-4 '>
-        <span>Utworzono: {formatFullDate(createdAt)}</span>
-        {updatedAt !== createdAt && (
-          <span>, aktualizacja: {formatFullDate(updatedAt)}</span>
-        )}
-        <span>ID: {_id}</span>
+      <div className='flex justify-between opacity-50 gap-4 flex-wrap'>
+        <div className='flex flex-wrap'>
+          <span>Utworzono: {formatFullDate(createdAt)},</span>
+          {updatedAt !== createdAt && (
+            <span> aktualizacja: {formatFullDate(updatedAt)}</span>
+          )}
+        </div>
+        <span>ID: {id}</span>
       </div>
 
       {/* END OF ADD FOOTER */}

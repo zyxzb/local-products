@@ -13,13 +13,13 @@ const CardsContainer = ({
   data,
   canDelete,
 }: {
-  data: CardProps[];
+  data: any;
   canDelete?: true;
 }) => {
   return (
     <div className='grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4'>
-      {data.map((item: CardProps) => {
-        return <DynamicCard key={item._id} item={item} canDelete={canDelete} />;
+      {data.map((item: any) => {
+        return <DynamicCard key={item.id} item={item} canDelete={canDelete} />;
       })}
     </div>
   );

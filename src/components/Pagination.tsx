@@ -2,17 +2,16 @@
 
 import { useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { PaginationProps } from '@/types';
 
 import {
   MdOutlineKeyboardArrowLeft,
   MdOutlineKeyboardArrowRight,
 } from 'react-icons/md';
 
-const Pagination = ({ totalPages }: PaginationProps) => {
+const Pagination = ({ totalPages }: any) => {
   const searchParams = useSearchParams();
   const [currentPage, setCurrentPage] = useState(
-    Number(searchParams.get('page')) || 1,
+    Number(searchParams?.get('page')) || 1,
   );
   const router = useRouter();
 

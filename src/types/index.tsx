@@ -105,7 +105,7 @@ export interface PopupProps {
 
 export interface CreateAdProps {
   title: string;
-  desc: string;
+  // desc: string;
   // location: string;
   content: string;
 }

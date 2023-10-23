@@ -2,11 +2,9 @@ import { Footer, Nav, SearchBar } from '@/components';
 import Providers from '@/providers/Providers';
 
 import './globals.css';
-import 'react-toastify/dist/ReactToastify.css';
-
 import { Metadata } from 'next';
 
-export const dynamic = 'force-dynamic';
+// export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.wybierzlokalnie.pl'),

@@ -44,10 +44,10 @@ export const adSchema = Yup.object().shape({
     .min(10, 'min. 10 znaków')
     .max(60, 'max. 60 znaków')
     .matches(/^(?=.*\S).+$/, 'Pole nie może zawiarać tylko pustych znaków'),
-  desc: Yup.string()
-    .required('Krótki opis jest wymagany')
-    .max(160, 'max. 160 znaków')
-    .matches(/^(?=.*\S).+$/, 'Pole nie może zawiarać tylko pustych znaków'),
+  // desc: Yup.string()
+  //   .required('Krótki opis jest wymagany')
+  //   .max(160, 'max. 160 znaków')
+  //   .matches(/^(?=.*\S).+$/, 'Pole nie może zawiarać tylko pustych znaków'),
   // location: Yup.string().required('Lokalizacja jest wymagana'),
   content: Yup.string()
     .required('Treść jest wymagana')

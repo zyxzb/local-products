@@ -1,8 +1,9 @@
 'use client';
 
 import { useState } from 'react';
+import axios from 'axios';
 import { Form, Formik, FormikHelpers } from 'formik';
-import { CustomButton, InputField, Popup } from '@/components';
+import { CustomButton, InputField } from '@/components';
 import { AiOutlineUserAdd } from 'react-icons/ai';
 import { ContactFormProps } from '@/types';
 import { registerSchema } from '@/utils/validationSchemas';
@@ -17,82 +18,51 @@ const initialValues = {
 const RegisterForm = () => {
   const [error, setError] = useState(false);
   const [isSending, setIsSending] = useState(false);
-  const [isPopupActive, setIsPopupActive] = useState(false);
 
   const handleRegister = async (
     values: ContactFormProps,
     actions: FormikHelpers<ContactFormProps>,
   ) => {
-    const { name, email, password } = values;
     setIsSending(true);
-    try {
-      const res = await fetch('/api/auth/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name,
-          email,
-          password,
-        }),
-      });
-      if (res.status === 201) {
-        setIsPopupActive(true);
+
+    axios
+      .post('/api/register', values)
+      .then(() => {
+        toast.success('Success, You can login now!');
         actions.resetForm();
-      }
-
-      if (res.status === 409) {
-        toast.info(`Adres: ${email} już istnieje w bazie danych`);
-      }
-
-      if (res.status === 500) {
-        toast.error('Błąd serwera');
-      }
-    } catch (error) {
-      setError(true);
-    } finally {
-      setIsSending(false);
-    }
+      })
+      .catch((error) => {
+        console.log(error);
+        setError(true);
+        toast.error(error.message);
+      })
+      .finally(() => setIsSending(false));
   };
 
   return (
-    <>
-      <Formik
-        initialValues={initialValues}
-        onSubmit={handleRegister}
-        validationSchema={registerSchema}
-      >
-        {() => (
-          <Form className='flex flex-col w-full gap-4'>
-            <InputField name='name' placeholder='Imię...' />
-            <InputField name='email' placeholder='Email...' />
-            <InputField
-              name='password'
-              placeholder='Hasło...'
-              type='password'
-            />
-            <CustomButton
-              type='submit'
-              text={isSending ? 'Trwa rejestracja...' : 'Zarejestruj się'}
-              icon={<AiOutlineUserAdd className='text-2xl' />}
-            />
-            {error && (
-              <p className='text-center'>
-                Coś poszło nie tak 😥 - spróbuj jeszcze raz!
-              </p>
-            )}
-          </Form>
-        )}
-      </Formik>
-      {isPopupActive && (
-        <Popup
-          text1='Gratulacje! - Twoje konto zostało utworzone'
-          text2='Możesz się zalogować!'
-          onClick={() => setIsPopupActive(false)}
-        />
+    <Formik
+      initialValues={initialValues}
+      onSubmit={handleRegister}
+      validationSchema={registerSchema}
+    >
+      {() => (
+        <Form className='flex flex-col w-full gap-4'>
+          <InputField name='name' placeholder='Imię...' />
+          <InputField name='email' placeholder='Email...' />
+          <InputField name='password' placeholder='Hasło...' type='password' />
+          <CustomButton
+            type='submit'
+            text={isSending ? 'Trwa rejestracja...' : 'Zarejestruj się'}
+            icon={<AiOutlineUserAdd className='text-2xl' />}
+          />
+          {error && (
+            <p className='text-center'>
+              Coś poszło nie tak 😥 - spróbuj jeszcze raz!
+            </p>
+          )}
+        </Form>
       )}
-    </>
+    </Formik>
   );
 };
 

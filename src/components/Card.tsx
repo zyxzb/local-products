@@ -5,15 +5,15 @@ import { CardProps } from '@/types';
 import { formatFullDate } from '@/utils/helpers';
 import { LazyImage, CardButtons } from '@/components';
 
-const Card = ({ item, canDelete }: { item: CardProps; canDelete?: true }) => {
-  const { title, location, _id, images, createdAt } = item;
+const Card = ({ item, canDelete }: { item: any; canDelete?: true }) => {
+  const { title, location, id, images, createdAt } = item;
 
   const cardImage = images.length
     ? String(images[0].fileUrl)
     : '/landWhite.png';
 
   return (
-    <Link href={`/ogloszenia/${_id}`}>
+    <Link href={`/ogloszenia/${id}`}>
       <div className='bg-white rounded-md transition cursor-pointer h-[280px] sm:h-[360px] flex flex-col gap-4 p-3 group shadow hover:shadow-label'>
         <div className='relative w-full h-[65%]'>
           <LazyImage

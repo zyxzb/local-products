@@ -7,6 +7,7 @@ import { FcGoogle } from 'react-icons/fc';
 import { signIn } from 'next-auth/react';
 import { loginSchema } from '@/utils/validationSchemas';
 import { LoginFormProps } from '@/types';
+import { toast } from 'react-toastify';
 
 const initialValues = {
   email: '',
@@ -15,10 +16,13 @@ const initialValues = {
 
 const LoginForm = () => {
   const handleLogin = async (values: LoginFormProps) => {
-    const { email, password } = values;
-    signIn('credentials', {
-      email,
-      password,
+    signIn('credentials', { ...values, redirect: false }).then((callback) => {
+      if (callback?.ok) {
+        toast.success('Logged in');
+      }
+      if (callback?.error) {
+        toast.error(callback.error);
+      }
     });
   };
 

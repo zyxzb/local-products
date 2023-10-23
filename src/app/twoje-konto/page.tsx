@@ -1,17 +1,14 @@
-import { getServerSession } from 'next-auth/next';
-import { authOptions } from '../api/auth/[...nextauth]/route';
+import getCurrentUser from '@/actions/getCurrentUser';
 import { redirect } from 'next/navigation';
 
 const Account = async () => {
-  const session = await getServerSession(authOptions);
+  const currentUser = await getCurrentUser();
 
-  if (!session) {
-    redirect('/twoje-konto/login');
+  if (!currentUser) {
+    return redirect('/twoje-konto/login');
   }
 
-  if (session) {
-    redirect(`/twoje-konto/${session.user?.email}`);
-  }
+  return redirect(`/twoje-konto/${currentUser?.email}`);
 };
 
 export default Account;

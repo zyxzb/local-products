@@ -1,14 +1,24 @@
-import { notFound } from 'next/navigation';
+import prisma from '@/libs/prismadb';
 
-const getListingById = async (id: string) => {
-  const res = await fetch(
-    `${process.env.NEXTAUTH_URL || process.env.NEXTAUTH_URL2}/api/items/${id}`,
-  );
-  if (!res.ok) {
-    return notFound();
+interface IParams {
+  id?: string;
+}
+
+const getListingById = async (params: IParams) => {
+  try {
+    const { id } = params;
+
+    const listing = await prisma.listing.findUnique({
+      where: { id: id },
+      include: { user: true },
+    });
+    if (!listing) {
+      return null;
+    }
+    return listing;
+  } catch (error: any) {
+    throw new Error(error);
   }
-  const listing = await res.json();
-  return listing;
 };
 
 export default getListingById;

@@ -7,7 +7,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 
 const FilterSortAds = ({ totalCount }: { totalCount: number }) => {
   const searchParams = useSearchParams();
-  const [sortValue, setSortValue] = useState(searchParams.get('sort') || '');
+  const [sortValue, setSortValue] = useState(searchParams?.get('sort') || '');
   const router = useRouter();
 
   const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {

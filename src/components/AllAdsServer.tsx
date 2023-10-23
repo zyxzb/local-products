@@ -1,15 +1,21 @@
 import { CardsContainer, FilterSortAds, Pagination } from '@/components';
-import { AllAdsServerProps } from '@/types';
+// import { AllAdsServerProps } from '@/types';
 
-const AllAdsServer = ({ data }: { data: AllAdsServerProps }) => {
-  const { items, totalCount, totalPages } = data;
+const AllAdsServer = ({ data }: { data: any }) => {
+  // const { items, totalCount, totalPages } = data;
   return (
     <div>
-      {items.length > 0 ? (
+      {data.length > 0 ? (
         <>
-          <FilterSortAds totalCount={totalCount} />
-          <CardsContainer data={items} />
-          <Pagination totalPages={totalPages} />
+          <FilterSortAds
+            // change this later
+            totalCount={data.length}
+          />
+          <CardsContainer data={data} />
+          <Pagination
+            // change this later
+            totalPages
+          />
         </>
       ) : (
         <div className='mt-20 text-center'>

@@ -1,7 +1,8 @@
 import { Breadcrumbs, AllAdsServer } from '@/components';
 import { Metadata } from 'next';
-import { notFound } from 'next/navigation';
-import { AdsSearchParams } from '@/types';
+// import { notFound } from 'next/navigation';
+// import { AdsSearchParams } from '@/types';
+import getAllListings, { IListingsParams } from '@/actions/getAllListings';
 
 export const metadata: Metadata = {
   title: 'Wyszukaj producentów żywności - WybierzLokalnie.pl',
@@ -12,38 +13,22 @@ export const metadata: Metadata = {
   },
 };
 
-const getData = async (
-  page: number,
-  limit: number,
-  sort: string,
-  name: string,
-  location: string,
-) => {
-  const res = await fetch(
-    `${
-      process.env.NEXTAUTH_URL || process.env.NEXTAUTH_URL2
-    }/api/items/search?page=${page}&limit=${limit}&sort=${sort}&name=${name}&location=${location}`,
-    {
-      cache: 'no-store',
-    },
-  );
+interface AdsParams {
+  searchParams: IListingsParams;
+}
 
-  if (!res.ok) {
-    return notFound();
-  }
-  return res.json();
-};
-
-const Ads = async ({ searchParams }: { searchParams: AdsSearchParams }) => {
-  const {
-    page = 1,
-    limit = 20,
-    sort = 'dateNewest',
-    name = '',
-    location = '',
-    // from url
-  } = searchParams;
-  const data = await getData(page, limit, sort, name, location);
+const Ads = async ({ searchParams }: AdsParams) => {
+  const data = await getAllListings(searchParams);
+  // const {
+  //   page = 1,
+  //   limit = 20,
+  //   sort = 'dateNewest',
+  //   name = '',
+  //   location = '',
+  //   // from url
+  // } = searchParams;
+  // const data = await getData(page, limit, sort, name, location);
+  console.log('all listings:', data);
 
   return (
     <>
