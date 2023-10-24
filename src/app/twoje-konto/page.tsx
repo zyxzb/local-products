@@ -8,7 +8,7 @@ const Account = async () => {
     return redirect('/twoje-konto/login');
   }
 
-  return redirect(`/twoje-konto/${currentUser?.email}`);
+  return redirect(`/twoje-konto/${currentUser?.id}`);
 };
 
 export default Account;

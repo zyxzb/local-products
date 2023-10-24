@@ -1,7 +1,13 @@
 import { CardsContainer, FilterSortAds, Pagination } from '@/components';
 // import { AllAdsServerProps } from '@/types';
+import { User } from '@prisma/client';
 
-const AllAdsServer = ({ data }: { data: any }) => {
+interface AllAdsServerProps {
+  data: any;
+  currentUser?: User | null;
+}
+
+const AllAdsServer = ({ data, currentUser }: AllAdsServerProps) => {
   // const { items, totalCount, totalPages } = data;
   return (
     <div>
@@ -11,7 +17,7 @@ const AllAdsServer = ({ data }: { data: any }) => {
             // change this later
             totalCount={data.length}
           />
-          <CardsContainer data={data} />
+          <CardsContainer data={data} currentUser={currentUser} />
           <Pagination
             // change this later
             totalPages

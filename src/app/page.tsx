@@ -1,3 +1,4 @@
+import getCurrentUser from '@/actions/getCurrentUser';
 import {
   HomeBannerSection,
   NewAds,
@@ -13,7 +14,9 @@ export const metadata: Metadata = {
   },
 };
 
-const Home = () => {
+const Home = async () => {
+  const currentUser = await getCurrentUser();
+
   return (
     <div className='flex flex-col gap-10 md:gap-20'>
       <HomeBannerSection />
@@ -56,7 +59,7 @@ const Home = () => {
         </div>
       </section>
       <Suspense fallback={<Loader />}>
-        <NewAds />
+        <NewAds currentUser={currentUser} />
       </Suspense>
       <section>
         <h2 className='md:text-xl mb-4 md:mb-8'>

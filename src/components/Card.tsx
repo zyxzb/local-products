@@ -1,11 +1,18 @@
 'use client';
 
 import Link from 'next/link';
-import { CardProps } from '@/types';
 import { formatFullDate } from '@/utils/helpers';
 import { LazyImage, CardButtons } from '@/components';
+import { User } from '@prisma/client';
 
-const Card = ({ item, canDelete }: { item: any; canDelete?: true }) => {
+interface CardProps {
+  item: any;
+  canDelete?: true;
+  currentUser?: User | null;
+  onAction?: (id: string) => void;
+}
+
+const Card = async ({ item, canDelete, currentUser, onAction }: CardProps) => {
   const { title, location, id, images, createdAt } = item;
 
   const cardImage = images.length
@@ -34,7 +41,13 @@ const Card = ({ item, canDelete }: { item: any; canDelete?: true }) => {
               <span className='line-clamp-1'>{location}</span>
               <span className='line-clamp-1'>{formatFullDate(createdAt)}</span>
             </div>
-            <CardButtons item={item} canDelete={canDelete} />
+            <CardButtons
+              listingId={id}
+              title={title}
+              canDelete={canDelete}
+              currentUser={currentUser}
+              onAction={onAction}
+            />
           </div>
         </div>
       </div>

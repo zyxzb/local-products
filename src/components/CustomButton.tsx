@@ -1,4 +1,13 @@
-import { CustomButtonProps } from '@/types';
+interface CustomButtonProps {
+  type: 'button' | 'submit' | 'reset';
+  text: string;
+  extraStyles?: string;
+  icon?: JSX.Element;
+  reverse?: boolean;
+  isLight?: boolean;
+  // onClick?: () => void;
+  onClick?: any;
+}
 
 const CustomButton = ({
   type,

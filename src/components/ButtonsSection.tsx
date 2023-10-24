@@ -4,11 +4,19 @@ import { CustomButton } from '@/components';
 import { useRouter } from 'next/navigation';
 import { IoMdArrowBack } from 'react-icons/io';
 import { AiFillHeart } from 'react-icons/ai';
-import { CardProps } from '@/types';
-import { useAddToFavorites } from '@/context/addToFavoritesContext';
+import useFavorite from '@/hooks/useFavotite';
+import { User } from '@prisma/client';
 
-const ButtonsSection = ({ item }: { item: CardProps }) => {
-  const { handleAddToFavorites } = useAddToFavorites();
+interface ButtonsSectionProps {
+  listingId: string;
+  currentUser: User | null;
+}
+
+const ButtonsSection = ({ listingId, currentUser }: ButtonsSectionProps) => {
+  const { hasFavorite, toggleFavorite } = useFavorite({
+    listingId,
+    currentUser,
+  });
   const router = useRouter();
 
   return (
@@ -24,8 +32,8 @@ const ButtonsSection = ({ item }: { item: CardProps }) => {
       />
       <CustomButton
         type='button'
-        onClick={() => handleAddToFavorites(item)}
-        text='Dodaj do ulubionych'
+        onClick={toggleFavorite}
+        text={hasFavorite ? 'Usuń z usubionych' : 'Dodaj do ulubionych'}
         extraStyles='text-sm md:text-base px-4 py-[5px] sm:py-[10px]'
         isLight
         icon={<AiFillHeart className='text-lg' />}

@@ -142,7 +142,7 @@ export interface AddProducerLabelWrapperProps {
 
 export interface AccountProps {
   params: {
-    email: string;
+    id: string;
   };
 }
 

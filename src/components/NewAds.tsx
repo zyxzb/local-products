@@ -1,13 +1,18 @@
 import getInitialListings from '@/actions/getInitialListings';
 import { CardsContainer } from '@/components';
+import { User } from '@prisma/client';
 
-const NewAds = async () => {
+interface NewAdsProps {
+  currentUser?: User | null;
+}
+
+const NewAds = async ({ currentUser }: NewAdsProps) => {
   const data = await getInitialListings();
 
   return (
     <section>
       <p className='mb-4 text-sm md:text-base'>Ostatnio dodane ogłoszenia</p>
-      <CardsContainer data={data} />
+      <CardsContainer data={data} currentUser={currentUser} />
     </section>
   );
 };

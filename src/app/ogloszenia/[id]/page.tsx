@@ -5,9 +5,10 @@ import { BsFillPersonCheckFill } from 'react-icons/bs';
 import { IoLocationSharp } from 'react-icons/io5';
 // import { Metadata } from 'next';
 import dynamic from 'next/dynamic';
-import getAllListings from '@/actions/getAllListings';
+// import getAllListings from '@/actions/getAllListings';
 import getListingById from '@/actions/getListingById';
-import { Listing, User } from '@prisma/client';
+import getCurrentUser from '@/actions/getCurrentUser';
+// import { Listing, User } from '@prisma/client';
 
 const Map = dynamic(() => import('@/components/LeafletMap'), {
   ssr: false,
@@ -42,6 +43,8 @@ interface IParams {
 // };
 
 const SingleAd = async ({ params }: { params: IParams }) => {
+  const currentUser = await getCurrentUser();
+
   // change types later
   const data: any = await getListingById(params);
   const {
@@ -59,7 +62,7 @@ const SingleAd = async ({ params }: { params: IParams }) => {
   return (
     <div>
       <Breadcrumbs pageName='Ogłoszenia' adTitle={title} />
-      <ButtonsSection item={data} />
+      <ButtonsSection listingId={id} currentUser={currentUser} />
       <div className='flex flex-col lg:grid grid-cols-12 w-full gap-8'>
         {/* LEFT GRID */}
 

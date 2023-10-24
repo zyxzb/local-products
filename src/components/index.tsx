@@ -27,7 +27,6 @@ import Breadcrumbs from './Breadcrumbs';
 import DetailsSummary from './DetailsSummary';
 import LazyImage from './LazyImage';
 import CardButtons from './CardButtons';
-import FavoritesAds from './FavoritesAds';
 import SearchButton from './SearchButton';
 import AllAdsServer from './AllAdsServer';
 import FilterSortAds from './FilterSortAds';
@@ -65,7 +64,6 @@ export {
   DetailsSummary,
   LazyImage,
   CardButtons,
-  FavoritesAds,
   SearchButton,
   AllAdsServer,
   FilterSortAds,

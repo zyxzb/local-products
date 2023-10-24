@@ -3,61 +3,43 @@
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 
-import { useSession } from 'next-auth/react';
 import { AiFillHeart, AiOutlineDelete } from 'react-icons/ai';
 import { FaHeartBroken } from 'react-icons/fa';
-import { CardProps } from '@/types';
-import { useAddToFavorites } from '@/context/addToFavoritesContext';
-import { toast } from 'react-toastify';
-import { useRouter } from 'next/navigation';
+import useFavorite from '@/hooks/useFavotite';
+import { User } from '@prisma/client';
+
+interface CardButtonsProps {
+  listingId: string;
+  title: string;
+  canDelete?: true;
+  currentUser?: User | null;
+  onAction?: (id: string) => void;
+}
 
 const CardButtons = ({
-  item,
+  listingId,
+  title,
   canDelete,
-}: {
-  item: CardProps;
-  canDelete?: true;
-}) => {
-  const { title, _id, email } = item;
-  const { handleAddToFavorites, handleRemoveFromFavorites } =
-    useAddToFavorites();
-  const session = useSession();
-  const router = useRouter();
+  currentUser,
+  onAction,
+}: CardButtonsProps) => {
+  const { hasFavorite, toggleFavorite } = useFavorite({
+    listingId,
+    currentUser,
+  });
 
-  const handleDelete = async () => {
+  const handleDelete = () => {
     const confirm = window.confirm(
       `Czy na pewno chcesz usunąć ogłoszenie: ${title}?`,
     );
-
     if (confirm) {
-      try {
-        const res = await fetch(`/api/items/${_id}`, {
-          method: 'DELETE',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
-        if (res.status === 200) {
-          toast.success(`Usunięto ogłoszenie z id: ${_id}`);
-        }
-        if (res.status === 500) {
-          toast.error(`Błąd serwera `);
-        }
-        router.refresh();
-      } catch (err) {
-        toast.error(
-          `Bład: ${err}. Wyłącz AdBlocka lub otwórz przeglądarkę w trybie incognito.`,
-        );
-        console.log(err);
-      }
-    } else {
-      console.log('Anulowano usunięcie');
+      onAction?.(listingId);
     }
   };
 
   return (
     <div className='flex gap-2'>
-      {email === session?.data?.user?.email && (
+      {canDelete && (
         <Tippy content='Usuń ogłoszenie'>
           <button
             type='button'
@@ -73,16 +55,13 @@ const CardButtons = ({
         </Tippy>
       )}
       <Tippy
-        content={canDelete ? 'Usuń z polubionych' : 'Dodaj do polubionych'}
+        content={hasFavorite ? 'Usuń z polubionych' : 'Dodaj do polubionych'}
       >
-        {canDelete ? (
+        {hasFavorite ? (
           <button
             type='button'
             aria-label='usuń z polubionych'
-            onClick={(e) => {
-              e.preventDefault();
-              handleRemoveFromFavorites(item);
-            }}
+            onClick={toggleFavorite}
             className='card-btn'
           >
             <FaHeartBroken />
@@ -91,10 +70,7 @@ const CardButtons = ({
           <button
             type='button'
             aria-label='dodaj do polubionych'
-            onClick={(e) => {
-              e.preventDefault();
-              handleAddToFavorites(item);
-            }}
+            onClick={toggleFavorite}
             className='card-btn'
           >
             <AiFillHeart />

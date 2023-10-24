@@ -3,6 +3,7 @@ import { Metadata } from 'next';
 // import { notFound } from 'next/navigation';
 // import { AdsSearchParams } from '@/types';
 import getAllListings, { IListingsParams } from '@/actions/getAllListings';
+import getCurrentUser from '@/actions/getCurrentUser';
 
 export const metadata: Metadata = {
   title: 'Wyszukaj producentów żywności - WybierzLokalnie.pl',
@@ -18,6 +19,7 @@ interface AdsParams {
 }
 
 const Ads = async ({ searchParams }: AdsParams) => {
+  const currentUser = await getCurrentUser();
   const data = await getAllListings(searchParams);
   // const {
   //   page = 1,
@@ -28,12 +30,11 @@ const Ads = async ({ searchParams }: AdsParams) => {
   //   // from url
   // } = searchParams;
   // const data = await getData(page, limit, sort, name, location);
-  console.log('all listings:', data);
 
   return (
     <>
       <Breadcrumbs pageName='Ogłoszenia' />
-      <AllAdsServer data={data} />
+      <AllAdsServer data={data} currentUser={currentUser} />
       {/* <AllAds /> */}
       {/* add AllAds component for client fetching */}
     </>
