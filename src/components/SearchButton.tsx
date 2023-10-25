@@ -1,5 +1,8 @@
 import { TfiClose } from 'react-icons/tfi';
-import { SearchButtonProps } from '@/types';
+
+interface SearchButtonProps {
+  onClick: () => void;
+}
 
 const SearchButton = ({ onClick }: SearchButtonProps) => {
   return (

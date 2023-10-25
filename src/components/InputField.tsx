@@ -1,7 +1,14 @@
 'use client';
 
-import { InputFieldProps } from '@/types';
 import { Field, ErrorMessage } from 'formik';
+
+interface InputFieldProps {
+  name: string;
+  placeholder: string;
+  extraStyles?: string;
+  isMessage?: boolean;
+  type?: string;
+}
 
 const InputField = ({
   name,

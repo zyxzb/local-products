@@ -1,5 +1,11 @@
 import Link from 'next/link';
-import { CustomLinkProps } from '@/types';
+
+interface CustomLinkProps {
+  link: string;
+  text: string;
+  extraStyles?: string;
+  icon?: JSX.Element;
+}
 
 const CustomLink = ({ link, text, extraStyles, icon }: CustomLinkProps) => {
   return (

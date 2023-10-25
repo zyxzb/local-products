@@ -1,48 +1,56 @@
-import { Gallery, Breadcrumbs, ButtonsSection } from '@/components';
-import { formatFullDate } from '@/utils/helpers';
-// import { SingleAdProps } from '@/types';
-import { BsFillPersonCheckFill } from 'react-icons/bs';
-import { IoLocationSharp } from 'react-icons/io5';
-// import { Metadata } from 'next';
+import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 import dynamic from 'next/dynamic';
-// import getAllListings from '@/actions/getAllListings';
+import { BsFillPersonCheckFill } from 'react-icons/bs';
+import { formatFullDate } from '@/utils/helpers';
+import { IoLocationSharp } from 'react-icons/io5';
+
+import { Gallery, Breadcrumbs, ButtonsSection } from '@/components';
+
 import getListingById from '@/actions/getListingById';
 import getCurrentUser from '@/actions/getCurrentUser';
-// import { Listing, User } from '@prisma/client';
+import getAllListings from '@/actions/getAllListings';
+
+import { Listing } from '@prisma/client';
 
 const Map = dynamic(() => import('@/components/LeafletMap'), {
   ssr: false,
 });
 
-interface IParams {
+export const revalidate = 600;
+
+interface SingleAdProps {
   id?: string;
 }
 
-// export const generateMetadata = async ({
-//   params,
-// }: {
-//   params: { id: string };
-// }): Promise<Metadata> => {
-//   const id = params.id;
-//   const ad = await getListingById(id);
+export const generateMetadata = async ({
+  params,
+}: {
+  params: SingleAdProps;
+}): Promise<Metadata> => {
+  const listing = await getListingById(params);
 
-//   return {
-//     title: `${ad.title} - ${ad.location}`,
-//     description: ad.desc,
-//     alternates: {
-//       canonical: `/ogloszenia/${id}`,
-//     },
-//   };
-// };
+  if (!listing) {
+    return notFound();
+  }
 
-// export const generateStaticParams = async () => {
-//   const listings = await getAllListings();
-//   return listings.map((listing: any) => ({
-//     id: listing.id.toString(),
-//   }));
-// };
+  return {
+    title: `${listing.title} - ${listing.location}`,
+    description: `${listing.title} - WybierzLokalnie.pl - Lokalni producenci żywności`,
+    alternates: {
+      canonical: `/ogloszenia/${listing.id}`,
+    },
+  };
+};
 
-const SingleAd = async ({ params }: { params: IParams }) => {
+export const generateStaticParams = async () => {
+  const listings = await getAllListings();
+  return listings.map((listing: Listing) => ({
+    id: listing.id.toString(),
+  }));
+};
+
+const SingleAd = async ({ params }: { params: SingleAdProps }) => {
   const currentUser = await getCurrentUser();
 
   // change types later
@@ -52,11 +60,11 @@ const SingleAd = async ({ params }: { params: IParams }) => {
     title,
     content,
     location,
-    username,
     createdAt,
     updatedAt,
     images,
     coord,
+    email,
   } = data;
 
   return (
@@ -88,7 +96,7 @@ const SingleAd = async ({ params }: { params: IParams }) => {
             <p className='uppercase font-bold mb-4'>Dodane przez</p>
             <div className='flex items-center gap-2'>
               <BsFillPersonCheckFill className='text-darkColor text-2xl' />
-              <p>{username}</p>
+              <p>{email?.split('@')[0]}</p>
             </div>
           </div>
 
@@ -114,9 +122,9 @@ const SingleAd = async ({ params }: { params: IParams }) => {
 
       <div className='flex justify-between opacity-50 gap-4 flex-wrap'>
         <div className='flex flex-wrap'>
-          <span>Utworzono: {formatFullDate(createdAt)},</span>
+          <span>Utworzono: {formatFullDate(String(createdAt))},</span>
           {updatedAt !== createdAt && (
-            <span> aktualizacja: {formatFullDate(updatedAt)}</span>
+            <span> aktualizacja: {formatFullDate(String(updatedAt))}</span>
           )}
         </div>
         <span>ID: {id}</span>

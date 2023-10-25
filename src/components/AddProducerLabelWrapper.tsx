@@ -1,4 +1,7 @@
-import { AddProducerLabelWrapperProps } from '@/types';
+interface AddProducerLabelWrapperProps {
+  children: React.ReactNode;
+  text: string;
+}
 
 const AddProducerLabelWrapper = ({
   children,

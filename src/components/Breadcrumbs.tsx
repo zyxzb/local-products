@@ -2,7 +2,11 @@
 
 import Link from 'next/link';
 import { AiOutlineHome } from 'react-icons/ai';
-import { BreadcrumbsProps } from '@/types';
+
+interface BreadcrumbsProps {
+  pageName: string;
+  adTitle?: string;
+}
 
 const Breadcrumbs = ({ pageName, adTitle }: BreadcrumbsProps) => {
   return (

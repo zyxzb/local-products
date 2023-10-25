@@ -48,6 +48,8 @@ const AccountClient = ({
         currentUser={currentUser}
         canDelete={canDelete}
         onAction={onCancel}
+        // add later?
+        // disabled={data.some((item) => item.id === deletingId)}
       />
     </div>
   );

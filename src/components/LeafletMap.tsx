@@ -9,13 +9,7 @@ import 'leaflet-defaulticon-compatibility';
 import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.webpack.css'; // Re-uses images from ~leaflet package
 import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css';
 
-const LeafletMap = ({
-  coord,
-  title,
-}: {
-  coord: [number, number];
-  title?: string;
-}) => {
+const LeafletMap = ({ coord, title }: { coord: number[]; title?: string }) => {
   const Marker = dynamic(
     () => import('react-leaflet').then((mod) => mod.Marker),
     { ssr: false },
@@ -42,7 +36,7 @@ const LeafletMap = ({
 
   return (
     <MapContainer
-      center={coord}
+      center={[coord[0], coord[1]]}
       zoom={13}
       zoomControl={false}
       scrollWheelZoom={true}
@@ -56,7 +50,7 @@ const LeafletMap = ({
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
       />
-      <Marker position={coord}>
+      <Marker position={[coord[0], coord[1]]}>
         <Popup>
           {title ? title : location ? location : 'Wybierz Lokalizacje z listy'}
         </Popup>

@@ -1,7 +1,5 @@
 import { Breadcrumbs, AllAdsServer } from '@/components';
 import { Metadata } from 'next';
-// import { notFound } from 'next/navigation';
-// import { AdsSearchParams } from '@/types';
 import getAllListings, { IListingsParams } from '@/actions/getAllListings';
 import getCurrentUser from '@/actions/getCurrentUser';
 
@@ -13,6 +11,8 @@ export const metadata: Metadata = {
     canonical: 'https://www.wybierzlokalnie.pl/ogloszenia',
   },
 };
+
+export const dynamic = 'force-dynamic';
 
 interface AdsParams {
   searchParams: IListingsParams;

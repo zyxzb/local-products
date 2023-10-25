@@ -3,10 +3,10 @@
 import Link from 'next/link';
 import { formatFullDate } from '@/utils/helpers';
 import { LazyImage, CardButtons } from '@/components';
-import { User } from '@prisma/client';
+import { User, Listing } from '@prisma/client';
 
 interface CardProps {
-  item: any;
+  item: Listing;
   canDelete?: true;
   currentUser?: User | null;
   onAction?: (id: string) => void;
@@ -15,9 +15,7 @@ interface CardProps {
 const Card = async ({ item, canDelete, currentUser, onAction }: CardProps) => {
   const { title, location, id, images, createdAt } = item;
 
-  const cardImage = images.length
-    ? String(images[0].fileUrl)
-    : '/landWhite.png';
+  const cardImage = images.length ? images[0] : '/landWhite.png';
 
   return (
     <Link href={`/ogloszenia/${id}`}>
@@ -26,7 +24,6 @@ const Card = async ({ item, canDelete, currentUser, onAction }: CardProps) => {
           <LazyImage
             cardImage={cardImage}
             title={title}
-            location={location}
             classNames='object-cover group-hover:opacity-80 transition-opacity'
           />
         </div>
@@ -39,7 +36,9 @@ const Card = async ({ item, canDelete, currentUser, onAction }: CardProps) => {
           <div className='flex justify-between gap-4 items-center mt-auto'>
             <div className='text-xs flex flex-col opacity-70'>
               <span className='line-clamp-1'>{location}</span>
-              <span className='line-clamp-1'>{formatFullDate(createdAt)}</span>
+              <span className='line-clamp-1'>
+                {formatFullDate(String(createdAt))}
+              </span>
             </div>
             <CardButtons
               listingId={id}

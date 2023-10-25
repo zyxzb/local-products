@@ -1,4 +1,29 @@
-import { WojewodztwaProps, MiastaProps, DzielniceProps } from '@/types';
+interface MiastaProps {
+  id: number;
+  name: string;
+  unique_name: string;
+  county_id: number;
+  voivodeship_id: number;
+  latitude: string;
+  longitude: string;
+  name_locative: string;
+}
+interface DzielniceProps {
+  id: string;
+  city_id: string;
+  text: string;
+  text_district: string;
+  unique_name: string;
+  lon: string;
+  lat: string;
+}
+
+interface WojewodztwaProps {
+  id: number;
+  name: string;
+  unique_name: string;
+  name_locative: string;
+}
 
 export const convertDzielniceFormat = (filteredDzielnice: DzielniceProps[]) => {
   return filteredDzielnice.map((dzielnica) => {

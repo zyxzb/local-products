@@ -13,7 +13,6 @@ export const POST = async (request: Request) => {
   const listing = await prisma.listing.create({
     data: {
       title,
-      desc,
       content,
       images,
       location,

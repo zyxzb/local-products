@@ -5,9 +5,9 @@ import axios from 'axios';
 import { Form, Formik, FormikHelpers } from 'formik';
 import { CustomButton, InputField } from '@/components';
 import { AiOutlineUserAdd } from 'react-icons/ai';
-import { ContactFormProps } from '@/types';
 import { registerSchema } from '@/utils/validationSchemas';
 import { toast } from 'react-toastify';
+import { ContactFormProps } from './ContactForm';
 
 const initialValues = {
   name: '',

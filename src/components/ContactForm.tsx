@@ -3,10 +3,16 @@
 import { CustomButton, InputField, Popup } from '@/components';
 import { BiMailSend } from 'react-icons/bi';
 import { Formik, Form, FormikHelpers } from 'formik';
-import { ContactFormProps } from '@/types';
 import { useState } from 'react';
 import emailjs from '@emailjs/browser';
 import { contactFormSchema } from '@/utils/validationSchemas';
+
+export interface ContactFormProps {
+  name: string;
+  email: string;
+  message?: string;
+  password?: string;
+}
 
 const initialValues = {
   name: '',

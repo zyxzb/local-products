@@ -1,5 +1,10 @@
 import CustomButton from './CustomButton';
-import { PopupProps } from '@/types';
+
+interface PopupProps {
+  text1: string;
+  text2?: string;
+  onClick: () => void;
+}
 
 const Popup = ({ text1, text2, onClick }: PopupProps) => {
   return (

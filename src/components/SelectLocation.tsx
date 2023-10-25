@@ -6,7 +6,18 @@ import { CiLocationOn } from 'react-icons/ci';
 import { TfiClose } from 'react-icons/tfi';
 import useSearchBar from '@/hooks/useSearchBar';
 import { useCreateAdContext } from '@/context/createAddContext';
-import { MergedLocationsProps } from '@/types';
+
+interface MergedLocationsProps {
+  id: number;
+  name: string;
+  unique_name: string;
+  county_id: number;
+  voivodeship_id: number;
+  latitude: string;
+  longitude: string;
+  name_locative: string;
+  wojewodztwo: string;
+}
 
 const initState = {
   location: '',

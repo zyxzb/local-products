@@ -17,7 +17,6 @@ const useFavorite = ({ listingId, currentUser }: IUseFavorite) => {
     const list = currentUser?.favoriteAds || [];
     return list.includes(listingId);
   }, [currentUser, listingId]);
-  console.log('useFavorites Current User', currentUser);
 
   const toggleFavorite = useCallback(
     async (e: React.MouseEvent<HTMLButtonElement>) => {

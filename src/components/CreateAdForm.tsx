@@ -3,20 +3,22 @@
 import {
   InputField,
   CustomButton,
-  Popup,
   AddProducerLabelWrapper,
-  // SelectLocation,
 } from '@/components';
 
 import { useState } from 'react';
 import { Form, Formik, FormikHelpers } from 'formik';
-import { CreateAdProps } from '@/types';
 import { useCreateAdContext } from '@/context/createAddContext';
 import { adSchema } from '@/utils/validationSchemas';
 import { BiMailSend } from 'react-icons/bi';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
 import axios from 'axios';
+
+interface CreateAdProps {
+  title: string;
+  content: string;
+}
 
 const initialValues = {
   title: '',

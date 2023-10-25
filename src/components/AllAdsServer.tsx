@@ -1,9 +1,8 @@
 import { CardsContainer, FilterSortAds, Pagination } from '@/components';
-// import { AllAdsServerProps } from '@/types';
-import { User } from '@prisma/client';
+import { User, Listing } from '@prisma/client';
 
 interface AllAdsServerProps {
-  data: any;
+  data: Listing[];
   currentUser?: User | null;
 }
 

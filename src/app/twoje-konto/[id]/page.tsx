@@ -1,9 +1,14 @@
 import { PageTitle, UserInfo } from '@/components';
 import { redirect } from 'next/navigation';
-import { AccountProps } from '@/types';
 import getCurrentUser from '@/actions/getCurrentUser';
 import getAllListings from '@/actions/getAllListings';
 import AccountClient from './AccountClient';
+
+interface AccountProps {
+  params: {
+    id: string;
+  };
+}
 
 const Account = async ({ params: { id } }: AccountProps) => {
   const currentUser = await getCurrentUser();

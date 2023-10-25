@@ -17,7 +17,7 @@ import Popup from './Popup';
 import Gallery from './Gallery';
 import AddProducerLabelWrapper from './AddProducerLabelWrapper';
 import ImageUploaderSection from './ImageUploaderSection';
-import NewAds from './NewAds';
+// import NewAds from './NewAds';
 import UserInfo from './UserInfo';
 import CreateAdForm from './CreateAdForm';
 import SelectLocation from './SelectLocation';
@@ -54,7 +54,7 @@ export {
   Gallery,
   AddProducerLabelWrapper,
   ImageUploaderSection,
-  NewAds,
+  // NewAds,
   UserInfo,
   CreateAdForm,
   SelectLocation,

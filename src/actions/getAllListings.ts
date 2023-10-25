@@ -9,7 +9,7 @@ export interface IListingsParams {
   location?: string;
 }
 
-const getAllListings = async (params: IListingsParams) => {
+const getAllListings = async (params: IListingsParams = {}) => {
   try {
     const { userId, page, limit, sort, name, location } = params;
 
@@ -28,7 +28,7 @@ const getAllListings = async (params: IListingsParams) => {
     }
 
     if (sort) {
-      query.limit = sort;
+      query.sort = sort;
     }
 
     if (name) {

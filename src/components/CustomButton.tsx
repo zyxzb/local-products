@@ -5,8 +5,7 @@ interface CustomButtonProps {
   icon?: JSX.Element;
   reverse?: boolean;
   isLight?: boolean;
-  // onClick?: () => void;
-  onClick?: any;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 const CustomButton = ({

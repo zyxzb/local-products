@@ -4,8 +4,6 @@ import Providers from '@/providers/Providers';
 import './globals.css';
 import { Metadata } from 'next';
 
-export const dynamic = 'force-dynamic';
-
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.wybierzlokalnie.pl'),
   title: 'Lokalni Producenci Żywności w Twojej Okolicy - WybierzLokalnie.pl',

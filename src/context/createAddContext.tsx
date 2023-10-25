@@ -1,7 +1,15 @@
 'use client';
 
 import React, { useState, useContext } from 'react';
-import { createAdContextProps } from '@/types';
+
+interface createAdContextProps {
+  location: string;
+  images: string[];
+  coord: [number, number];
+  setLocation: (location: string) => void;
+  setImages: (setImages: any) => void;
+  setCoord: (setCoord: [number, number]) => void;
+}
 
 export const CreateAdContext = React.createContext<createAdContextProps>({
   location: '',
@@ -17,7 +25,7 @@ export const CreateAdContextProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const [images, setImages] = useState([]);
+  const [images, setImages] = useState<string[]>([]);
   const [location, setLocation] = useState('');
   const [coord, setCoord] = useState<[number, number]>([52.229, 21.012]);
 

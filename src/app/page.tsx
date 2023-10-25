@@ -1,12 +1,10 @@
-import getCurrentUser from '@/actions/getCurrentUser';
-import {
-  HomeBannerSection,
-  NewAds,
-  DetailsSummary,
-  Loader,
-} from '@/components';
 import { Metadata } from 'next';
 import { Suspense } from 'react';
+
+import { HomeBannerSection, DetailsSummary, Loader } from '@/components';
+import NewAds from '@/components/NewAds';
+
+import getInitialListings from '@/actions/getInitialListings';
 
 export const metadata: Metadata = {
   alternates: {
@@ -14,8 +12,10 @@ export const metadata: Metadata = {
   },
 };
 
+export const revalidate = 60;
+
 const Home = async () => {
-  const currentUser = await getCurrentUser();
+  const data = await getInitialListings();
 
   return (
     <div className='flex flex-col gap-10 md:gap-20'>
@@ -59,7 +59,7 @@ const Home = async () => {
         </div>
       </section>
       <Suspense fallback={<Loader />}>
-        <NewAds currentUser={currentUser} />
+        <NewAds data={data} />
       </Suspense>
       <section>
         <h2 className='md:text-xl mb-4 md:mb-8'>

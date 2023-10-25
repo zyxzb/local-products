@@ -1,4 +1,12 @@
-import { SearchInputProps } from '@/types';
+interface SearchInputProps {
+  name: string;
+  placeholder: string;
+  value: string;
+  required?: boolean;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onFocus?: () => void;
+  icon?: JSX.Element;
+}
 
 const SearchInput = ({
   name,

@@ -6,8 +6,12 @@ import { AiOutlineLogin } from 'react-icons/ai';
 import { FcGoogle } from 'react-icons/fc';
 import { signIn } from 'next-auth/react';
 import { loginSchema } from '@/utils/validationSchemas';
-import { LoginFormProps } from '@/types';
 import { toast } from 'react-toastify';
+
+interface LoginFormProps {
+  email: string;
+  password: string;
+}
 
 const initialValues = {
   email: '',
@@ -18,7 +22,7 @@ const LoginForm = () => {
   const handleLogin = async (values: LoginFormProps) => {
     signIn('credentials', { ...values, redirect: false }).then((callback) => {
       if (callback?.ok) {
-        toast.success('Logged in');
+        toast.success('Zalogowano');
       }
       if (callback?.error) {
         toast.error(callback.error);
