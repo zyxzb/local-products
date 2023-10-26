@@ -30,6 +30,7 @@ import SearchButton from './SearchButton';
 import FilterSortAds from './FilterSortAds';
 import Pagination from './Pagination';
 import ButtonsSection from './ButtonsSection';
+import SearchBarLoader from './SearchBarLoader';
 
 export {
   Nav,
@@ -64,4 +65,5 @@ export {
   FilterSortAds,
   Pagination,
   ButtonsSection,
+  SearchBarLoader,
 };
