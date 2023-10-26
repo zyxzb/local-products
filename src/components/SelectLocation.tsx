@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { SearchInput } from '@/components';
 import { CiLocationOn } from 'react-icons/ci';
 import { TfiClose } from 'react-icons/tfi';
-import useSearchBar from '@/hooks/useSearchBar';
+import useSearchBar from '@/hooks/useMergeLocations';
 import { useCreateAdContext } from '@/context/createAddContext';
 
 interface MergedLocationsProps {
@@ -25,7 +25,7 @@ const initState = {
 
 const SelectLocation = () => {
   const [formData, setFormData] = useState(initState);
-  const { mergedLocation } = useSearchBar(formData);
+  const { mergedLocation } = useSearchBar(formData.location);
   const [isListVisible, setIsListVisible] = useState(false);
   const { setLocation, setCoord, location, coord } = useCreateAdContext();
 

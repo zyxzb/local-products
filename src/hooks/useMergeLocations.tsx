@@ -5,9 +5,7 @@ import { dzielnice } from '@/data/dzielnice';
 import { wojewodztwa } from '@/data/wojewodztwa';
 import { convertDzielniceFormat, mergeCitiesWithAreas } from '@/utils/helpers';
 
-const useSearchBar = (
-  formData: { name: string; location: string } | { location: string },
-) => {
+const useMergeLocations = (location: string) => {
   const [mergedLocation, setMergedLocation] = useState<any[]>([]);
 
   // debounce query results
@@ -15,12 +13,12 @@ const useSearchBar = (
     () => {
       // Filter Cities
       const filteredSearch = miasta.filter((miasto) =>
-        miasto.name.toLowerCase().includes(formData.location.toLowerCase()),
+        miasto.name.toLowerCase().includes(location.toLowerCase()),
       );
 
       // Filter districts of Warsaw
       const filteredDzielnice = dzielnice.filter((dzielnica) =>
-        dzielnica.text.toLowerCase().includes(formData.location.toLowerCase()),
+        dzielnica.text.toLowerCase().includes(location.toLowerCase()),
       );
 
       // Convert object format
@@ -39,11 +37,11 @@ const useSearchBar = (
         setMergedLocation([]);
       }
     },
-    [formData.location],
+    [location],
     700,
   );
 
   return { mergedLocation };
 };
 
-export default useSearchBar;
+export default useMergeLocations;

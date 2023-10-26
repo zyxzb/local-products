@@ -1,12 +1,14 @@
 'use client';
 
 import { useState, useRef } from 'react';
-import { useOnClickOutside } from 'usehooks-ts';
 import Link from 'next/link';
-import { CustomButton, SearchInput, SearchButton } from '@/components';
+import { useOnClickOutside } from 'usehooks-ts';
 import { CiLocationOn, CiSearch } from 'react-icons/ci';
-import useSearchBar from '@/hooks/useSearchBar';
-import { useRouter } from 'next/navigation';
+
+import { CustomButton, SearchInput, SearchButton } from '@/components';
+
+import useMergeLocations from '@/hooks/useMergeLocations';
+import useHandleSearch from '@/hooks/useHandleSearch';
 
 const initState = {
   name: '',
@@ -16,9 +18,10 @@ const initState = {
 const SearchBar = () => {
   const [formData, setFormData] = useState(initState);
   const [isListVisible, setIsListVisible] = useState(false);
-  const { mergedLocation } = useSearchBar(formData);
+  const { mergedLocation } = useMergeLocations(formData.location);
+  const { handleSearch } = useHandleSearch(formData);
+
   const myRef = useRef(null);
-  const router = useRouter();
 
   const handleClickOutside = () => {
     setIsListVisible(false);
@@ -31,35 +34,12 @@ const SearchBar = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const { name, location } = formData;
-    const searchParams = new URLSearchParams(window.location.search);
-
-    if (!name && !location) {
-      router.push('/ogloszenia');
-    } else {
-      if (name) {
-        searchParams.set('name', name);
-      } else {
-        searchParams.delete('name');
-      }
-      if (location) {
-        searchParams.set('location', location);
-      } else {
-        searchParams.delete('location');
-      }
-      const newPathName = `/ogloszenia?${searchParams.toString()}`;
-      router.push(newPathName);
-    }
-  };
-
   return (
     <div className='flex items-center justify-center w-full p-[20px] md:py-[40px] max-w-[1200px] mx-auto'>
       <form
         className='flex flex-col md:flex-row gap-[20px] w-full'
         autoComplete='off'
-        onSubmit={handleSubmit}
+        onSubmit={handleSearch}
       >
         <div className='flex flex-1 relative text-darkColor'>
           <SearchInput

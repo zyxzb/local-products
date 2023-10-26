@@ -5,16 +5,17 @@ export interface IListingsParams {
   page?: number;
   limit?: number;
   sort?: string;
-  name?: string;
+  title?: string;
   location?: string;
 }
 
 const getAllListings = async (params: IListingsParams = {}) => {
   try {
-    const { userId, page, limit, sort, name, location } = params;
+    const { userId, page, limit, sort, title, location } = params;
 
     let query: any = {};
 
+    // later add search by user id
     if (userId) {
       query.userId = userId;
     }
@@ -31,12 +32,18 @@ const getAllListings = async (params: IListingsParams = {}) => {
       query.sort = sort;
     }
 
-    if (name) {
-      query.name = name;
+    if (title) {
+      query.title = {
+        contains: title,
+        mode: 'insensitive',
+      };
     }
 
     if (location) {
-      query.location = location;
+      query.location = {
+        contains: location,
+        mode: 'insensitive',
+      };
     }
 
     const listings = await prisma.listing.findMany({
