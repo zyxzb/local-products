@@ -17,7 +17,6 @@ import Popup from './Popup';
 import Gallery from './Gallery';
 import AddProducerLabelWrapper from './AddProducerLabelWrapper';
 import ImageUploaderSection from './ImageUploaderSection';
-// import NewAds from './NewAds';
 import UserInfo from './UserInfo';
 import CreateAdForm from './CreateAdForm';
 import SelectLocation from './SelectLocation';
@@ -28,11 +27,9 @@ import DetailsSummary from './DetailsSummary';
 import LazyImage from './LazyImage';
 import CardButtons from './CardButtons';
 import SearchButton from './SearchButton';
-import AllAdsServer from './AllAdsServer';
 import FilterSortAds from './FilterSortAds';
 import Pagination from './Pagination';
 import ButtonsSection from './ButtonsSection';
-// import AllAds from './AllAds';
 
 export {
   Nav,
@@ -54,7 +51,6 @@ export {
   Gallery,
   AddProducerLabelWrapper,
   ImageUploaderSection,
-  // NewAds,
   UserInfo,
   CreateAdForm,
   SelectLocation,
@@ -65,9 +61,7 @@ export {
   LazyImage,
   CardButtons,
   SearchButton,
-  AllAdsServer,
   FilterSortAds,
   Pagination,
   ButtonsSection,
-  // AllAds,
 };

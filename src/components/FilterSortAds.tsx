@@ -5,22 +5,36 @@
 import { useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
+import qs from 'query-string';
+
 const FilterSortAds = ({ totalCount }: { totalCount: number }) => {
-  const searchParams = useSearchParams();
-  const [sortValue, setSortValue] = useState(searchParams?.get('sort') || '');
+  const params = useSearchParams();
+  const [sortValue, setSortValue] = useState(params?.get('sort') || '');
   const router = useRouter();
 
-  const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const newSortValue = e.target.value;
-    setSortValue(newSortValue);
-    updateSortParam(newSortValue);
-  };
+  const handleSort = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const sortValue = e.target.value;
+    setSortValue(sortValue);
+    let currentQuery = {};
 
-  const updateSortParam = (newSortValue: string) => {
-    const searchParams = new URLSearchParams(window.location.search);
-    searchParams.set('sort', newSortValue);
-    const newPathName = `/ogloszenia?${searchParams.toString()}`;
-    router.push(newPathName);
+    if (params) {
+      currentQuery = qs.parse(params.toString());
+    }
+
+    const updatedQuery: any = {
+      ...currentQuery,
+      sort: sortValue,
+    };
+
+    const url = qs.stringifyUrl(
+      {
+        url: '/ogloszenia',
+        query: updatedQuery,
+      },
+      { skipNull: true },
+    );
+
+    router.push(url);
   };
 
   return (
@@ -36,12 +50,12 @@ const FilterSortAds = ({ totalCount }: { totalCount: number }) => {
           id='sort'
           className='bg-transparent'
           value={sortValue}
-          onChange={handleSortChange}
+          onChange={handleSort}
         >
-          <option value='dateNewest'>Data dodania (od najnowszych)</option>
-          <option value='dateOldest'>Data dodania (od najstarszych)</option>
-          <option value='nameAZ'>Nazwa (A-Z)</option>
-          <option value='nameZA'>Nazwa (Z-A)</option>
+          <option value='createdAt_DESC'>Data dodania (od najnowszych)</option>
+          <option value='createdAt_ASC'>Data dodania (od najstarszych)</option>
+          <option value='title_ASC'>Nazwa (A-Z)</option>
+          <option value='title_DESC'>Nazwa (Z-A)</option>
         </select>
       </form>
     </div>

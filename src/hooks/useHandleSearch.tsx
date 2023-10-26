@@ -1,5 +1,7 @@
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useCallback } from 'react';
+
+import qs from 'query-string';
 
 interface FormDataProps {
   name: string;
@@ -8,28 +10,37 @@ interface FormDataProps {
 
 const useHandleSearch = (formData: FormDataProps) => {
   const router = useRouter();
+  const params = useSearchParams();
 
   const handleSearch = useCallback(
     (e: React.FormEvent) => {
       e.preventDefault();
       const { name, location } = formData;
-      const searchParams = new URLSearchParams(window.location.search);
 
       if (!name && !location) {
         router.push('/ogloszenia');
       } else {
-        if (name) {
-          searchParams.set('title', name);
-        } else {
-          searchParams.delete('title');
+        let currentQuery = {};
+
+        if (params) {
+          currentQuery = qs.parse(params.toString());
         }
-        if (location) {
-          searchParams.set('location', location);
-        } else {
-          searchParams.delete('location');
-        }
-        const newPathName = `/ogloszenia?${searchParams.toString()}`;
-        router.push(newPathName);
+
+        const updatedQuery: any = {
+          ...currentQuery,
+          title: name,
+          location,
+        };
+
+        const url = qs.stringifyUrl(
+          {
+            url: '/ogloszenia',
+            query: updatedQuery,
+          },
+          { skipNull: true },
+        );
+
+        router.push(url);
       }
     },
     [formData.name, formData.location, router],

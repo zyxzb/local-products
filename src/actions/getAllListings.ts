@@ -14,6 +14,7 @@ const getAllListings = async (params: IListingsParams = {}) => {
     const { userId, page, limit, sort, title, location } = params;
 
     let query: any = {};
+    let orderBy: any = { createdAt: 'desc' };
 
     // later add search by user id
     if (userId) {
@@ -29,7 +30,8 @@ const getAllListings = async (params: IListingsParams = {}) => {
     }
 
     if (sort) {
-      query.sort = sort;
+      const [field, direction] = sort.split('_');
+      orderBy = { [field]: direction.toLowerCase() as 'asc' | 'desc' };
     }
 
     if (title) {
@@ -48,9 +50,7 @@ const getAllListings = async (params: IListingsParams = {}) => {
 
     const listings = await prisma.listing.findMany({
       where: query,
-      orderBy: {
-        createdAt: 'desc',
-      },
+      orderBy: orderBy,
     });
 
     return listings;

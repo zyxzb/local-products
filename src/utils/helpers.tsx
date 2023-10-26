@@ -64,6 +64,10 @@ export const trimText = (text: string, numOfChar: number) => {
   return text;
 };
 
+export const capitalizeFirstLetter = (string: string) => {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+};
+
 export const formatFullDate = (mongoDate: string) => {
   const createdAtDate = new Date(mongoDate);
   const formattedDateTime = `${createdAtDate.toLocaleDateString()}, godz. ${createdAtDate.getHours()}:${createdAtDate

@@ -1,4 +1,9 @@
-import { Breadcrumbs, AllAdsServer } from '@/components';
+import {
+  Breadcrumbs,
+  FilterSortAds,
+  Pagination,
+  CardsContainer,
+} from '@/components';
 import { Metadata } from 'next';
 import getAllListings, { IListingsParams } from '@/actions/getAllListings';
 import getCurrentUser from '@/actions/getCurrentUser';
@@ -21,22 +26,28 @@ interface AdsParams {
 const Ads = async ({ searchParams }: AdsParams) => {
   const currentUser = await getCurrentUser();
   const data = await getAllListings(searchParams);
-  // const {
-  //   page = 1,
-  //   limit = 20,
-  //   sort = 'dateNewest',
-  //   name = '',
-  //   location = '',
-  //   // from url
-  // } = searchParams;
-  // const data = await getData(page, limit, sort, name, location);
+  console.log(data);
 
   return (
     <>
       <Breadcrumbs pageName='Ogłoszenia' />
-      <AllAdsServer data={data} currentUser={currentUser} />
-      {/* <AllAds /> */}
-      {/* add AllAds component for client fetching */}
+      {data.length > 0 ? (
+        <>
+          <FilterSortAds totalCount={data.length} />
+          <CardsContainer data={data} currentUser={currentUser} />
+          <Pagination
+            // change this later
+            totalPages
+          />
+        </>
+      ) : (
+        <div className='mt-20 text-center'>
+          <p>
+            Nie znaleziono ogłoszenia zawierajacego wyszukiwaną nazwę
+            produktu/producenta lub miejscowości 😥
+          </p>
+        </div>
+      )}
     </>
   );
 };

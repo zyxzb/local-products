@@ -14,6 +14,7 @@ import { BiMailSend } from 'react-icons/bi';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
 import axios from 'axios';
+import { capitalizeFirstLetter } from '@/utils/helpers';
 
 interface CreateAdProps {
   title: string;
@@ -37,7 +38,11 @@ const CreateAdForm = () => {
     values: CreateAdProps,
     actions: FormikHelpers<CreateAdProps>,
   ) => {
-    const { title, content } = values;
+    let { title, content } = values;
+
+    title = capitalizeFirstLetter(title.trim());
+    content = capitalizeFirstLetter(content.trim());
+
     setIsSending(true);
 
     axios
