@@ -16,7 +16,6 @@ import HomeBannerSection from './HomeBannerSection';
 import Popup from './Popup';
 import Gallery from './Gallery';
 import AddProducerLabelWrapper from './AddProducerLabelWrapper';
-import ImageUploaderSection from './ImageUploaderSection';
 import UserInfo from './UserInfo';
 import CreateAdForm from './CreateAdForm';
 import SelectLocation from './SelectLocation';
@@ -31,6 +30,7 @@ import FilterSortAds from './FilterSortAds';
 import Pagination from './Pagination';
 import ButtonsSection from './ButtonsSection';
 import SearchBarLoader from './SearchBarLoader';
+import ImageUpload from './ImageUpload';
 
 export {
   Nav,
@@ -51,7 +51,6 @@ export {
   Popup,
   Gallery,
   AddProducerLabelWrapper,
-  ImageUploaderSection,
   UserInfo,
   CreateAdForm,
   SelectLocation,
@@ -66,4 +65,5 @@ export {
   Pagination,
   ButtonsSection,
   SearchBarLoader,
+  ImageUpload,
 };

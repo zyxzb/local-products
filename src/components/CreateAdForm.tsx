@@ -30,7 +30,7 @@ const CreateAdForm = () => {
   const [isSending, setIsSending] = useState(false);
   const { images, setImages, location, setLocation, coord } =
     useCreateAdContext();
-  // add later different location component and claudinary instead of uploadthings
+  // add later different location component
 
   const router = useRouter();
 
@@ -56,7 +56,9 @@ const CreateAdForm = () => {
       .then(() => {
         toast.success('Dodano ogłoszenie!');
         actions.resetForm();
-        router.refresh();
+        setImages([]);
+        setLocation('');
+        router.push('/twoje-konto');
       })
       .catch(() => toast.error('Cos poszło nie tak'))
       .finally(() => setIsSending(false));
