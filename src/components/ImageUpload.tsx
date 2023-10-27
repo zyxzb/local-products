@@ -70,7 +70,7 @@ const ImageUpload = () => {
             >
               <TbPhotoPlus size={50} />
               <div className='text-lg'>
-                Kliknij aby załądować zdjęcięcia <br /> (do 3 plików)
+                Kliknij aby załadować zdjęcia <br /> (do 3 plików)
               </div>
             </div>
           )}
