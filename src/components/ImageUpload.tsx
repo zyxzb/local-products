@@ -34,7 +34,7 @@ const ImageUpload = () => {
     >
       {({ open }) => (
         <div
-          className={`border-dashed border-2 border-darkColor text-darkColor mb-10 rounded-lg text-center transition
+          className={`border-dashed border border-darkColor text-darkColor mb-10 rounded-lg text-center transition
           ${images.length === 0 && 'hover:opacity-70 cursor-pointer'}
           ${images.length !== 0 && 'p-5 md:p-10'}
           `}
@@ -54,7 +54,7 @@ const ImageUpload = () => {
                   </div>
                 ) : (
                   <div
-                    className='flex justify-center items-center flex-col gap-4 cursor-pointer hover:opacity-70 transition border-dashed border-darkColor border-2 rounded min-h-[250px] h-full sm:min-h-[300px]'
+                    className='flex justify-center items-center flex-col gap-4 cursor-pointer hover:opacity-70 transition border-dashed border-darkColor border rounded min-h-[250px] h-full sm:min-h-[300px]'
                     onClick={() => open?.()}
                   >
                     <TbPhotoPlus size={50} />
