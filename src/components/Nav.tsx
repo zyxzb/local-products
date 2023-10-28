@@ -17,7 +17,7 @@ const Nav = () => {
   useLockedBody(openNav, 'body');
 
   return (
-    <nav className='nav-links h-[70px] fixed top-0 left-0 right-0 z-30 flex justify-between items-center bg-darkColor px-[15px]'>
+    <nav className='nav-links h-[70px] fixed top-0 left-0 right-0 z-[9999] flex justify-between items-center bg-darkColor px-[15px]'>
       <div>
         <Link href='/' className='flex items-center gap-2 text-whiteColor px-2'>
           <FiMapPin className='text-xl lg:text-3xl' />

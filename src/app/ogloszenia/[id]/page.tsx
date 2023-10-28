@@ -101,7 +101,9 @@ const SingleAd = async ({ params }: { params: SingleAdProps }) => {
           <div className='bg-white rounded-md p-4 '>
             <p className='uppercase font-bold mb-4'>Dodane przez</p>
             <div className='flex items-center gap-2'>
-              <BsFillPersonCheckFill className='text-darkColor text-2xl' />
+              <div>
+                <BsFillPersonCheckFill className='text-darkColor' size={24} />
+              </div>
               <p>{email?.split('@')[0]}</p>
             </div>
           </div>
@@ -109,7 +111,9 @@ const SingleAd = async ({ params }: { params: SingleAdProps }) => {
           <div className='bg-white rounded-md p-4 flex flex-col'>
             <p className='uppercase font-bold mb-4'>Lokalizacja</p>
             <div className='flex items-center gap-2 mb-4'>
-              <IoLocationSharp className='text-darkColor text-2xl' />
+              <div>
+                <IoLocationSharp className='text-darkColor' size={24} />
+              </div>
               <p>{location}</p>
               {/* <div>map here</div> */}
             </div>

@@ -1,29 +1,23 @@
-'use client';
-
 import {
-  Loader,
   PageTitle,
   CustomLink,
   CreateAdForm,
   ImageUpload,
+  FormSectionWrapper,
 } from '@/components';
-import { useSession } from 'next-auth/react';
+
 import { AiOutlineLogin } from 'react-icons/ai';
 import dynamic from 'next/dynamic';
+import getCurrentUser from '@/actions/getCurrentUser';
 
-const SelectLocationSection = dynamic(
-  () => import('@/components/SelectLocationSection'),
-  { ssr: false },
-);
+const GeocoderControl = dynamic(() => import('@/components/GeocoderControl '), {
+  ssr: false,
+});
 
-const AddProducer = () => {
-  const session = useSession();
+const AddProducer = async () => {
+  const currentUser = await getCurrentUser();
 
-  if (session?.status === 'loading') {
-    return <Loader />;
-  }
-
-  if (session?.status === 'unauthenticated') {
+  if (!currentUser) {
     return (
       <>
         <PageTitle title='Dodaj Producenta' />
@@ -45,9 +39,15 @@ const AddProducer = () => {
   return (
     <>
       <PageTitle title='Dodaj Producenta' />
-      <ImageUpload />
-      <SelectLocationSection />
-      <CreateAdForm />
+      <section>
+        <FormSectionWrapper text='1. Dodaj zdjęcia'>
+          <ImageUpload />
+        </FormSectionWrapper>
+        <FormSectionWrapper text='2. Wybierz lokalizację'>
+          <GeocoderControl />
+        </FormSectionWrapper>
+        <CreateAdForm />
+      </section>
     </>
   );
 };

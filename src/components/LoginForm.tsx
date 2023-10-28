@@ -7,6 +7,7 @@ import { FcGoogle } from 'react-icons/fc';
 import { signIn } from 'next-auth/react';
 import { loginSchema } from '@/utils/validationSchemas';
 import { toast } from 'react-toastify';
+import { useRouter } from 'next/navigation';
 
 interface LoginFormProps {
   email: string;
@@ -19,10 +20,13 @@ const initialValues = {
 };
 
 const LoginForm = () => {
+  const router = useRouter();
+
   const handleLogin = async (values: LoginFormProps) => {
     signIn('credentials', { ...values, redirect: false }).then((callback) => {
       if (callback?.ok) {
         toast.success('Zalogowano');
+        router.refresh();
       }
       if (callback?.error) {
         toast.error(callback.error);

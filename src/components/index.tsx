@@ -7,7 +7,6 @@ import ContactForm from './ContactForm';
 import InputField from './InputField';
 import PageTitle from './PageTitle';
 import Card from './Card';
-import AuthProvider from './AuthProvider';
 import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
 import Loader from './Loader';
@@ -15,7 +14,7 @@ import CustomLink from './CustomLink';
 import HomeBannerSection from './HomeBannerSection';
 import Popup from './Popup';
 import Gallery from './Gallery';
-import AddProducerLabelWrapper from './AddProducerLabelWrapper';
+import FormSectionWrapper from './FormSectionWrapper';
 import UserInfo from './UserInfo';
 import CreateAdForm from './CreateAdForm';
 import SelectLocation from './SelectLocation';
@@ -42,7 +41,6 @@ export {
   InputField,
   PageTitle,
   Card,
-  AuthProvider,
   LoginForm,
   RegisterForm,
   Loader,
@@ -50,7 +48,7 @@ export {
   HomeBannerSection,
   Popup,
   Gallery,
-  AddProducerLabelWrapper,
+  FormSectionWrapper,
   UserInfo,
   CreateAdForm,
   SelectLocation,

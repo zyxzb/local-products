@@ -1,10 +1,6 @@
 'use client';
 
-import {
-  InputField,
-  CustomButton,
-  AddProducerLabelWrapper,
-} from '@/components';
+import { InputField, CustomButton, FormSectionWrapper } from '@/components';
 
 import { useState } from 'react';
 import { Form, Formik, FormikHelpers } from 'formik';
@@ -30,7 +26,6 @@ const CreateAdForm = () => {
   const [isSending, setIsSending] = useState(false);
   const { images, setImages, location, setLocation, coord } =
     useCreateAdContext();
-  // add later different location component
 
   const router = useRouter();
 
@@ -72,20 +67,17 @@ const CreateAdForm = () => {
     >
       {() => (
         <Form className='flex flex-col w-full gap-10'>
-          <AddProducerLabelWrapper text='Podaj tytuł - im więcej szczegółów, tym lepiej.'>
+          <FormSectionWrapper text='3. Dodaj tytuł ogłoszenia'>
             <InputField name='title' placeholder='Tytuł...' />
-          </AddProducerLabelWrapper>
-          <AddProducerLabelWrapper
-            text='Wpisz ważne informację - takie które sam chciałbyś zobaczyć w
-            ogłoszniu.'
-          >
+          </FormSectionWrapper>
+          <FormSectionWrapper text='4. Dodaj treść ogłoszenia'>
             <InputField
               name='content'
               placeholder='Treść ogłoszenia...'
               extraStyles='h-[200px]'
               isMessage
             />
-          </AddProducerLabelWrapper>
+          </FormSectionWrapper>
           <CustomButton
             type='submit'
             text={isSending ? 'Dodawanie...' : 'Dodaj'}
