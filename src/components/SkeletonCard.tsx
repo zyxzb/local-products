@@ -4,7 +4,7 @@ const SkeletonCard = () => {
       <div className='relative w-full h-[65%] bg-gray-200 animate-pulse rounded-md' />
       <div className='flex flex-col justify-between h-[35%]'>
         <div className='flex flex-col gap-2'>
-          <h2 className='mb-2 bg-gray-200 animate-pulse h-7 rounded-md' />
+          <h3 className='mb-2 bg-gray-200 animate-pulse h-7 rounded-md' />
         </div>
         <div className='flex justify-between gap-4 items-center mt-auto'>
           <div className='text-xs flex w-2/3 flex-col gap-2'>

@@ -6,6 +6,7 @@ import { formatFullDate } from '@/utils/helpers';
 import { IoLocationSharp } from 'react-icons/io5';
 
 import { Gallery, Breadcrumbs, ButtonsSection } from '@/components';
+import OgImage from '@/app/opengraph-image.jpg';
 
 import getListingById from '@/actions/getListingById';
 import getCurrentUser from '@/actions/getCurrentUser';
@@ -35,10 +36,16 @@ export const generateMetadata = async ({
   }
 
   return {
-    title: `${listing.title} - ${listing.location}`,
-    description: `${listing.title} - WybierzLokalnie.pl - Lokalni producenci żywności`,
+    title: `${listing.title} - WybierzLokalnie.pl`,
+    description: `${listing.title}, ${listing.location} - WybierzLokalnie.pl - Lokalni producenci żywności`,
     alternates: {
       canonical: `/ogloszenia/${listing.id}`,
+    },
+    openGraph: {
+      title: `${listing.title} - WybierzLokalnie.pl`,
+      url: `/ogloszenia/${listing.id}`,
+      description: `${listing.title}, ${listing.location} - WybierzLokalnie.pl - Lokalni producenci żywności`,
+      type: 'article',
     },
   };
 };

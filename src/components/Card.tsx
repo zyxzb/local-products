@@ -29,9 +29,9 @@ const Card = async ({ item, canDelete, currentUser, onAction }: CardProps) => {
         </div>
         <div className='flex flex-col justify-between h-[35%]'>
           <div>
-            <h2 className='mb-2 text-md sm:text-lg line-clamp-2 '>
+            <h3 className='mb-2 text-md sm:text-lg line-clamp-2 '>
               <strong className='font-normal'>{title}</strong>
-            </h2>
+            </h3>
           </div>
           <div className='flex justify-between gap-4 items-center mt-auto'>
             <div className='text-xs flex flex-col opacity-70'>
