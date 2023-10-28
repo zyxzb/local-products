@@ -6,7 +6,6 @@ import { formatFullDate } from '@/utils/helpers';
 import { IoLocationSharp } from 'react-icons/io5';
 
 import { Gallery, Breadcrumbs, ButtonsSection } from '@/components';
-import OgImage from '@/app/opengraph-image.jpg';
 
 import getListingById from '@/actions/getListingById';
 import getCurrentUser from '@/actions/getCurrentUser';

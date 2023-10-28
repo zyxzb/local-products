@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     title: 'Lokalni Producenci Żywności w Twojej Okolicy - WybierzLokalnie.pl',
     url: 'https://www.wybierzLokalnie.pl',
     description:
-      'Lokalni Producenci Żywności w Twojej Okolicy - WybierzLokalnie.pl',
+      'Świeże produkty z Twojego sąsiedztwa ✔️ Dołącz do społeczności, która docenia wysoką jakość ⚡ Znajdź lokalnych producentów żywności ⭐ Wybierz świadomie.',
     type: 'website',
   },
 };
