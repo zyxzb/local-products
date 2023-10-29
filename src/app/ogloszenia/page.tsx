@@ -26,7 +26,6 @@ interface AdsParams {
 const Ads = async ({ searchParams }: AdsParams) => {
   const currentUser = await getCurrentUser();
   const data = await getAllListings(searchParams);
-  console.log(data);
 
   return (
     <>

@@ -13,9 +13,6 @@ import getAllListings from '@/actions/getAllListings';
 
 import { Listing } from '@prisma/client';
 
-// const Map = dynamic(() => import('@/components/LeafletMap'), {
-//   ssr: false,
-// });
 const Map = dynamic(() => import('@/components/Map'), {
   ssr: false,
 });

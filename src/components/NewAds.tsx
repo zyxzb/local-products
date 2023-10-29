@@ -5,8 +5,6 @@ interface NewAdsProps {
   data: Listing[];
 }
 
-export const revalidate = 60;
-
 const NewAds = async ({ data }: NewAdsProps) => {
   return (
     <section>
