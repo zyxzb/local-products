@@ -9,10 +9,17 @@ interface CardProps {
   item: Listing;
   canDelete?: true;
   currentUser?: User | null;
+  disabledButtons?: boolean;
   onAction?: (id: string) => void;
 }
 
-const Card = async ({ item, canDelete, currentUser, onAction }: CardProps) => {
+const Card = async ({
+  item,
+  canDelete,
+  currentUser,
+  disabledButtons,
+  onAction,
+}: CardProps) => {
   const { title, location, id, images, createdAt } = item;
 
   const cardImage = images.length ? images[0] : '/landWhite.png';
@@ -38,13 +45,15 @@ const Card = async ({ item, canDelete, currentUser, onAction }: CardProps) => {
               <span className='line-clamp-1'>{location}</span>
               <span className='line-clamp-1'>{formatFullDate(createdAt)}</span>
             </div>
-            <CardButtons
-              listingId={id}
-              title={title}
-              canDelete={canDelete}
-              currentUser={currentUser}
-              onAction={onAction}
-            />
+            {!disabledButtons && (
+              <CardButtons
+                listingId={id}
+                title={title}
+                canDelete={canDelete}
+                currentUser={currentUser}
+                onAction={onAction}
+              />
+            )}
           </div>
         </div>
       </div>
