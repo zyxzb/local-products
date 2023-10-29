@@ -15,7 +15,7 @@ const Gallery = ({ images }: GalleryProps) => {
   return (
     <>
       {images.length ? (
-        <div className='bg-white rounded-md p-4 h-[280px] md:h-[500px] z-[99999]'>
+        <div className='bg-white rounded-md p-4 h-[280px] md:h-[500px]'>
           <Carousel
             images={newImagesArray}
             style={{ height: '100%', width: '100%' }}
@@ -25,6 +25,7 @@ const Gallery = ({ images }: GalleryProps) => {
             hasLeftButton={images.length > 1 && 'centerLeft'}
             hasRightButton={images.length > 1 && 'centerRight'}
             hasThumbnailsAtMax={true}
+            zIndexAtMax={99999}
           />
         </div>
       ) : null}

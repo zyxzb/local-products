@@ -1,3 +1,6 @@
+import { format } from 'date-fns';
+import { pl } from 'date-fns/locale';
+
 interface MiastaProps {
   id: number;
   name: string;
@@ -68,11 +71,6 @@ export const capitalizeFirstLetter = (string: string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
 };
 
-export const formatFullDate = (mongoDate: string) => {
-  const createdAtDate = new Date(mongoDate);
-  const formattedDateTime = `${createdAtDate.toLocaleDateString()}, godz. ${createdAtDate.getHours()}:${createdAtDate
-    .getMinutes()
-    .toString()
-    .padStart(2, '0')}`;
-  return formattedDateTime;
+export const formatFullDate = (mongoDate: Date) => {
+  return format(mongoDate, 'd MMMM yyyy, H:mm', { locale: pl });
 };

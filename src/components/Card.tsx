@@ -36,9 +36,7 @@ const Card = async ({ item, canDelete, currentUser, onAction }: CardProps) => {
           <div className='flex justify-between gap-4 items-center mt-auto'>
             <div className='text-xs flex flex-col opacity-70'>
               <span className='line-clamp-1'>{location}</span>
-              <span className='line-clamp-1'>
-                {formatFullDate(String(createdAt))}
-              </span>
+              <span className='line-clamp-1'>{formatFullDate(createdAt)}</span>
             </div>
             <CardButtons
               listingId={id}

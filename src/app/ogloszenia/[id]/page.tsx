@@ -13,7 +13,10 @@ import getAllListings from '@/actions/getAllListings';
 
 import { Listing } from '@prisma/client';
 
-const Map = dynamic(() => import('@/components/LeafletMap'), {
+// const Map = dynamic(() => import('@/components/LeafletMap'), {
+//   ssr: false,
+// });
+const Map = dynamic(() => import('@/components/Map'), {
   ssr: false,
 });
 
@@ -119,7 +122,7 @@ const SingleAd = async ({ params }: { params: SingleAdProps }) => {
             </div>
             {coord.length ? (
               <div className='w-full h-[250px] md:h-[320px]'>
-                <Map coord={coord} title={title} />
+                <Map coord={coord} />
               </div>
             ) : null}
           </div>
@@ -132,9 +135,9 @@ const SingleAd = async ({ params }: { params: SingleAdProps }) => {
 
       <div className='flex justify-between opacity-50 gap-4 flex-wrap'>
         <div className='flex flex-wrap'>
-          <span>Utworzono: {formatFullDate(String(createdAt))},</span>
-          {updatedAt !== createdAt && (
-            <span> aktualizacja: {formatFullDate(String(updatedAt))}</span>
+          <span>Utworzono: {formatFullDate(createdAt)}</span>
+          {formatFullDate(createdAt) !== formatFullDate(updatedAt) && (
+            <span>, aktualizacja: {formatFullDate(updatedAt)}</span>
           )}
         </div>
         <span>ID: {id}</span>
