@@ -43,10 +43,8 @@ const Home = async () => {
             zachęcanie do wsparcia lokalnych producentów żywności oraz
             ułatwienie znalezienia takich producentów w okolicy.
             <strong>
-              {` `}
               Aplikacja umożliwia dwie główne funkcje: dodawanie nowych
               producentów lokalnej żywności oraz ich wyszukiwanie.
-              {` `}
             </strong>
             Jeśli jesteś lokalnym producentem, możesz skorzystać z aplikacji aby
             promować swoje produkty, dotrzeć do szerszego grona klientów i

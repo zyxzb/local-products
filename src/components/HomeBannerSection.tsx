@@ -17,7 +17,7 @@ const HomeBannerSection = () => {
         </span>
         <CustomLink
           text='Dołacz do społecznosci'
-          link='/twoje-konto/login'
+          link='/twoje-konto'
           extraStyles='self-start mr-auto mt-6'
           icon={<BsPeople className='text-2xl' />}
         />

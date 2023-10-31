@@ -9,6 +9,7 @@ import { CustomButton, SearchInput, SearchButton } from '@/components';
 
 import useMergeLocations from '@/hooks/useMergeLocations';
 import useHandleSearch from '@/hooks/useHandleSearch';
+import axios from 'axios';
 
 const initState = {
   name: '',
@@ -29,9 +30,16 @@ const SearchBar = () => {
 
   useOnClickOutside(myRef, handleClickOutside);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+    try {
+      const response = await axios(`/api/listings/searched?${name}=${value}`);
+      const listings = response.data;
+      console.log('listings SearchBar:', listings);
+    } catch (error) {
+      console.error('Error fetching listings:', error);
+    }
   };
 
   return (
@@ -44,7 +52,7 @@ const SearchBar = () => {
         <div className='flex flex-1 relative text-darkColor'>
           <SearchInput
             name='name'
-            placeholder='Produkt lub producent...'
+            placeholder='Nazwa...'
             value={formData.name}
             onChange={handleChange}
             icon={

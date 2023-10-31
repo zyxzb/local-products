@@ -26,7 +26,7 @@ const AddProducer = async () => {
             Zaloguj się aby dodać producenta
           </h2>
           <CustomLink
-            link='/twoje-konto/login'
+            link='/twoje-konto'
             text='Przejdź do logowania'
             extraStyles='max-w-max mx-auto'
             icon={<AiOutlineLogin className='text-2xl' />}

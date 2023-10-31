@@ -16,7 +16,7 @@ const Liked = async () => {
           </h2>
           <CustomLink
             text='Logowanie/Rejestracja'
-            link='/twoje-konto/login'
+            link='/twoje-konto'
             extraStyles='max-w-max mx-auto'
           />
         </div>
