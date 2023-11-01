@@ -17,19 +17,19 @@ import Gallery from './Gallery';
 import FormSectionWrapper from './FormSectionWrapper';
 import UserInfo from './UserInfo';
 import CreateAdForm from './CreateAdForm';
-import SelectLocation from './SelectLocation';
 import SkeletonCard from './SkeletonCard';
 import CardsContainer from './CardsContainer';
 import Breadcrumbs from './Breadcrumbs';
 import DetailsSummary from './DetailsSummary';
 import LazyImage from './LazyImage';
 import CardButtons from './CardButtons';
-import SearchButton from './SearchButton';
 import FilterSortAds from './FilterSortAds';
 import Pagination from './Pagination';
 import ButtonsSection from './ButtonsSection';
 import SearchBarLoader from './SearchBarLoader';
 import ImageUpload from './ImageUpload';
+import ClearButton from './SearchButton';
+import SearchBarList from './SearchBarList';
 
 export {
   Nav,
@@ -51,17 +51,17 @@ export {
   FormSectionWrapper,
   UserInfo,
   CreateAdForm,
-  SelectLocation,
   SkeletonCard,
   CardsContainer,
   Breadcrumbs,
   DetailsSummary,
   LazyImage,
   CardButtons,
-  SearchButton,
   FilterSortAds,
   Pagination,
   ButtonsSection,
   SearchBarLoader,
   ImageUpload,
+  ClearButton,
+  SearchBarList,
 };

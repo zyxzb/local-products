@@ -1,10 +1,10 @@
 import { TfiClose } from 'react-icons/tfi';
 
-interface SearchButtonProps {
+interface ClearButtonProps {
   onClick: () => void;
 }
 
-const SearchButton = ({ onClick }: SearchButtonProps) => {
+const ClearButton = ({ onClick }: ClearButtonProps) => {
   return (
     <button
       type='button'
@@ -17,4 +17,4 @@ const SearchButton = ({ onClick }: SearchButtonProps) => {
   );
 };
 
-export default SearchButton;
+export default ClearButton;

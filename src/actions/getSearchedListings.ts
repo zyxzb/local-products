@@ -8,7 +8,6 @@ interface ISearchedListings {
 const getSearchedListings = async (params: ISearchedListings) => {
   try {
     const { name, location } = params;
-    console.log(name, location);
 
     if (!name && !location) {
       console.log('Both title and location are empty. Skipping fetch.');

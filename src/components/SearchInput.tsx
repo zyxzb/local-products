@@ -23,7 +23,7 @@ const SearchInput = ({
       <input
         type='text'
         name={name}
-        className='w-full px-[40px] py-[10px] sm:py-[20px] text-lg placeholder-darkColor/60 bg-whiteColor'
+        className='w-full pl-[40px] pr-[55px] py-[10px] sm:py-[20px] text-lg placeholder-darkColor/60 bg-whiteColor'
         placeholder={placeholder}
         value={value}
         onChange={onChange}

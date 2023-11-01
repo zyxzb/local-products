@@ -2,7 +2,7 @@ import { useEffect, useCallback, EffectCallback } from 'react';
 
 const useDebounce = (
   effect: EffectCallback,
-  dependencies: [{}],
+  dependencies: any[],
   delay: number,
 ) => {
   const callback = useCallback(effect, dependencies);
