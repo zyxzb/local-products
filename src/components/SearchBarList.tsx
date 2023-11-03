@@ -1,5 +1,3 @@
-import Loader from './Loader';
-
 interface SearchBarListProps {
   newSearched: any[];
   isActive: boolean;

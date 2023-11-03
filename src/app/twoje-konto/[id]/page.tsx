@@ -1,8 +1,7 @@
-import { PageTitle, UserInfo } from '@/components';
+import { CardsContainer, PageTitle, UserInfo } from '@/components';
 import { redirect } from 'next/navigation';
 import getCurrentUser from '@/actions/getCurrentUser';
 import getAllListings from '@/actions/getAllListings';
-import AccountClient from './AccountClient';
 
 interface AccountProps {
   params: {
@@ -28,7 +27,7 @@ const Account = async ({ params: { id } }: AccountProps) => {
             Witaj, {currentUser?.name}! Poniżej znajdują się dodane przez Ciebie
             ogłoszenia.
           </h2>
-          <AccountClient data={data} currentUser={currentUser} canDelete />
+          <CardsContainer data={data} currentUser={currentUser} canDelete />
           <UserInfo />
         </div>
       </>

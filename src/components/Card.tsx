@@ -1,25 +1,17 @@
-'use client';
-
 import Link from 'next/link';
 import { formatFullDate } from '@/utils/helpers';
 import { LazyImage, CardButtons } from '@/components';
 import { User, Listing } from '@prisma/client';
+// import BlurredImage from './BlurredImage';
 
 interface CardProps {
   item: Listing;
   canDelete?: true;
   currentUser?: User | null;
   disabledButtons?: boolean;
-  onAction?: (id: string) => void;
 }
 
-const Card = async ({
-  item,
-  canDelete,
-  currentUser,
-  disabledButtons,
-  onAction,
-}: CardProps) => {
+const Card = ({ item, canDelete, currentUser, disabledButtons }: CardProps) => {
   const { title, location, id, images, createdAt } = item;
 
   const cardImage = images.length ? images[0] : '/landWhite.png';
@@ -33,6 +25,15 @@ const Card = async ({
             title={title}
             classNames='object-cover group-hover:opacity-80 transition-opacity'
           />
+          {/* Blurred Image loads properly but it caused: 
+              Unhandled Runtime Error
+              TypeError: Cannot read properties of undefined (reading 'default') */}
+          {/* WHY? */}
+          {/* <BlurredImage
+            images={images}
+            title={title}
+            classNames='object-cover group-hover:opacity-80 transition-opacity'
+          /> */}
         </div>
         <div className='flex flex-col justify-between h-[35%]'>
           <div>
@@ -51,7 +52,6 @@ const Card = async ({
                 title={title}
                 canDelete={canDelete}
                 currentUser={currentUser}
-                onAction={onAction}
               />
             )}
           </div>

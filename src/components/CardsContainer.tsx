@@ -1,27 +1,24 @@
-'use client';
-
-import { SkeletonCard } from '@/components';
 import dynamic from 'next/dynamic';
 import { User, Listing } from '@prisma/client';
+
+import { SkeletonCard } from '@/components';
 
 interface CardsContainerProps {
   data: Listing[];
   canDelete?: true;
   currentUser?: User | null;
   disabledButtons?: boolean;
-  onAction?: (id: string) => void;
 }
 
 const DynamicCard = dynamic(() => import('@/components/Card'), {
   loading: () => <SkeletonCard />,
-  ssr: false,
+  ssr: true,
 });
 
 const CardsContainer = ({
   data,
   canDelete,
   currentUser,
-  onAction,
   disabledButtons,
 }: CardsContainerProps) => {
   return (
@@ -33,7 +30,6 @@ const CardsContainer = ({
             item={item}
             canDelete={canDelete}
             currentUser={currentUser}
-            onAction={onAction}
             disabledButtons={disabledButtons}
           />
         );

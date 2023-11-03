@@ -1,6 +1,6 @@
 import SearchInput from './SearchInput';
 import Link from 'next/link';
-import SearchButton from './SearchButton';
+import SearchButton from './ClearButton';
 import { useRef } from 'react';
 
 type SearchInputBoxProps = {

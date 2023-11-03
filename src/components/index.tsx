@@ -28,7 +28,7 @@ import Pagination from './Pagination';
 import ButtonsSection from './ButtonsSection';
 import SearchBarLoader from './SearchBarLoader';
 import ImageUpload from './ImageUpload';
-import ClearButton from './SearchButton';
+import ClearButton from './ClearButton';
 import SearchBarList from './SearchBarList';
 
 export {
