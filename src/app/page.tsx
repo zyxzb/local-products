@@ -23,28 +23,29 @@ const Home = async () => {
       <section>
         <div className='mb-10'>
           <h2 className='text-lg md:text-xl mb-4 md:mb-8'>
-            Lokalni producenci i lokalna społeczność{' '}
-            <span className='hidden md:inline'>-</span>
-            <br className='md:hidden' /> Dla kogo jest aplikacja
-            WybierzLokalnie.pl?
+            Lokalni producenci i lokalna społeczność. Dla kogo jest aplikacja
+            WybierzLokalnie?
           </h2>
           <p className='text-base xl:text-lg'>
             Aplikacja WybierzLokalnie.pl została stworzona z myślą o tych,
             którzy pragną być bardziej świadomymi konsumentami, wspierać lokalne
             gospodarstwa i cieszyć się najświeższymi, wysokiej jakości
-            produktami. Chcemy, aby nasza aplikacja stała się narzędziem, które
-            łączy ludzi i promuje współpracę w obrębie lokalnych społeczności,
-            budując silniejsze więzi między producentami a konsumentami na
-            poziomie sąsiedzkim. Przyczyni się to do wsparcia lokalnego handlu i
-            tworzenia sąsiedzkich relacji.
+            produktami.
+            <strong>
+              {' '}
+              Chcemy, aby nasza aplikacja stała się narzędziem, które łączy
+              ludzi i promuje współpracę w obrębie lokalnych społeczności,
+              budując silniejsze więzi między producentami a konsumentami na
+              poziomie sąsiedzkim.{' '}
+            </strong>
+            Przyczyni się to do wsparcia lokalnego handlu i tworzenia
+            sąsiedzkich relacji.
           </p>
         </div>
         <div>
           <h2 className='text-lg md:text-xl mb-4 md:mb-8'>
-            Korzystanie z aplikacji WybierzLokalnie.pl{' '}
-            <span className='hidden md:inline'>-</span>
-            <br className='md:hidden' /> Dodaj lub wyszukaj lokalnych
-            producentów żywnosci.
+            Korzystanie z aplikacji WybierzLokalnie. Dodaj lub wyszukaj
+            lokalnych producentów żywnosci.
           </h2>
           <p className='text-base xl:text-lg'>
             Aplikacja WybierzLokalnie.pl jest narzędziem zbudowanym dla
@@ -70,7 +71,7 @@ const Home = async () => {
       </Suspense>
       <section>
         <h2 className='text-lg md:text-xl mb-4 md:mb-8'>
-          Jakie korzyści niesie ze sobą używanie aplikacji WybierzLokalnie.pl?
+          Jakie korzyści niesie ze sobą używanie aplikacji WybierzLokalnie
         </h2>
         <DetailsSummary />
       </section>
