@@ -20,11 +20,11 @@ const AddProducer = async () => {
   if (!currentUser) {
     return (
       <>
-        <PageTitle title='Dodaj Producenta' />
+        <PageTitle
+          title='Zaloguj sie aby dodać ogłoszenie'
+          subtitle='Zachęcamy do rejestracji i logowania się w naszej aplikacji, dzięki temu będziesz mógł łatwo dodawać ogłoszenia.'
+        />
         <div className='text-center'>
-          <h2 className='md:text-lg mb-4 md:mb-8'>
-            Zaloguj się aby dodać producenta
-          </h2>
           <CustomLink
             link='/twoje-konto'
             text='Przejdź do logowania'
@@ -38,7 +38,10 @@ const AddProducer = async () => {
 
   return (
     <>
-      <PageTitle title='Dodaj Producenta' />
+      <PageTitle
+        title='Dodaj Producenta'
+        subtitle='Dodaj siebie lub producenta żwyności, którego znasz.'
+      />
       <section>
         <FormSectionWrapper text='1. Dodaj zdjęcia'>
           <ImageUpload />

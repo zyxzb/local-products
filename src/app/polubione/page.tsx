@@ -6,35 +6,40 @@ const Liked = async () => {
   const currentUser = await getCurrentUser();
   const data = await getFavoritesListings();
 
-  return (
-    <div>
-      <PageTitle title='Polubione Ogłoszenia' />
-      {!currentUser ? (
+  if (!currentUser) {
+    return (
+      <>
+        <PageTitle
+          title='Zachowaj Polubione ogłoszenia'
+          subtitle='Po zalogowaniu możesz dodawać i usuwać ulubione ogłoszenia. Twoje wybory będą dostępne na każdym urządzeniu'
+        />
         <div className='text-center'>
-          <h2 className='md:text-lg mb-4 md:mb-8'>
-            Zaloguj się aby widzieć polubione ogłoszenia
-          </h2>
           <CustomLink
             text='Logowanie/Rejestracja'
             link='/twoje-konto'
             extraStyles='max-w-max mx-auto'
           />
         </div>
-      ) : data.length > 0 ? (
+      </>
+    );
+  }
+
+  return (
+    <>
+      <PageTitle
+        title='Polubione Ogłoszenia'
+        subtitle='Twoje ulubione ogłoszenia będą dostępne na każdym urządzeniu po zalogowaniu. Dodawaj i usuwaj je według własnych preferencji.'
+      />
+      {data.length > 0 ? (
         <CardsContainer data={data} currentUser={currentUser} />
       ) : (
-        <div className='text-center'>
-          <h2 className='md:text-lg mb-4 md:mb-8'>
-            Brak polubionych ogłoszeń. Dodaj pierwsze.
-          </h2>
-          <CustomLink
-            text='Przeglądaj ogłoszenia'
-            link='/ogloszenia'
-            extraStyles='max-w-max mx-auto'
-          />
-        </div>
+        <CustomLink
+          text='Dodaj pierwsze ogłoszenie'
+          link='/ogloszenia'
+          extraStyles='max-w-max mx-auto'
+        />
       )}
-    </div>
+    </>
   );
 };
 

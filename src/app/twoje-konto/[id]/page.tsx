@@ -1,4 +1,4 @@
-import { CardsContainer, PageTitle, UserInfo } from '@/components';
+import { CardsContainer, PageTitle, UserButtons } from '@/components';
 import { redirect } from 'next/navigation';
 import getCurrentUser from '@/actions/getCurrentUser';
 import getAllListings from '@/actions/getAllListings';
@@ -19,16 +19,17 @@ const Account = async ({ params: { id } }: AccountProps) => {
   const data = await getAllListings({ userId: currentUser.id });
 
   if (currentUser.id === id) {
+    const name = currentUser?.name;
     return (
       <>
-        <PageTitle title='Twoje konto' />
+        <PageTitle
+          title='Twoje konto'
+          subtitle={`Witaj, ${name}! Poniżej znajdują się dodane przez Ciebie
+            ogłoszenia.`}
+        />
+        <UserButtons data={data} />
         <div className='flex flex-col gap-10 md:gap-20'>
-          <h2 className='text-xl sm:text-3xl'>
-            Witaj, {currentUser?.name}! Poniżej znajdują się dodane przez Ciebie
-            ogłoszenia.
-          </h2>
           <CardsContainer data={data} currentUser={currentUser} canDelete />
-          <UserInfo />
         </div>
       </>
     );

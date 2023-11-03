@@ -15,7 +15,7 @@ import HomeBannerSection from './HomeBannerSection';
 import Popup from './Popup';
 import Gallery from './Gallery';
 import FormSectionWrapper from './FormSectionWrapper';
-import UserInfo from './UserInfo';
+import UserButtons from './UserButtons';
 import CreateAdForm from './CreateAdForm';
 import SkeletonCard from './SkeletonCard';
 import CardsContainer from './CardsContainer';
@@ -49,7 +49,7 @@ export {
   Popup,
   Gallery,
   FormSectionWrapper,
-  UserInfo,
+  UserButtons,
   CreateAdForm,
   SkeletonCard,
   CardsContainer,

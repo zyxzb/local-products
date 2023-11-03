@@ -11,7 +11,10 @@ const Account = async () => {
 
   return (
     <>
-      <PageTitle title='Logowanie / Rejestracja' />
+      <PageTitle
+        title='Logowanie / Rejestracja'
+        subtitle='Zaloguj się teraz za pomocą konta Google lub swojego adresu e-mail i ciesz się pełnym dostępem do naszej platformy.'
+      />
       <div className='grid sm:grid-cols-2 gap-20 w-full'>
         <LoginForm />
         <RegisterForm />

@@ -28,7 +28,7 @@ export const navLinks = [
     icon: <BsPerson />,
   },
   {
-    name: 'dodaj producenta',
+    name: 'dodaj ogłoszenie',
     url: '/dodaj-producenta',
     icon: <AiOutlinePlusCircle />,
   },

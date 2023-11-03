@@ -13,12 +13,20 @@ export const metadata: Metadata = {
 const Contact = () => {
   return (
     <>
-      <PageTitle title='Skontaktuj się z nami' />
+      <PageTitle
+        title='Skontaktuj się z nami'
+        subtitle='Zachęcamy do kontaktu. Jeśli jesteś zainteresowany współpracą lub potrzebujesz wsparcia w rozwiązywaniu problemów, jesteśmy tu, aby Ci pomóc.'
+      />
       <div className='grid md:grid-cols-2 gap-20'>
-        <div className='animate-move'>
-          <Image src={FormImg} alt='form' className='w-full h-full' />
-        </div>
         <ContactForm />
+        <div className='animate-move hidden md:flex'>
+          <Image
+            src={FormImg}
+            alt='form'
+            className='w-full h-full'
+            priority={true}
+          />
+        </div>
       </div>
     </>
   );
