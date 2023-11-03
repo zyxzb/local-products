@@ -3,7 +3,7 @@ import { HiChevronDown } from 'react-icons/hi';
 
 const DetailsSummary = () => {
   return (
-    <div className='grid divide-y divide-darkColor w-full text-sm md:text-base xl:text-lg'>
+    <div className='grid divide-y divide-darkColor w-full md:text-base xl:text-lg'>
       {homeData.map((data) => (
         <div key={data.header} className='py-5'>
           <details className='group'>

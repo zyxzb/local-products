@@ -22,11 +22,13 @@ const Home = async () => {
       <HomeBannerSection />
       <section>
         <div className='mb-10'>
-          <h2 className='md:text-xl mb-4 md:mb-8'>
-            Lokalni Producenci i Lokalna Społeczność - Dla kogo jest aplikacja
+          <h2 className='text-lg md:text-xl mb-4 md:mb-8'>
+            Lokalni producenci i lokalna społeczność{' '}
+            <span className='hidden md:inline'>-</span>
+            <br className='md:hidden' /> Dla kogo jest aplikacja
             WybierzLokalnie.pl?
           </h2>
-          <p className='text-sm md:text-base xl:text-lg'>
+          <p className='text-base xl:text-lg'>
             Aplikacja WybierzLokalnie.pl została stworzona z myślą o tych,
             którzy pragną być bardziej świadomymi konsumentami, wspierać lokalne
             gospodarstwa i cieszyć się najświeższymi, wysokiej jakości
@@ -38,11 +40,13 @@ const Home = async () => {
           </p>
         </div>
         <div>
-          <h2 className='md:text-xl mb-4 md:mb-8'>
-            Korzystanie z aplikacji WybierzLokalnie.pl - dodaj lub wyszukaj
-            lokalnych producentów żywnosci.
+          <h2 className='text-lg md:text-xl mb-4 md:mb-8'>
+            Korzystanie z aplikacji WybierzLokalnie.pl{' '}
+            <span className='hidden md:inline'>-</span>
+            <br className='md:hidden' /> Dodaj lub wyszukaj lokalnych
+            producentów żywnosci.
           </h2>
-          <p className='text-sm md:text-base xl:text-lg'>
+          <p className='text-base xl:text-lg'>
             Aplikacja WybierzLokalnie.pl jest narzędziem zbudowanym dla
             wszystkich miłośników lokalnej żywności. Jej głównym celem jest
             zachęcanie do wsparcia lokalnych producentów żywności oraz
@@ -65,7 +69,7 @@ const Home = async () => {
         <NewAds data={data} />
       </Suspense>
       <section>
-        <h2 className='md:text-xl mb-4 md:mb-8'>
+        <h2 className='text-lg md:text-xl mb-4 md:mb-8'>
           Jakie korzyści niesie ze sobą używanie aplikacji WybierzLokalnie.pl?
         </h2>
         <DetailsSummary />

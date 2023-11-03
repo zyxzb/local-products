@@ -8,7 +8,7 @@ interface NewAdsProps {
 const NewAds = ({ data }: NewAdsProps) => {
   return (
     <section>
-      <p className='mb-4 text-sm md:text-base'>Ostatnio dodane ogłoszenia</p>
+      <p className='mb-4 text-base xl:text-lg'>Ostatnio dodane ogłoszenia</p>
       <CardsContainer data={data} disabledButtons />
     </section>
   );
