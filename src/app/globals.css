@@ -2,9 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Khand:wght@700&display=swap');
-
 /* Fix Safari issue related to <summary> / <details> arrow */
 details > summary.list-none::-webkit-details-marker,
 details > summary.list-none::marker {
@@ -30,17 +27,12 @@ details > summary.list-none::marker {
   }
 
   body {
-    @apply bg-whiteColor font-manrope;
+    @apply bg-whiteColor;
   }
 
   h1,
   h2 {
-    @apply font-khand font-bold;
-  }
-
-  .nav-links,
-  footer {
-    @apply font-khand font-bold;
+    @apply font-bold;
   }
 
   a {

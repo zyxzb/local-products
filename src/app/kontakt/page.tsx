@@ -15,7 +15,7 @@ const Contact = () => {
     <>
       <PageTitle
         title='Skontaktuj się z nami'
-        subtitle='Zachęcamy do kontaktu. Jeśli jesteś zainteresowany współpracą lub potrzebujesz wsparcia w rozwiązywaniu problemów, jesteśmy tu, aby Ci pomóc.'
+        subtitle='Zachęcamy do kontaktu. Jeśli jesteś zainteresowany współpracą lub potrzebujesz wsparcia, jesteśmy tu, aby Ci pomóc.'
       />
       <div className='grid md:grid-cols-2 gap-20'>
         <ContactForm />

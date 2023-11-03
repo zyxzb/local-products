@@ -23,13 +23,18 @@ const Home = async () => {
       <section>
         <div className='mb-10'>
           <h2 className='md:text-xl mb-4 md:mb-8'>
-            Dla kogo jest aplikacja WybierzLokalnie.pl?
+            Lokalni Producenci i Lokalna Społeczność - Dla kogo jest aplikacja
+            WybierzLokalnie.pl?
           </h2>
-          <p className='text-sm md:text-base'>
+          <p className='text-sm md:text-base xl:text-lg'>
             Aplikacja WybierzLokalnie.pl została stworzona z myślą o tych,
             którzy pragną być bardziej świadomymi konsumentami, wspierać lokalne
             gospodarstwa i cieszyć się najświeższymi, wysokiej jakości
-            produktami.
+            produktami. Chcemy, aby nasza aplikacja stała się narzędziem, które
+            łączy ludzi i promuje współpracę w obrębie lokalnych społeczności,
+            budując silniejsze więzi między producentami a konsumentami na
+            poziomie sąsiedzkim. Przyczyni się to do wsparcia lokalnego handlu i
+            tworzenia sąsiedzkich relacji.
           </p>
         </div>
         <div>
@@ -37,14 +42,14 @@ const Home = async () => {
             Korzystanie z aplikacji WybierzLokalnie.pl - dodaj lub wyszukaj
             lokalnych producentów żywnosci.
           </h2>
-          <p className='text-sm md:text-base'>
+          <p className='text-sm md:text-base xl:text-lg'>
             Aplikacja WybierzLokalnie.pl jest narzędziem zbudowanym dla
             wszystkich miłośników lokalnej żywności. Jej głównym celem jest
             zachęcanie do wsparcia lokalnych producentów żywności oraz
-            ułatwienie znalezienia takich producentów w okolicy.
+            ułatwienie znalezienia takich producentów w okolicy.{' '}
             <strong>
               Aplikacja umożliwia dwie główne funkcje: dodawanie nowych
-              producentów lokalnej żywności oraz ich wyszukiwanie.
+              producentów lokalnej żywności oraz ich wyszukiwanie.{' '}
             </strong>
             Jeśli jesteś lokalnym producentem, możesz skorzystać z aplikacji aby
             promować swoje produkty, dotrzeć do szerszego grona klientów i

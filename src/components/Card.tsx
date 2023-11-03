@@ -18,7 +18,7 @@ const Card = ({ item, canDelete, currentUser, disabledButtons }: CardProps) => {
 
   return (
     <Link href={`/ogloszenia/${id}`}>
-      <div className='bg-white rounded-md transition cursor-pointer h-[280px] sm:h-[360px] flex flex-col gap-4 p-3 group shadow hover:shadow-label'>
+      <div className='bg-white rounded-md transition cursor-pointer h-[280px] sm:h-[360px] flex flex-col gap-4 p-2 md:p-2.5 group shadow hover:shadow-label'>
         <div className='relative w-full h-[65%]'>
           <LazyImage
             cardImage={cardImage}
@@ -38,11 +38,11 @@ const Card = ({ item, canDelete, currentUser, disabledButtons }: CardProps) => {
         <div className='flex flex-col justify-between h-[35%]'>
           <div>
             <h3 className='mb-2 text-md sm:text-lg line-clamp-2 '>
-              <strong className='font-normal'>{title}</strong>
+              <strong className='font-medium'>{title}</strong>
             </h3>
           </div>
           <div className='flex justify-between gap-4 items-center mt-auto'>
-            <div className='text-xs flex flex-col opacity-70'>
+            <div className='text-xs md:text-sm flex flex-col opacity-70 font-medium'>
               <span className='line-clamp-1'>{location}</span>
               <span className='line-clamp-1'>{formatFullDate(createdAt)}</span>
             </div>

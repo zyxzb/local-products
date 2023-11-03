@@ -1,4 +1,4 @@
-// import { Cairo } from 'next/font/google';
+import { Exo_2 } from 'next/font/google';
 
 import { Footer, Nav, SearchBar, SearchBarLoader } from '@/components';
 import Providers from '@/providers/Providers';
@@ -7,7 +7,7 @@ import { Suspense } from 'react';
 import './globals.css';
 import { Metadata } from 'next';
 
-// const cairo = Cairo({ subsets: ['latin'] });
+const exo_2 = Exo_2({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.wybierzlokalnie.pl'),
@@ -26,9 +26,7 @@ export const metadata: Metadata = {
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang='pl'>
-      <body
-      // className={cairo.className}
-      >
+      <body className={exo_2.className}>
         <Providers>
           <Nav />
           <div className='w-full min-h-[calc(100vh_-_70px)] mx-auto flex flex-col pt-[70px] pb-10 md:pb-20'>

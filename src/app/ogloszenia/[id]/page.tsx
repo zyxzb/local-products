@@ -84,7 +84,7 @@ const SingleAd = async ({ params }: { params: SingleAdProps }) => {
           <Gallery images={images} />
           {/* CONTENT */}
           {/* change mt-8 // space when no photo */}
-          <div className='flex flex-col gap-4 bg-white rounded-md p-4'>
+          <div className='flex flex-col gap-4 bg-white rounded-md p-2.5 md:p-4'>
             <h1 className='text-xl md:text-3xl'>{title}</h1>
             {/* <h2 className='text-2xl lg:text-3xl'>{desc}</h2> */}
             <p>
@@ -98,7 +98,7 @@ const SingleAd = async ({ params }: { params: SingleAdProps }) => {
         {/* RIGHT GRID */}
 
         <div className='col-start-9 col-end-13 flex flex-col gap-8'>
-          <div className='bg-white rounded-md p-4 '>
+          <div className='bg-white rounded-md p-2.5 md:p-4'>
             <p className='uppercase font-bold mb-4'>Dodane przez</p>
             <div className='flex items-center gap-2'>
               <div>
@@ -108,7 +108,7 @@ const SingleAd = async ({ params }: { params: SingleAdProps }) => {
             </div>
           </div>
 
-          <div className='bg-white rounded-md p-4 flex flex-col'>
+          <div className='bg-white rounded-md p-2.5 md:p-4 flex flex-col'>
             <p className='uppercase font-bold mb-4'>Lokalizacja</p>
             <div className='flex items-center gap-2 mb-4'>
               <div>
