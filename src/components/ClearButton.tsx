@@ -10,7 +10,7 @@ const ClearButton = ({ onClick }: ClearButtonProps) => {
       type='button'
       aria-label='usuń tekst'
       className='absolute right-[10px] top-1/2 -translate-y-1/2 text-2xl text-darkColor/60 p-2'
-      onClick={() => onClick()}
+      onClick={onClick}
     >
       <TfiClose />
     </button>
