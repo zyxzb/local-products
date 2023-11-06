@@ -1,6 +1,12 @@
 import { Exo_2 } from 'next/font/google';
 
-import { Footer, Nav, SearchBar, SearchBarLoader } from '@/components';
+import {
+  Footer,
+  Nav,
+  SearchBar,
+  SearchBarLoader,
+  LocationsWrapper,
+} from '@/components';
 import Providers from '@/providers/Providers';
 import { Suspense } from 'react';
 
@@ -39,6 +45,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
               {children}
             </main>
           </div>
+          <LocationsWrapper />
           <Footer />
         </Providers>
       </body>

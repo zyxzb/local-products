@@ -1,7 +1,6 @@
 'use client';
 
 import Tippy from '@tippyjs/react';
-import 'tippy.js/dist/tippy.css';
 
 import { AiFillHeart, AiOutlineDelete } from 'react-icons/ai';
 import { FaHeartBroken } from 'react-icons/fa';

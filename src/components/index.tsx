@@ -30,6 +30,8 @@ import SearchBarLoader from './SearchBarLoader';
 import ImageUpload from './ImageUpload';
 import ClearButton from './ClearButton';
 import SearchBarList from './SearchBarList';
+import Locations from './Locations';
+import LocationsWrapper from './LocationsWrapper';
 
 export {
   Nav,
@@ -64,4 +66,6 @@ export {
   ImageUpload,
   ClearButton,
   SearchBarList,
+  Locations,
+  LocationsWrapper,
 };
