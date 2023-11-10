@@ -1,25 +1,49 @@
 'use client';
 
-import { useState } from 'react';
+import { useCallback, useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 
 import Tippy from '@tippyjs/react';
 import { FaMapMarkedAlt } from 'react-icons/fa';
+import { Listing } from '@prisma/client';
+import { useLockedBody } from 'usehooks-ts';
 
 const Map = dynamic(() => import('@/components/Map'), {
   ssr: false,
 });
 
 interface LocationsProps {
-  locations: number[][];
+  listings: Listing[];
 }
 
-const Locations = ({ locations }: LocationsProps) => {
+const Locations = ({ listings }: LocationsProps) => {
   const [showLocations, setShowLocations] = useState(false);
+  const [category, setCategory] = useState('');
+  const [filteredLocations, setFilteredLocations] = useState<number[][]>([]);
+  console.log(category);
 
-  const handleClick = () => {
+  useLockedBody(showLocations, 'body');
+
+  const handleClick = useCallback(() => {
     setShowLocations(!showLocations);
+  }, [showLocations]);
+
+  const handleSelectCategory = (category: string) => {
+    if (category === 'Pozostałe') {
+      setCategory('');
+      return;
+    }
+    setCategory(category);
   };
+
+  useEffect(() => {
+    const filteredByName = listings.filter((listing) =>
+      listing.title.toLowerCase().includes(category.toLowerCase()),
+    );
+    // set coords filtered locations
+    const locations = filteredByName.map((item) => item.coord);
+    setFilteredLocations([...locations]);
+  }, [category, listings]);
 
   return (
     <>
@@ -33,7 +57,13 @@ const Locations = ({ locations }: LocationsProps) => {
           <FaMapMarkedAlt />
         </button>
       </Tippy>
-      {showLocations && <Map locations={locations} onClick={handleClick} />}
+      {showLocations && (
+        <Map
+          locations={filteredLocations}
+          onClick={handleClick}
+          handleSelectCategory={handleSelectCategory}
+        />
+      )}
     </>
   );
 };

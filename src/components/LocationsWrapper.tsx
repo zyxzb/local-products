@@ -3,9 +3,10 @@ import { Locations } from '@/components';
 
 const LocationsWrapper = async () => {
   const data = await getAllListings();
-  const locations = data.map((item) => item.coord);
+  // const locations = data.map((item) => item.coord);
+  // console.log(data);
 
-  return <Locations locations={locations} />;
+  return <Locations listings={data} />;
 };
 
 export default LocationsWrapper;

@@ -12,6 +12,7 @@ import 'leaflet/dist/leaflet.css';
 import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
 import markerIcon from 'leaflet/dist/images/marker-icon.png';
 import markerShadow from 'leaflet/dist/images/marker-shadow.png';
+import MapListCategories from './MapListCategories';
 
 // @ts-ignore
 delete L.Icon.Default.prototype._getIconUrl;
@@ -25,9 +26,10 @@ interface MapProps {
   coord?: number[];
   locations?: number[][];
   onClick?: () => void;
+  handleSelectCategory: (category: string) => void;
 }
 
-const Map = ({ coord, locations, onClick }: MapProps) => {
+const Map = ({ coord, locations, onClick, handleSelectCategory }: MapProps) => {
   const mapRef = useRef<HTMLDivElement>(null);
 
   if (onClick) {
@@ -58,13 +60,14 @@ const Map = ({ coord, locations, onClick }: MapProps) => {
     return (
       <div className='fixed inset-0 bg-black/50 z-[99999] backdrop-blur-sm'>
         <div
-          className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[70vh] w-[90vw] max-w-[1200px]'
+          className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[80%] w-[90%] max-w-[1200px]'
           ref={mapRef}
         >
+          <MapListCategories handleSelectCategory={handleSelectCategory} />
           <MapContainer
             center={[51.9194, 19.1451]}
             zoom={6}
-            className='absolute w-full h-full'
+            className='w-full h-[85%]'
           >
             <TileLayer
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

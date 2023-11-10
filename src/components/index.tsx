@@ -32,6 +32,8 @@ import ClearButton from './ClearButton';
 import SearchBarList from './SearchBarList';
 import Locations from './Locations';
 import LocationsWrapper from './LocationsWrapper';
+import TextHome from './TextHome';
+import Categories from './Categories';
 
 export {
   Nav,
@@ -68,4 +70,6 @@ export {
   SearchBarList,
   Locations,
   LocationsWrapper,
+  Categories,
+  TextHome,
 };
