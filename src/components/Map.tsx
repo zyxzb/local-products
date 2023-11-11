@@ -26,7 +26,7 @@ interface MapProps {
   coord?: number[];
   locations?: number[][];
   onClick?: () => void;
-  handleSelectCategory: (category: string) => void;
+  handleSelectCategory?: (category: string) => void;
 }
 
 const Map = ({ coord, locations, onClick, handleSelectCategory }: MapProps) => {

@@ -6,7 +6,7 @@ import { categories } from '@/data/categories';
 import Image from 'next/image';
 
 interface MapListCategoriesInterface {
-  handleSelectCategory: (category: string) => void;
+  handleSelectCategory?: (category: string) => void;
 }
 
 const MapListCategories = ({
@@ -23,7 +23,9 @@ const MapListCategories = ({
           aria-label={category.label}
           type='button'
           className='flex flex-col items-center justify-center gap-1 group h-full p-2 cursor-pointer'
-          onClick={() => handleSelectCategory(category.label)}
+          onClick={() =>
+            handleSelectCategory && handleSelectCategory(category.label)
+          }
         >
           <div className='relative h-[45px] w-[60px]'>
             <Image
