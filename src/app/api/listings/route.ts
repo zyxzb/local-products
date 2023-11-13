@@ -8,7 +8,7 @@ export const POST = async (request: Request) => {
     return NextResponse.error();
   }
   const body = await request.json();
-  const { title, desc, location, content, images, coord } = body;
+  const { title, location, content, images, coord, categories } = body;
 
   const listing = await prisma.listing.create({
     data: {
@@ -17,6 +17,7 @@ export const POST = async (request: Request) => {
       images,
       location,
       coord,
+      categories,
       email: currentUser?.email,
       userId: currentUser.id,
       // username?

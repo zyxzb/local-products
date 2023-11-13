@@ -34,6 +34,7 @@ import Locations from './Locations';
 import LocationsWrapper from './LocationsWrapper';
 import TextHome from './TextHome';
 import Categories from './Categories';
+import FormCategories from './FormCategories';
 
 export {
   Nav,
@@ -72,4 +73,5 @@ export {
   LocationsWrapper,
   Categories,
   TextHome,
+  FormCategories,
 };

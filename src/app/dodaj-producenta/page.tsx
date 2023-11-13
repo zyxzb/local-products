@@ -4,6 +4,7 @@ import {
   CreateAdForm,
   ImageUpload,
   FormSectionWrapper,
+  FormCategories,
 } from '@/components';
 
 import { AiOutlineLogin } from 'react-icons/ai';
@@ -48,6 +49,9 @@ const AddProducer = async () => {
         </FormSectionWrapper>
         <FormSectionWrapper text='2. Wybierz lokalizację'>
           <GeocoderControl />
+        </FormSectionWrapper>
+        <FormSectionWrapper text='3. Wybierz pasujące kategorie'>
+          <FormCategories />
         </FormSectionWrapper>
         <CreateAdForm />
       </section>

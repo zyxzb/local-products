@@ -48,9 +48,10 @@ model Listing {
   id                 String   @id @default(auto()) @map("_id") @db.ObjectId
   title              String
   content            String
-  images             String[] @default([])  // Lista URLi do obrazów
+  images             String[] @default([])
+  categories         String[] @default([])  
   location           String?
-  coord              Float[]  @default([])  // dwie wartości liczbowe
+  coord              Float[]  @default([])
   username           String?
   email              String?
   createdAt          DateTime @default(now())

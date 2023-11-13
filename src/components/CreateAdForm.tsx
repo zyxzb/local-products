@@ -24,8 +24,15 @@ const initialValues = {
 
 const CreateAdForm = () => {
   const [isSending, setIsSending] = useState(false);
-  const { images, setImages, location, setLocation, coord } =
-    useCreateAdContext();
+  const {
+    images,
+    setImages,
+    location,
+    setLocation,
+    coord,
+    categories,
+    setCategories,
+  } = useCreateAdContext();
 
   const router = useRouter();
 
@@ -47,12 +54,14 @@ const CreateAdForm = () => {
         images,
         location,
         coord,
+        categories,
       })
       .then(() => {
         toast.success('Dodano ogłoszenie!');
         actions.resetForm();
         setImages([]);
         setLocation('');
+        setCategories([]);
         router.push('/twoje-konto');
       })
       .catch(() => toast.error('Cos poszło nie tak'))
@@ -67,10 +76,10 @@ const CreateAdForm = () => {
     >
       {() => (
         <Form className='flex flex-col w-full gap-10'>
-          <FormSectionWrapper text='3. Dodaj tytuł ogłoszenia'>
+          <FormSectionWrapper text='4. Dodaj tytuł ogłoszenia'>
             <InputField name='title' placeholder='Tytuł...' />
           </FormSectionWrapper>
-          <FormSectionWrapper text='4. Dodaj treść ogłoszenia'>
+          <FormSectionWrapper text='5. Dodaj treść ogłoszenia'>
             <InputField
               name='content'
               placeholder='Treść ogłoszenia...'
