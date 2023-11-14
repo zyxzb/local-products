@@ -53,8 +53,8 @@ const Map = ({ coord, locations, onClick, handleSelectCategory }: MapProps) => {
   }
 
   if (locations) {
-    const markers = locations.map((coord) => (
-      <Marker position={[coord[0], coord[1]]} />
+    const markers = locations.map((coord, index) => (
+      <Marker position={[coord[0], coord[1]]} key={index} />
     ));
 
     return (
