@@ -19,7 +19,7 @@ interface LocationsProps {
 const Locations = ({ listings }: LocationsProps) => {
   const [showLocations, setShowLocations] = useState(false);
   const [category, setCategory] = useState('');
-  const [filteredLocations, setFilteredLocations] = useState<number[][]>([]);
+  const [filteredLocations, setFilteredLocations] = useState<Listing[]>([]);
 
   useLockedBody(showLocations, 'body');
 
@@ -37,10 +37,8 @@ const Locations = ({ listings }: LocationsProps) => {
 
   useEffect(() => {
     const newFilteredLocations = category
-      ? listings
-          .filter((listing) => listing.categories.includes(category))
-          .map((listing) => listing.coord)
-      : listings.map((listing) => listing.coord);
+      ? listings.filter((listing) => listing.categories?.includes(category))
+      : listings;
 
     setFilteredLocations(newFilteredLocations);
   }, [category, listings]);

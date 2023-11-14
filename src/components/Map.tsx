@@ -1,9 +1,14 @@
 'use client';
 
 import { useRef } from 'react';
-import { MapContainer, Marker, TileLayer } from 'react-leaflet';
+import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
 import MarkerClusterGroup from 'react-leaflet-cluster';
 import { useOnClickOutside } from 'usehooks-ts';
+import { categories } from '@/data/categories';
+import { Listing } from '@prisma/client';
+
+import Link from 'next/link';
+import Image from 'next/image';
 
 import L from 'leaflet';
 
@@ -24,7 +29,7 @@ L.Icon.Default.mergeOptions({
 
 interface MapProps {
   coord?: number[];
-  locations?: number[][];
+  locations?: Listing[];
   onClick?: () => void;
   handleSelectCategory?: (category: string) => void;
 }
@@ -35,6 +40,11 @@ const Map = ({ coord, locations, onClick, handleSelectCategory }: MapProps) => {
   if (onClick) {
     useOnClickOutside(mapRef, onClick);
   }
+
+  const findCategoryIcon = (categoryName: string) => {
+    const category = categories.find((c) => c.label === categoryName);
+    return category && category.icon;
+  };
 
   if (coord) {
     return (
@@ -53,8 +63,37 @@ const Map = ({ coord, locations, onClick, handleSelectCategory }: MapProps) => {
   }
 
   if (locations) {
-    const markers = locations.map((coord, index) => (
-      <Marker position={[coord[0], coord[1]]} key={index} />
+    const markers = locations.map((location, index) => (
+      <Marker position={[location.coord[0], location.coord[1]]} key={index}>
+        <Popup>
+          <h4 className='font-bold text-darkColor text-base mb-2'>
+            {location.title}
+          </h4>
+          <div className='flex flex-warp gap-2'>
+            {location.categories.map((categoryName) => {
+              const categoryIcon = findCategoryIcon(categoryName);
+              return (
+                <div className='relative w-[30px] h-[30px] mb-2'>
+                  <Image
+                    src={categoryIcon}
+                    alt={categoryName}
+                    key={categoryName}
+                    fill={true}
+                  />
+                </div>
+              );
+            })}
+          </div>
+          <Link
+            className='underline underline-offset-2	text-[14px] !text-darkGreen'
+            href={`/ogloszenia/${location.id}`}
+            rel='noopener noreferrer'
+            target='_blank'
+          >
+            Otwórz w nowym oknie
+          </Link>
+        </Popup>
+      </Marker>
     ));
 
     return (
