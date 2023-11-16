@@ -1,14 +1,15 @@
 'use client';
 
 import { useRef } from 'react';
-import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
-import MarkerClusterGroup from 'react-leaflet-cluster';
-import { useOnClickOutside } from 'usehooks-ts';
-import { categories } from '@/data/categories';
-import { Listing } from '@prisma/client';
-
 import Link from 'next/link';
 import Image from 'next/image';
+import { useOnClickOutside } from 'usehooks-ts';
+import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
+import MarkerClusterGroup from 'react-leaflet-cluster';
+
+import { Listing } from '@prisma/client';
+import { findCategoryIcon } from '@/utils/helpers';
+import { MapListCategories } from '@/components';
 
 import L from 'leaflet';
 
@@ -17,7 +18,6 @@ import 'leaflet/dist/leaflet.css';
 import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
 import markerIcon from 'leaflet/dist/images/marker-icon.png';
 import markerShadow from 'leaflet/dist/images/marker-shadow.png';
-import MapListCategories from './MapListCategories';
 
 // @ts-ignore
 delete L.Icon.Default.prototype._getIconUrl;
@@ -40,11 +40,6 @@ const Map = ({ coord, locations, onClick, handleSelectCategory }: MapProps) => {
   if (onClick) {
     useOnClickOutside(mapRef, onClick);
   }
-
-  const findCategoryIcon = (categoryName: string) => {
-    const category = categories.find((c) => c.label === categoryName);
-    return category && category.icon;
-  };
 
   if (coord) {
     return (

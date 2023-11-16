@@ -24,7 +24,7 @@ const MapListCategories = ({
           type='button'
           className='flex flex-col items-center justify-center gap-1 group h-full p-2 cursor-pointer'
           onClick={() =>
-            handleSelectCategory && handleSelectCategory(category.label)
+            handleSelectCategory && handleSelectCategory(category.link)
           }
         >
           <div className='relative h-[45px] w-[60px]'>

@@ -28,7 +28,8 @@ const Locations = ({ listings }: LocationsProps) => {
   }, [showLocations]);
 
   const handleSelectCategory = (category: string) => {
-    if (category === 'Pozostałe') {
+    console.log(category);
+    if (category === 'pozostale') {
       setCategory('');
       return;
     }
