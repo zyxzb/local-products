@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import dynamic from 'next/dynamic';
 import { BsFillPersonCheckFill } from 'react-icons/bs';
-import { formatFullDate } from '@/utils/helpers';
+import { findCategoryName, formatFullDate } from '@/utils/helpers';
 import { IoLocationSharp } from 'react-icons/io5';
 
 import { Gallery, Breadcrumbs, ButtonsSection } from '@/components';
@@ -12,6 +12,7 @@ import getCurrentUser from '@/actions/getCurrentUser';
 import getAllListings from '@/actions/getAllListings';
 
 import { Listing } from '@prisma/client';
+import Link from 'next/link';
 
 const Map = dynamic(() => import('@/components/Map'), {
   ssr: false,
@@ -71,6 +72,7 @@ const SingleAd = async ({ params }: { params: SingleAdProps }) => {
     images,
     coord,
     email,
+    categories,
   } = data;
 
   return (
@@ -107,6 +109,24 @@ const SingleAd = async ({ params }: { params: SingleAdProps }) => {
               <p>{email?.split('@')[0]}</p>
             </div>
           </div>
+
+          {categories.length > 0 && (
+            <div className='bg-white rounded-md p-2.5 md:p-4'>
+              <p className='uppercase font-bold mb-4'>Kategoria</p>
+              <div className='flex flex-wrap gap-3'>
+                {categories.map((category: string) => (
+                  <Link
+                    href={`/ogloszenia?category=${category}`}
+                    aria-label={findCategoryName(category)}
+                    className='px-4 py-2 border bg-darkColor text-whiteColor rounded-2xl'
+                    key={category}
+                  >
+                    {findCategoryName(category)}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
 
           <div className='bg-white rounded-md p-2.5 md:p-4 flex flex-col'>
             <p className='uppercase font-bold mb-4'>Lokalizacja</p>

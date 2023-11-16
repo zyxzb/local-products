@@ -3,6 +3,7 @@
 import { useCallback } from 'react';
 import { useCreateAdContext } from '@/context/createAddContext';
 import { categories as allCategories } from '@/data/categories';
+import { findCategoryName } from '@/utils/helpers';
 
 const FormCategories = () => {
   const { categories, setCategories } = useCreateAdContext();
@@ -29,7 +30,7 @@ const FormCategories = () => {
             aria-label={`Dodaj/usuń ${category.label}`}
             className='px-4 py-2 border border-darkColor rounded-2xl'
             key={category.label}
-            onClick={() => handleToggleCategory(category.label)}
+            onClick={() => handleToggleCategory(category.link)}
           >
             {category.label}
           </button>
@@ -47,7 +48,7 @@ const FormCategories = () => {
                 key={category}
                 onClick={() => handleToggleCategory(category)}
               >
-                {category}
+                {findCategoryName(category)}
               </button>
             ))}
           </div>

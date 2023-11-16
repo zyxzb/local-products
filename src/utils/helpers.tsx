@@ -1,5 +1,6 @@
 import { format } from 'date-fns';
 import { pl } from 'date-fns/locale';
+import { categories as allCategories } from '@/data/categories';
 
 interface MiastaProps {
   id: number;
@@ -73,4 +74,9 @@ export const capitalizeFirstLetter = (string: string) => {
 
 export const formatFullDate = (mongoDate: Date) => {
   return format(mongoDate, 'd MMMM yyyy, H:mm', { locale: pl });
+};
+
+export const findCategoryName = (categoryLink: string) => {
+  const category = allCategories.find((c) => c.link === categoryLink);
+  return category?.label;
 };

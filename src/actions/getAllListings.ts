@@ -7,11 +7,12 @@ export interface IListingsParams {
   sort?: string;
   title?: string;
   location?: string;
+  category?: string;
 }
 
 const getAllListings = async (params: IListingsParams = {}) => {
   try {
-    const { userId, page, limit, sort, title, location } = params;
+    const { userId, page, limit, sort, title, location, category } = params;
 
     let query: any = {};
     let orderBy: any = { createdAt: 'desc' };
@@ -45,6 +46,12 @@ const getAllListings = async (params: IListingsParams = {}) => {
       query.location = {
         contains: location,
         mode: 'insensitive',
+      };
+    }
+
+    if (category) {
+      query.categories = {
+        has: category,
       };
     }
 
