@@ -2,13 +2,14 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useLockedBody } from 'usehooks-ts';
 
 import { navLinks } from '@/data/nav-links';
 import { CiMenuBurger } from 'react-icons/ci';
 import { TfiClose } from 'react-icons/tfi';
-import { FiMapPin } from 'react-icons/fi';
+import LogoIcon from 'public/LogoIcon.svg';
 
 const Nav = () => {
   const [openNav, setOpenNav] = useState(false);
@@ -20,7 +21,12 @@ const Nav = () => {
     <nav className='nav-links h-[70px] fixed top-0 left-0 right-0 z-[9999] flex justify-between items-center bg-darkColor px-[15px]'>
       <div>
         <Link href='/' className='flex items-center gap-2 text-whiteColor px-2'>
-          <FiMapPin className='text-xl lg:text-3xl' />
+          <Image
+            src={LogoIcon}
+            priority={true}
+            alt='logo icon'
+            className='w-[30px] h-[30px]'
+          />
           <span>WybierzLokalnie.pl</span>
         </Link>
       </div>
@@ -69,7 +75,12 @@ const Nav = () => {
                 className='flex items-center gap-2 text-whiteColor px-2'
                 onClick={() => setOpenNav(false)}
               >
-                <FiMapPin className='text-xl lg:text-3xl' />
+                <Image
+                  src={LogoIcon}
+                  priority={true}
+                  alt='logo icon'
+                  className='w-[30px] h-[30px]'
+                />
                 <span>WybierzLokalnie.pl</span>
               </Link>
             </div>
