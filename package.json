@@ -27,7 +27,7 @@
     "leaflet-control-geocoder": "^2.4.0",
     "next": "^14.0.3",
     "next-auth": "^4.24.5",
-    "next-cloudinary": "^4.28.0",
+    "next-cloudinary": "^5.7.0",
     "plaiceholder": "^3.0.0",
     "postcss": "8.4.24",
     "query-string": "^8.1.0",
