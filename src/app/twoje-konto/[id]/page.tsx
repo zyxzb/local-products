@@ -27,9 +27,13 @@ const Account = async ({ params: { id } }: AccountProps) => {
           subtitle={`Witaj, ${name}! Poniżej znajdują się dodane przez Ciebie
             ogłoszenia.`}
         />
-        <UserButtons data={data} />
+        <UserButtons data={data.listings} />
         <div className='flex flex-col gap-10 md:gap-20'>
-          <CardsContainer data={data} currentUser={currentUser} canDelete />
+          <CardsContainer
+            data={data.listings}
+            currentUser={currentUser}
+            canDelete
+          />
         </div>
       </>
     );

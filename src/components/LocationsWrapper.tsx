@@ -4,7 +4,7 @@ import { Locations } from '@/components';
 const LocationsWrapper = async () => {
   const data = await getAllListings();
 
-  return <Locations listings={data} />;
+  return <Locations listings={data.listings} />;
 };
 
 export default LocationsWrapper;

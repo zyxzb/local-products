@@ -37,6 +37,7 @@
     "react-gallery-carousel": "^0.4.0",
     "react-icons": "^4.9.0",
     "react-indiana-drag-scroll": "^2.2.0",
+    "react-js-pagination": "^3.0.3",
     "react-lazy-load": "^4.0.1",
     "react-leaflet": "^4.2.1",
     "react-leaflet-cluster": "^2.1.0",
@@ -53,6 +54,7 @@
     "@types/bcrypt": "^5.0.1",
     "@types/leaflet": "^1.9.7",
     "@types/react-gallery-carousel": "^0.2.2",
+    "@types/react-js-pagination": "^3.0.7",
     "@types/react-leaflet": "^3.0.0",
     "prisma": "^5.4.2"
   }

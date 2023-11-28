@@ -19,6 +19,24 @@ details > summary.list-none::marker {
   opacity: 1;
 }
 
+/* Pagination */
+
+.pagination {
+  @apply flex mx-auto gap-2 flex-wrap;
+}
+
+.page-item a {
+  @apply flex justify-center items-center border border-darkColor text-darkColor w-[30px] h-[30px] md:w-[40px] md:h-[40px] cursor-pointer;
+}
+
+.page-item.disabled a {
+  @apply cursor-not-allowed opacity-40;
+}
+
+.page-item.active a {
+  @apply font-bold;
+}
+
 @layer base {
   *,
   ::before,

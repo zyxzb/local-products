@@ -4,9 +4,9 @@ import { Listing } from '@prisma/client';
 const sitemap = async () => {
   const baseUrl = 'https://www.wybierzlokalnie.pl';
 
-  const listings = await getAllListings();
+  const data = await getAllListings();
 
-  const postsUrls = listings.map((listing: Listing) => ({
+  const postsUrls = data.listings.map((listing: Listing) => ({
     url: `${baseUrl}/ogloszenia/${listing.id}`,
     lastModified: listing.updatedAt,
   }));

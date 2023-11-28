@@ -51,8 +51,8 @@ export const generateMetadata = async ({
 };
 
 export const generateStaticParams = async () => {
-  const listings = await getAllListings();
-  return listings.map((listing: Listing) => ({
+  const data = await getAllListings();
+  return data.listings.map((listing: Listing) => ({
     id: listing.id.toString(),
   }));
 };

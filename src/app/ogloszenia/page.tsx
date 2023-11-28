@@ -1,8 +1,8 @@
 import {
   Breadcrumbs,
   FilterSortAds,
-  Pagination,
   CardsContainer,
+  CustomPagination,
 } from '@/components';
 import { Metadata } from 'next';
 import getAllListings, { IListingsParams } from '@/actions/getAllListings';
@@ -26,18 +26,16 @@ interface AdsParams {
 const Ads = async ({ searchParams }: AdsParams) => {
   const currentUser = await getCurrentUser();
   const data = await getAllListings(searchParams);
+  const { listings, total, limit } = data;
 
   return (
     <>
       <Breadcrumbs pageName='Ogłoszenia' />
-      {data.length > 0 ? (
+      {listings.length > 0 ? (
         <>
-          <FilterSortAds totalCount={data.length} />
-          <CardsContainer data={data} currentUser={currentUser} />
-          <Pagination
-            // change this later
-            totalPages
-          />
+          <FilterSortAds totalCount={total} />
+          <CardsContainer data={listings} currentUser={currentUser} />
+          <CustomPagination filteredItems={total} resPerPage={limit} />
         </>
       ) : (
         <div className='mt-20 text-center'>

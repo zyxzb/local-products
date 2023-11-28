@@ -24,7 +24,6 @@ import DetailsSummary from './DetailsSummary';
 import LazyImage from './LazyImage';
 import CardButtons from './CardButtons';
 import FilterSortAds from './FilterSortAds';
-import Pagination from './Pagination';
 import ButtonsSection from './ButtonsSection';
 import SearchBarLoader from './SearchBarLoader';
 import ImageUpload from './ImageUpload';
@@ -36,6 +35,7 @@ import TextHome from './TextHome';
 import Categories from './Categories';
 import FormCategories from './FormCategories';
 import MapListCategories from './MapListCategories';
+import CustomPagination from './CustomPagination';
 
 export {
   Nav,
@@ -64,7 +64,6 @@ export {
   LazyImage,
   CardButtons,
   FilterSortAds,
-  Pagination,
   ButtonsSection,
   SearchBarLoader,
   ImageUpload,
@@ -76,4 +75,5 @@ export {
   TextHome,
   FormCategories,
   MapListCategories,
+  CustomPagination,
 };

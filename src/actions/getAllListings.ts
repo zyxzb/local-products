@@ -12,7 +12,15 @@ export interface IListingsParams {
 
 const getAllListings = async (params: IListingsParams = {}) => {
   try {
-    const { userId, page, limit, sort, title, location, category } = params;
+    const {
+      userId,
+      page = 1,
+      limit = 12,
+      sort,
+      title,
+      location,
+      category,
+    } = params;
 
     let query: any = {};
     let orderBy: any = { createdAt: 'desc' };
@@ -20,14 +28,6 @@ const getAllListings = async (params: IListingsParams = {}) => {
     // later add search by user id
     if (userId) {
       query.userId = userId;
-    }
-
-    if (page) {
-      query.page = page;
-    }
-
-    if (limit) {
-      query.limit = limit;
     }
 
     if (sort) {
@@ -55,12 +55,20 @@ const getAllListings = async (params: IListingsParams = {}) => {
       };
     }
 
+    // Calculate the number of listings to skip (offset)
+    const skip = (page - 1) * limit;
+
     const listings = await prisma.listing.findMany({
       where: query,
       orderBy: orderBy,
+      take: limit, // Number of listings to take (limit)
+      skip: skip, // Number of listings to skip (offset)
     });
 
-    return listings;
+    // Get the total count of listings for pagination
+    const total = await prisma.listing.count({ where: query });
+
+    return { listings, total, limit };
   } catch (error: any) {
     throw new Error(error);
   }
