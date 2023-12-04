@@ -1,4 +1,4 @@
-import { Exo_2 } from 'next/font/google';
+import { exo_2 } from '@/fonts/fonts';
 
 import {
   Footer,
@@ -12,8 +12,6 @@ import { Suspense } from 'react';
 
 import './globals.css';
 import { Metadata } from 'next';
-
-const exo_2 = Exo_2({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.wybierzlokalnie.pl'),
