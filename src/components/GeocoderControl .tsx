@@ -8,8 +8,7 @@ import 'leaflet/dist/leaflet.css';
 import 'leaflet-control-geocoder/dist/Control.Geocoder.css';
 import 'leaflet-control-geocoder/dist/Control.Geocoder.js';
 
-import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
-import markerIcon from 'leaflet/dist/images/marker-icon.png';
+import Pin from 'public/Pin.svg';
 import markerShadow from 'leaflet/dist/images/marker-shadow.png';
 
 import { useCreateAdContext } from '@/context/createAddContext';
@@ -17,8 +16,8 @@ import { useCreateAdContext } from '@/context/createAddContext';
 // @ts-ignore
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
-  iconUrl: markerIcon.src,
-  iconRetinaUrl: markerIcon2x.src,
+  iconUrl: Pin.src,
+  iconRetinaUrl: Pin.src,
   shadowUrl: markerShadow.src,
 });
 
